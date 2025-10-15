@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste Formulário - Sem Redirecionamento</title>
+    <title>Auton I.A - Agentes de IA para sua Empresa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,33 +13,951 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #1a1a1a;
-            background: #f8f9fa;
-            padding: 2rem;
-            min-height: 100vh;
+            overflow-x: hidden;
+            background: white;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            z-index: 1000;
+            border-radius: 50px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            gap: 2rem;
+        
+        }
+
+        .logo {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* BOTÕES PRINCIPAIS - ESTILO GERAL */
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* BOTÃO DA NAVBAR - ESTILO ESPECÍFICO */
+        .nav-btn {
+            background: #000000;
+            color: white !important;
+            border: 2px solid #000000;
+        }
+
+        .nav-btn:hover {
+            background: #000000;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid #000000;
+        }
+
+        /* BOTÃO DO HERO - ESTILO ESPECÍFICO */
+        .hero-btn {
+            background: #000000;
+            color: white;
+            border: 2px solid #000000;
+        }
+
+        .hero-btn:hover {
+            background: #000000;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid #000000;
+        }
+
+        /* BOTÃO DO CTA - ESTILO ESPECÍFICO */
+        .cta-btn {
+            background: #000000;
+            color: white;
+            border: 2px solid #000000;
+        }
+
+        .cta-btn:hover {
+            background: #000000;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid #000000;
+        }
+
+        /* HERO COM IMAGEM NO CANTO */
+        .hero {
+            margin-top: 120px;
+            padding: 6rem 5%;
+            background: white;
+            color: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            opacity: 1;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 1;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out 0.2s;
+            line-height: 1.6;
+        }
+
+        .hero-btn {
+            opacity: 1;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out 0.4s;
+        }
+
+        .hero.visible h1,
+        .hero.visible p,
+        .hero.visible .hero-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 120%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            opacity: 1;
+            transform: translateX(50px);
+            transition: all 1s ease-out 0.3s;
+        }
+
+        .hero.visible .hero-image img {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* BALÕES DE CONVERSA COM EFEITO PARALLAX */
+        .chat-bubble {
+            position: absolute;
+            z-index: 2;
+            max-width: 850px;
+            width: 300px;
+            transition: all 0.8s ease-out;
+            filter: blur(0px);
+            opacity: 1;
+        }
+
+        .bubble-1 {
+            top: 280px;
+            left: 50px;
+            transform: translateX(0);
+        }
+
+        .bubble-2 {
+            top: 350px;
+            right: 370px;
+            transform: translateX(0);
+        }
+
+        /* Efeito quando a página é scrolada */
+        .scrolled .bubble-1 {
+            transform: translateX(-8px);
+            filter: blur(2px);
+            opacity: 0.8;
+        }
+
+        .scrolled .bubble-2 {
+            transform: translateX(8px);
+            filter: blur(2px);
+            opacity: 0.8;
+        }
+
+        .chat-bubble img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+        }
+
+        .section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 1;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SEÇÃO SOBRE COM IMAGEM, BLOCOS E ANIMAÇÕES */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .about-image img.celular {
+            max-width: 80%;
+            height: auto;
+            transition: transform 0.3s ease-out;
+            transform: rotate(0deg);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CONTEÚDO DE TEXTO COM ANIMAÇÃO PROGRESSIVA */
+        .about-content {
+            text-align: left;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            text-align: left;
+            transition: all 0.6s ease-out;
+            transform: translateY(30px);
+            opacity: 1;
+        }
+
+        .about-subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.7;
+            text-align: left;
+            transition: all 0.6s ease-out;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        /* EFEITO PROGRESSIVO - TEXTO */
+        .text-visible .about-title {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        .text-visible .about-subtitle {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            opacity: 1;
+            transform: translateY(-25px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section.visible .section-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 1;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out 0.2s;
+        }
+
+        .section.visible .section-subtitle {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SEÇÃO DE CAPACIDADES COM FUNDO PRETO E MARQUEE */
+        .capabilities-section {
+            background: #000;
+            color: white;
+            padding: 5rem 2rem;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .capabilities-section .section-title {
+            color: white;
+        }
+
+        .capabilities-section .section-subtitle {
+            color: #ccc;
+        }
+
+        .marquee-rows-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .marquee-row {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 2rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* PRIMEIRA FILEIRA - DIREITA */
+        .marquee-row-top .marquee-track {
+            animation: marquee-right 25s linear infinite;
+        }
+
+        /* SEGUNDA FILEIRA - ESQUERDA */
+        .marquee-row-bottom .marquee-track {
+            animation: marquee-left 30s linear infinite;
+        }
+
+        .capability-card {
+            background: #121212;
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            width: 360px;
+            flex-shrink: 0;
+            height: 285px;
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .capability-card:hover::before {
+            left: 100%;
+        }
+
+        .capability-card:hover {
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.5);
+            /* REMOVIDO: transform: translateY(-5px); */
+        }
+
+        .capability-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .capability-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .capability-card p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        /* ANIMAÇÕES HORIZONTAIS */
+        @keyframes marquee-right {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes marquee-left {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        /* Efeito de pausa no hover */
+        .marquee-rows-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        /* Gradiente nas bordas */
+        .marquee-row::before,
+        .marquee-row::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-row::before {
+            left: 0;
+            background: linear-gradient(90deg, #000 0%, transparent 100%);
+        }
+
+        .marquee-row::after {
+            right: 0;
+            background: linear-gradient(270deg, #000 0%, transparent 100%);
+        }
+
+        .capabilities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* SEÇÃO DE 5 DIAS GRÁTIS */
+        .free-trial-section {
+            padding: 5rem 5%;
+            width: 100%;
+            background: #e9ecef;
+            position: relative;
+        }
+
+        .trial-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CARD COM EFEITO GLASS MAIS SUAVE */
+        .trial-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 35px;
+            padding: 3.5rem 3rem;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: visible;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .trial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .trial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+
+        .gift-emoji {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            position: relative;
+            z-index: 4;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .trial-title {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            font-weight: 700;
+            position: relative;
+            z-index: 4;
+        }
+
+        .trial-subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+            max-width: 280px;
+            position: relative;
+            z-index: 4;
+        }
+
+        /* BOTÃO */
+        .trial-btn {
+            background: #000000;
+            color: white;
+            border: none;
+            padding: 1.3rem 3.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 4;
+        }
+
+        .trial-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            background: #000000;
+        }
+
+        /* CONTEÚDO EXPLICATIVO */
+        .trial-content {
+            text-align: left;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .trial-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .trial-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ESTILOS PARA OS EMOJIS DA LISTA DE RECURSOS */
+        .emoji-square {
+            width: 35px;
+            height: 35px;
+            background-color: #000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #2d3748;
+            padding: 0.5rem 0;
+            opacity: 1;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .free-trial-section.visible .feature-list li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .feature-list li:nth-child(1) { transition-delay: 0.1s; }
+        .feature-list li:nth-child(2) { transition-delay: 0.2s; }
+        .feature-list li:nth-child(3) { transition-delay: 0.3s; }
+        .feature-list li:nth-child(4) { transition-delay: 0.4s; }
+        .feature-list li:nth-child(5) { transition-delay: 0.5s; }
+
+        /* CONTAINER DO CARD COM POSIÇÃO RELATIVE PARA OS CONFETES */
+        .card-container {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
+        /* ÁREA DOS CONFETES - ATRÁS DO CARD */
+        .confetti-area {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            z-index: 1; /* ATRÁS do card (z-index: 3) */
+            pointer-events: none;
+        }
+
+        /* CONFETES INDIVIDUAIS - EXPLOSÃO RADIAL */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--color);
+            border-radius: 2px;
+            animation: confetti-explosion 3s ease-out infinite;
+            opacity: 0;
+            left: 50%;
+            top: 50%;
+            transform-origin: center;
+            z-index: 1;
+        }
+
+        /* POSIÇÕES E CORES DOS CONFETES */
+        .confetti:nth-child(1) { --color: #ff6b6b; animation-delay: 0s; }
+        .confetti:nth-child(2) { --color: #4ecdc4; animation-delay: 0.1s; }
+        .confetti:nth-child(3) { --color: #45b7d1; animation-delay: 0.2s; }
+        .confetti:nth-child(4) { --color: #96ceb4; animation-delay: 0.3s; }
+        .confetti:nth-child(5) { --color: #feca57; animation-delay: 0.4s; }
+        .confetti:nth-child(6) { --color: #ff9ff3; animation-delay: 0.5s; }
+        .confetti:nth-child(7) { --color: #54a0ff; animation-delay: 0.6s; }
+        .confetti:nth-child(8) { --color: #5f27cd; animation-delay: 0.7s; }
+        .confetti:nth-child(9) { --color: #00d2d3; animation-delay: 0.8s; }
+        .confetti:nth-child(10) { --color: #ff9f43; animation-delay: 0.9s; }
+        .confetti:nth-child(11) { --color: #10ac84; animation-delay: 1s; }
+        .confetti:nth-child(12) { --color: #ee5a24; animation-delay: 1.1s; }
+        .confetti:nth-child(13) { --color: #0984e3; animation-delay: 1.2s; }
+        .confetti:nth-child(14) { --color: #a29bfe; animation-delay: 1.3s; }
+        .confetti:nth-child(15) { --color: #fd79a8; animation-delay: 1.4s; }
+        .confetti:nth-child(16) { --color: #fdcb6e; animation-delay: 1.5s; }
+        .confetti:nth-child(17) { --color: #e17055; animation-delay: 1.6s; }
+        .confetti:nth-child(18) { --color: #00b894; animation-delay: 1.7s; }
+        .confetti:nth-child(19) { --color: #6c5ce7; animation-delay: 1.8s; }
+        .confetti:nth-child(20) { --color: #ffeaa7; animation-delay: 1.9s; }
+        .confetti:nth-child(21) { --color: #ff7675; animation-delay: 2s; }
+        .confetti:nth-child(22) { --color: #74b9ff; animation-delay: 2.1s; }
+        .confetti:nth-child(23) { --color: #55efc4; animation-delay: 2.2s; }
+        .confetti:nth-child(24) { --color: #a29bfe; animation-delay: 2.3s; }
+
+        /* ANIMAÇÃO DE EXPLOSÃO RADIAL */
+        @keyframes confetti-explosion {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            10% {
+                opacity: 1;
+                transform: 
+                    translate(
+                        calc(var(--x) * 100px), 
+                        calc(var(--y) * 100px)
+                    ) 
+                    rotate(180deg) 
+                    scale(1.2);
+            }
+            30% {
+                opacity: 1;
+                transform: 
+                    translate(
+                        calc(var(--x) * 200px), 
+                        calc(var(--y) * 200px)
+                    ) 
+                    rotate(360deg) 
+                    scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: 
+                    translate(
+                        calc(var(--x) * 300px), 
+                        calc(var(--y) * 300px)
+                    ) 
+                    rotate(540deg) 
+                    scale(0.8);
+            }
+            70% {
+                opacity: 0.4;
+                transform: 
+                    translate(
+                        calc(var(--x) * 400px), 
+                        calc(var(--y) * 400px)
+                    ) 
+                    rotate(720deg) 
+                    scale(0.4);
+            }
+            100% {
+                opacity: 0;
+                transform: 
+                    translate(
+                        calc(var(--x) * 500px), 
+                        calc(var(--y) * 500px)
+                    ) 
+                    rotate(900deg) 
+                    scale(0);
+            }
+        }
+
+        /* SEÇÃO "POR QUE A AUTON I.A?" */
+        .porque-auton {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .porque-auton .section-title {
+            margin-bottom: 1rem;
+        }
+
+        .porque-auton .section-subtitle {
+            margin-bottom: 4rem;
+        }
+
+        .vantagens-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .vantagem-item {
+            background-color: #000;
+            color: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transform: translateY(30px);
+        }
+
+        .porque-auton.visible .vantagem-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .vantagem-item:nth-child(1) { transition: all 0.6s ease 0.1s; }
+        .vantagem-item:nth-child(2) { transition: all 0.6s ease 0.2s; }
+        .vantagem-item:nth-child(3) { transition: all 0.6s ease 0.3s; }
+
+        .vantagem-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .icone-emoji {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 8px; /* Menos arredondado, mais quadrado */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .vantagem-item:hover .icone-emoji {
+            transform: scale(1.1);
+        }
+
+        .vantagem-conteudo h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .vantagem-conteudo p {
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        /* NOVA SEÇÃO DE FORMULÁRIO - LADO A LADO */
         .form-section {
-            padding: 3rem 2rem;
+            padding: 5rem 5%;
             background: #f8f9fa;
-            width: 100%;
-            max-width: 800px;
         }
 
         .form-container {
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
         .form-content {
-            text-align: center;
+            text-align: left;
         }
 
         .form-title {
@@ -126,6 +1045,10 @@
             cursor: not-allowed;
         }
 
+        .loading-text {
+            display: none;
+        }
+
         /* ESTILOS DA PÁGINA DE OBRIGADO MINIMALISTA */
         .thank-you-container {
             display: none;
@@ -164,32 +1087,969 @@
             color: #4a5568;
         }
 
-        .loading-text {
-            display: none;
+        /* SEÇÃO FAQ ATUALIZADA */
+        .faq-section {
+            background: #000;
+            color: white;
+            padding: 5rem 2rem;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+        
+        .faq-section .section-title {
+            color: white;
         }
 
+        .faq-section .section-subtitle {
+            color: #ccc;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #121212;
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: translateY(20px);
+        }
+
+        .faq-section.visible .faq-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-item:nth-child(1) { transition: all 0.5s ease 0.1s; }
+        .faq-item:nth-child(2) { transition: all 0.5s ease 0.2s; }
+        .faq-item:nth-child(3) { transition: all 0.5s ease 0.3s; }
+        .faq-item:nth-child(4) { transition: all 0.5s ease 0.4s; }
+        .faq-item:nth-child(5) { transition: all 0.5s ease 0.5s; }
+
+        .faq-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+            color: white;
+        }
+
+        .faq-question:hover {
+            background: #1a1a1a;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            color: #333;
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            background: white;
+            transition: all 0.5s ease;
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            min-height: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            min-height: 80px;
+            padding: 1.5rem;
+            opacity: 1;
+        }
+
+        .faq-answer-content {
+            width: 100%;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease;
+            font-weight: 300;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+            color: white;
+        }
+
+        footer {
+            background: #000000;
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        /* ESTILOS DO CHAT PARA SOBREPOR A IMAGEM */
+        .chat-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .chat-container {
+            width: 75%;
+            max-width: 320px;
+            padding: 15px;
+            position: relative;
+            pointer-events: none;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 12px;
+            position: relative;
+            pointer-events: none;
+            opacity: 1;
+            transition: all 0.6s ease-out;
+        }
+
+        .message.received {
+            justify-content: flex-start;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            display: flex;
+            max-width: 85%;
+            pointer-events: none;
+        }
+
+        .message.received .message-content {
+            flex-direction: row;
+        }
+
+        .message.sent .message-content {
+            flex-direction: row-reverse;
+        }
+
+        .profile-pic {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 6px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+
+        .message-bubble {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 8px 12px;
+            color: black;
+            max-width: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+        }
+
+        .message.received .message-bubble {
+            border-top-left-radius: 4px;
+        }
+
+        .message.sent .message-bubble {
+            border-top-right-radius: 4px;
+        }
+
+        .message-text {
+            line-height: 1.3;
+            font-size: 12px;
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        /* Estilo para mensagem de áudio */
+        .audio-message {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            gap: 6px;
+            pointer-events: none;
+        }
+
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-left: 12px solid black;
+            border-bottom: 8px solid transparent;
+            border-radius: 3px;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .audio-progress {
+            display: flex;
+            align-items: center;
+            position: relative;
+            flex-grow: 1;
+            pointer-events: none;
+        }
+
+        .progress-line {
+            width: 100%;
+            height: 3px;
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 2px;
+            position: relative;
+            pointer-events: none;
+        }
+
+        .progress-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 40%;
+            background: black;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        .progress-circle {
+            width: 8px;
+            height: 8px;
+            background: black;
+            border-radius: 50%;
+            position: absolute;
+            left: 40%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .audio-line {
+            width: 90px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        /* Classes para ajuste individual das mensagens - ESTADO INICIAL (fora da tela) */
+        .message-1 {
+            transform: translateX(100px) translateY(-20px);
+        }
+        
+        .message-2 {
+            transform: translateX(-100px) translateY(-15px);
+        }
+        
+        .message-3 {
+            transform: translateX(100px) translateY(-10px);
+        }
+        
+        .message-4 {
+            transform: translateX(-100px) translateY(-5px);
+        }
+
+        /* Classes para estado VISÍVEL */
+        .message-1.visible {
+            opacity: 1;
+            transform: translateX(65px) translateY(-20px);
+            transition-delay: 0s;
+        }
+        
+        .message-2.visible {
+            opacity: 1;
+            transform: translateX(-50px) translateY(-15px);
+            transition-delay: 0.1s;
+        }
+        
+        .message-3.visible {
+            opacity: 1;
+            transform: translateX(65px) translateY(-10px);
+            transition-delay: 0.2s;
+        }
+        
+        .message-4.visible {
+            opacity: 1;
+            transform: translateX(-50px) translateY(-5px);
+            transition-delay: 0.3s;
+        }
+
+        /* RESPONSIVO */
         @media (max-width: 768px) {
+            .navbar {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-image img {
+                max-width: 100%;
+            }
+
+            .chat-bubble {
+                max-width: 200px;
+                width: 200px;
+            }
+
+            .bubble-1 {
+                top: 100px;
+                left: 20px;
+            }
+
+            .bubble-2 {
+                top: 200px;
+                right: 30px;
+            }
+
+            .scrolled .bubble-1 {
+                transform: translateX(-20px);
+            }
+
+            .scrolled .bubble-2 {
+                transform: translateX(20px);
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-image {
+                min-height: 400px;
+            }
+
+            .about-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            .about-subtitle {
+                font-size: 1.1rem;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            /* Responsividade para seção de capacidades com marquee */
+            .capabilities-section {
+                padding: 3rem 1rem;
+            }
+            
+            .marquee-rows-container {
+                gap: 1rem;
+            }
+            
+            .capability-card {
+                width: 300px;
+                padding: 2.5rem 2rem;
+                height: 200px;
+            }
+            
+            .capability-icon {
+                font-size: 2.5rem;
+            }
+            
+            .marquee-row {
+                height: 220px;
+            }
+            
+            .capability-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .capability-card p {
+                font-size: 1rem;
+            }
+
+            /* Responsividade para seção de 5 dias grátis */
+            .free-trial-section {
+                padding: 4rem 5%;
+            }
+            
+            .trial-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            
+            .trial-card {
+                padding: 3rem 2rem;
+                min-height: 380px;
+            }
+            
+            .gift-emoji {
+                font-size: 3.5rem;
+            }
+            
+            .trial-title {
+                font-size: 1.8rem;
+            }
+            
+            .trial-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .trial-content h3 {
+                font-size: 1.7rem;
+                text-align: center;
+                margin-bottom: 1.2rem;
+            }
+            
+            .trial-content p {
+                font-size: 1rem;
+                text-align: center;
+                margin-bottom: 1.2rem;
+            }
+            
+            .trial-btn {
+                padding: 1.1rem 2.5rem;
+                font-size: 1rem;
+            }
+            
+            .feature-list li {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Responsividade para seção "Por que a Auton I.A?" */
+            .vantagens-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .vantagem-item {
+                padding: 2rem 1.5rem;
+                min-height: 250px;
+            }
+            
+            .icone-emoji {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .vantagem-conteudo h3 {
+                font-size: 1.3rem;
+            }
+
+            /* Responsividade para formulário */
+            .form-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+            
             .form-box {
                 padding: 2rem;
             }
             
             .form-title {
                 font-size: 2rem;
+                text-align: center;
             }
             
             .form-subtitle {
                 font-size: 1.1rem;
+                text-align: center;
+            }
+
+            /* Responsividade para FAQ */
+            .faq-section {
+                padding: 3rem 1rem;
+            }
+            
+            .faq-question {
+                padding: 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .faq-answer {
+                padding: 0 1.2rem;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 1.2rem;
+                min-height: 70px;
+            }
+
+            /* Ajustes do chat no mobile */
+            .chat-container {
+                width: 85%;
+                max-width: 280px;
+            }
+            
+            .profile-pic {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .message-text {
+                font-size: 11px;
+            }
+            
+            .message-bubble {
+                padding: 6px 10px;
+            }
+
+            /* Ajustes das posições no mobile */
+            .message-1 {
+                transform: translateX(80px) translateY(-15px);
+            }
+            
+            .message-2 {
+                transform: translateX(-80px) translateY(-10px);
+            }
+            
+            .message-3 {
+                transform: translateX(80px) translateY(-5px);
+            }
+            
+            .message-4 {
+                transform: translateX(-80px) translateY(0px);
+            }
+
+            .message-1.visible {
+                transform: translateX(30px) translateY(-15px);
+            }
+            
+            .message-2.visible {
+                transform: translateX(-25px) translateY(-10px);
+            }
+            
+            .message-3.visible {
+                transform: translateX(30px) translateY(-5px);
+            }
+            
+            .message-4.visible {
+                transform: translateX(-25px) translateY(0px);
             }
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://i.ibb.co/0pmJ9t8b/Gemini-Generated-Image-44ys9g44ys9g44ys-Photoroom.png" alt="Auton I.A">
+        </div>
+        
+        <div class="nav-links">
+            <a href="#como-funciona">Como Funciona</a>
+            <a href="#beneficios">Benefícios</a>
+            <a href="#sobre">Sobre</a>
+        </div>
+        
+        <a href="#formulario" class="btn nav-btn">Agendar Demonstração</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Coloque um Agente de IA para trabalhar na sua empresa</h1>
+                <p>Treinamos e implementamos um agente de IA generativa que fala com seus clientes, automatiza processos, responde dúvidas, resolve problemas e integra com todos os seus sistemas como se fosse você.</p>
+                <a href="#formulario" class="btn hero-btn">Agendar uma demonstração</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.ibb.co/1GtvYHfN/imgpr.jpg" alt="Agente de IA Auton I.A">
+                <!-- Balão 1 - Cliente -->
+                <div class="chat-bubble bubble-1">
+                    <img src="https://i.ibb.co/GfWcKmRj/imms1.png" alt="Cliente perguntando">
+                </div>
+                <!-- Balão 2 - Agente Auton I.A -->
+                <div class="chat-bubble bubble-2">
+                    <img src="https://i.ibb.co/207SGH8S/imms2.png" alt="Agente Auton I.A respondendo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO SOBRE COM IMAGEM, BLOCOS E ANIMAÇÕES -->
+    <section class="section" id="sobre">
+        <div class="about-container">
+            <!-- IMAGEM DO CELULAR COM CHAT SOBREPOSTO -->
+            <div class="about-image">
+                <!-- Celular principal -->
+                <img src="https://i.ibb.co/FkYwPJHR/imcel.png" alt="Agente de IA Auton I.A" class="celular" id="celularImage">
+                
+                <!-- Chat sobreposto à imagem do celular -->
+                <div class="chat-overlay">
+                    <div class="chat-container">
+                        <!-- Mensagem 1 - Lado direito -->
+                        <div class="message sent message-1" id="msg1">
+                            <div class="message-content">
+                                <img src="https://i.ibb.co/Tx3SMvQm/imfp1.png" alt="Perfil 1" class="profile-pic">
+                                <div class="message-bubble">
+                                    <div class="message-text">Olá, gostaria de marcar uma consulta!</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mensagem 2 - Lado esquerdo -->
+                        <div class="message received message-2" id="msg2">
+                            <div class="message-content">
+                                <img src="https://i.ibb.co/MyvMXL78/imfp2.png" alt="Perfil 2" class="profile-pic">
+                                <div class="message-bubble">
+                                    <div class="message-text">Claro, posso ajudar com o agendamento da sua consulta.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mensagem 3 (Áudio) - Lado direito -->
+                        <div class="message sent message-3" id="msg3">
+                            <div class="message-content">
+                                <img src="https://i.ibb.co/Tx3SMvQm/imfp1.png" alt="Perfil 1" class="profile-pic">
+                                <div class="message-bubble">
+                                    <div class="audio-message">
+                                        <div class="play-triangle"></div>
+                                        <div class="audio-progress">
+                                            <div class="progress-line"></div>
+                                            <div class="progress-circle"></div>
+                                        </div>
+                                        <div class="audio-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mensagem 4 - Lado esquerdo -->
+                        <div class="message received message-4" id="msg4">
+                            <div class="message-content">
+                                <img src="https://i.ibb.co/MyvMXL78/imfp2.png" alt="Perfil 2" class="profile-pic">
+                                <div class="message-bubble">
+                                    <div class="message-text">O horário das 17h está disponível. Quer que eu o agende para você?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CONTEÚDO DE TEXTO -->
+            <div class="about-content" id="text-content">
+                <h2 class="about-title">O que é um Agente de IA da Auton I.A?</h2>
+                <p class="about-subtitle">
+                    Ele é um atendente digital inteligente que entende mensagens, busca informações em tempo real, 
+                    toma decisões e executa tarefas de ponta a ponta, tudo de forma autônoma e personalizada.
+                    <br><br>
+                    Nossos agentes são treinados especificamente para o seu negócio, aprendendo com cada interação 
+                    e se tornando cada vez mais eficientes no atendimento aos seus clients.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE CAPACIDADES COM FUNDO PRETO E MARQUEE -->
+    <section class="capabilities-section" id="como-funciona">
+        <h2 class="section-title">Do que ele é capaz?</h2>
+        <p class="section-subtitle">Nosso agente de IA é capaz de executar diversas tarefas complexas de forma autônoma e inteligente.</p>
+        
+        <div class="marquee-rows-container">
+            <!-- PRIMEIRA FILEIRA - DIREITA -->
+            <div class="marquee-row marquee-row-top">
+                <div class="marquee-track">
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">💬</div>
+                            <h3>Atendimento Inteligente</h3>
+                            <p>Conversa com clientes, entende contexto e responde com precisão.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🔍</div>
+                            <h3>Busca de Informações</h3>
+                            <p>Acessa bases de dados, consulta sistemas e encontra informações instantaneamente.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">⚡</div>
+                            <h3>Automação de Tarefas</h3>
+                            <p>Executa processos complexos do início ao fim sem intervenção humana.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🔗</div>
+                            <h3>Integrações Completas</h3>
+                            <p>Conecta-se com mais de 400 ferramentas e sistemas que você já usa.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">📊</div>
+                            <h3>Análise e Relatórios</h3>
+                            <p>Gera insights, planilhas e documentos automaticamente.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🎯</div>
+                            <h3>Tomada de Decisões</h3>
+                            <p>Avalia situações e toma decisões baseadas em regras e contexto.</p>
+                        </div>
+                    </div>
+                    <!-- DUPLICAÇÃO PARA EFEITO CONTÍNUO -->
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">💬</div>
+                            <h3>Atendimento Inteligente</h3>
+                            <p>Conversa com clientes, entende contexto e responde com precisão.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🔍</div>
+                            <h3>Busca de Informações</h3>
+                            <p>Acessa bases de dados, consulta sistemas e encontra informações instantaneamente.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">⚡</div>
+                            <h3>Automação de Tarefas</h3>
+                            <p>Executa processos complexos do início ao fim sem intervenção humana.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEGUNDA FILEIRA - ESQUERDA -->
+            <div class="marquee-row marquee-row-bottom">
+                <div class="marquee-track">
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🤖</div>
+                            <h3>Aprendizado de I.A</h3>
+                            <p>Aprende com cada interação e melhora continuamente seu desempenho.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🌐</div>
+                            <h3>Multiplataforma</h3>
+                            <p>Funciona em diversos canais: WhatsApp, site, aplicativo e muito mais.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🔒</div>
+                            <h3>Segurança Máxima</h3>
+                            <p>Protege dados sensíveis com criptografia de ponta a ponta.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">📈</div>
+                            <h3>Análise Preditiva</h3>
+                            <p>Antecipa tendências e comportamentos com base em dados históricos.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🔄</div>
+                            <h3>Processamento em Lote</h3>
+                            <p>Executa múltiplas tarefas simultaneamente com eficiência.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🎨</div>
+                            <h3>Personalização</h3>
+                            <p>Adapta-se ao tom de voz e personalidade da sua marca.</p>
+                        </div>
+                    </div>
+                    <!-- DUPLICAÇÃO PARA EFEITO CONTÍNUO -->
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🤖</div>
+                            <h3>Aprendizado de I.A</h3>
+                            <p>Aprende com cada interação e melhora continuamente seu desempenho.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🌐</div>
+                            <h3>Multiplataforma</h3>
+                            <p>Funciona em diversos canais: WhatsApp, site, aplicativo e muito mais.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🔒</div>
+                            <h3>Segurança Máxima</h3>
+                            <p>Protege dados sensíveis com criptografia de ponta a ponta.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE 5 DIAS GRÁTIS -->
+    <section class="free-trial-section" id="beneficios">
+        <h2 class="section-title" style="margin-bottom: 0.5rem;">Experimente 5 Dias Grátis</h2>
+        
+        <div class="trial-container">
+            <!-- CONTAINER DO CARD COM CONFETES ATRÁS -->
+            <div class="card-container">
+                <!-- ÁREA DOS CONFETES - ATRÁS DO CARD -->
+                <div class="confetti-area">
+                    <div class="confetti" style="--x: 0; --y: -1;"></div>
+                    <div class="confetti" style="--x: 0.5; --y: -0.87;"></div>
+                    <div class="confetti" style="--x: 0.87; --y: -0.5;"></div>
+                    <div class="confetti" style="--x: 1; --y: 0;"></div>
+                    <div class="confetti" style="--x: 0.87; --y: 0.5;"></div>
+                    <div class="confetti" style="--x: 0.5; --y: 0.87;"></div>
+                    <div class="confetti" style="--x: 0; --y: 1;"></div>
+                    <div class="confetti" style="--x: -0.5; --y: 0.87;"></div>
+                    <div class="confetti" style="--x: -0.87; --y: 0.5;"></div>
+                    <div class="confetti" style="--x: -1; --y: 0;"></div>
+                    <div class="confetti" style="--x: -0.87; --y: -0.5;"></div>
+                    <div class="confetti" style="--x: -0.5; --y: -0.87;"></div>
+                    <div class="confetti" style="--x: 0.71; --y: -0.71;"></div>
+                    <div class="confetti" style="--x: 0.71; --y: 0.71;"></div>
+                    <div class="confetti" style="--x: -0.71; --y: 0.71;"></div>
+                    <div class="confetti" style="--x: -0.71; --y: -0.71;"></div>
+                    <div class="confetti" style="--x: 0.94; --y: -0.34;"></div>
+                    <div class="confetti" style="--x: 0.94; --y: 0.34;"></div>
+                    <div class="confetti" style="--x: -0.94; --y: 0.34;"></div>
+                    <div class="confetti" style="--x: -0.94; --y: -0.34;"></div>
+                    <div class="confetti" style="--x: 0.34; --y: -0.94;"></div>
+                    <div class="confetti" style="--x: 0.34; --y: 0.94;"></div>
+                    <div class="confetti" style="--x: -0.34; --y: 0.94;"></div>
+                    <div class="confetti" style="--x: -0.34; --y: -0.94;"></div>
+                </div>
+                
+                <!-- CARD COM EFEITO GLASS MAIS SUAVE -->
+                <div class="trial-card">
+                    <span class="gift-emoji">🎁</span>
+                    <h3 class="trial-title">5 Dias Grátis</h3>
+                    <p class="trial-subtitle">Teste nossa automação completa sem compromisso</p>
+                    <a href="#formulario" class="trial-btn">Resgatar meus 5 dias grátis</a>
+                </div>
+            </div>
+            
+            <!-- CONTEÚDO EXPLICATIVO -->
+            <div class="trial-content">
+                <h3>Como funciona o teste grátis?</h3>
+                <p>Durante 5 dias, você terá acesso completo à nossa plataforma de automação com IA. Veja na prática como nossos agentes podem transformar o atendimento da sua empresa:</p>
+                
+                <ul class="feature-list">
+                    <li>
+                        <div class="emoji-square">📱</div>
+                        <span>Atendimento automático 24/7 no WhatsApp</span>
+                    </li>
+                    <li>
+                        <div class="emoji-square">🔗</div>
+                        <span>Integração com seus sistemas atuais</span>
+                    </li>
+                    <li>
+                        <div class="emoji-square">💬</div>
+                        <span>Resposta inteligente a dúvidas dos clientes</span>
+                    </li>
+                    <li>
+                        <div class="emoji-square">⚡</div>
+                        <span>Automação de processos internos</span>
+                    </li>
+                    <li>
+                        <div class="emoji-square">📊</div>
+                        <span>Relatórios e análises em tempo real</span>
+                    </li>
+                </ul>
+                
+                <p style="margin-top: 2rem;"><strong>Sem surpresas:</strong> Após os 5 dias, você decide se quer continuar. Sem cobranças automáticas, sem letras miúdas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO "POR QUE A AUTON I.A?" -->
+    <section class="porque-auton">
+        <h2 class="section-title">Por que a Auton I.A?</h2>
+        <p class="section-subtitle">Na Auton I.A, criamos agentes de IA generativa sob medida, com infraestrutura segura e privativa, integração com +400 ferramentas e suporte contínuo para que seu atendimento evolua junto com o seu negócio.</p>
+        
+        <div class="vantagens-grid">
+            <div class="vantagem-item">
+                <div class="icone-emoji">⚡</div>
+                <div class="vantagem-conteudo">
+                    <h3>Velocidade e Eficiência</h3>
+                    <p>Reduza em até 70% o tempo de resposta e economize centenas de horas mensais em tarefas repetitivas.</p>
+                </div>
+            </div>
+            
+            <div class="vantagem-item">
+                <div class="icone-emoji">🤖</div>
+                <div class="vantagem-conteudo">
+                    <h3>Tecnologia Inteligente</h3>
+                    <p>Nossos agentes de IA alcançam 98% de satisfação dos clientes, com respostas precisas e naturais.</p>
+                </div>
+            </div>
+            
+            <div class="vantagem-item">
+                <div class="icone-emoji">🚀</div>
+                <div class="vantagem-conteudo">
+                    <h3>Implementação Rápida</h3>
+                    <p>Comece a usar em poucos dias, sem necessidade de complexas integrações ou treinamentos longos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SEÇÃO DE FORMULÁRIO COM PÁGINA DE OBRIGADO INTEGRADA -->
     <section class="form-section" id="formulario">
         <div class="form-container">
             <div class="form-content">
-                <h2 class="form-title">Teste do Formulário</h2>
-                <p class="form-subtitle">Esta é uma versão de teste para verificar se há redirecionamento</p>
+                <h2 class="form-title">Pronto para ter um agente de IA trabalhando por você?</h2>
+                <p class="form-subtitle">Nós criamos, treinamos e entregamos seu agente pronto para atender.</p>
             </div>
             
             <div class="form-box">
@@ -237,16 +2097,251 @@
                         <p><strong>WhatsApp:</strong> <span id="resumoWhatsapp"></span></p>
                         <p><strong>Empresa:</strong> <span id="resumoEmpresa"></span></p>
                     </div>
-                    
-                    <p style="margin-top: 2rem; color: #666; font-size: 0.9rem;">
-                        <strong>Status do teste:</strong> <span id="testStatus">✅ Sem redirecionamento</span>
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- SEÇÃO FAQ ATUALIZADA -->
+    <section class="faq-section">
+        <h2 class="section-title">Perguntas Frequentes</h2>
+        <p class="section-subtitle">Tire suas dúvidas sobre nossos agentes de IA e como eles podem transformar seu negócio</p>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Quanto tempo leva para implementar um agente de IA?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        O tempo de implementação varia de acordo com a complexidade do projeto, mas geralmente leva de 2 a 4 semanas para ter seu agente de IA completamente treinado e operacional.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>O agente precisa de manutenção constante?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Nossos agentes aprendem continuamente e se adaptam automaticamente. Oferecemos suporte contínuo e atualizações para garantir que ele evolua junto com seu negócio.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>É seguro confiar informações sensíveis ao agente?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Sim! Trabalhamos com infraestrutura segura e privativa, seguindo os mais altos padrões de segurança e conformidade com a LGPD.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Posso integrar com meus sistemas atuais?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Absolutamente! Nossos agentes se integram com mais de 400 ferramentas, incluindo WhatsApp, CRMs, ERPs e outras plataformas que sua empresa já utiliza.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Como funciona o período de teste grátis?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Oferecemos 5 dias grátis para você testar nossa plataforma completa. Após esse período, você decide se quer continuar sem nenhum compromisso.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Auton I.A. Todos os direitos reservados.</p>
+    </footer>
+
     <script>
+        // Efeito de parallax nos balões quando a página é scrolada
+        window.addEventListener('scroll', function() {
+            const heroSection = document.querySelector('.hero');
+            const heroImage = document.querySelector('.hero-image');
+            const scrollPosition = window.scrollY;
+            
+            // Ativa o efeito quando o scroll passa de 100px
+            if (scrollPosition > 100) {
+                heroImage.classList.add('scrolled');
+            } else {
+                heroImage.classList.remove('scrolled');
+            }
+            
+            // Efeito na navbar
+            const navbar = document.querySelector('.navbar');
+            if (scrollPosition > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Sistema de animação por scroll para todas as seções
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animação específica para o hero
+                    if (entry.target.classList.contains('hero')) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, 300);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observar todas as seções
+        document.querySelectorAll('.hero, .section, .free-trial-section, .porque-auton, .form-section, .faq-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Rotação progressiva do celular baseada no scroll - EFEITOS MAIS RÁPIDOS
+        window.addEventListener('scroll', function() {
+            const celularImage = document.querySelector('#celularImage');
+            const aboutSection = document.querySelector('#sobre');
+            const capabilitiesSection = document.querySelector('#como-funciona');
+            const scrollPosition = window.scrollY;
+            
+            // Posição das seções
+            const aboutTop = aboutSection.offsetTop;
+            const aboutHeight = aboutSection.offsetHeight;
+            const capabilitiesTop = capabilitiesSection.offsetTop;
+            
+            // Calcula o progresso do scroll dentro da seção "sobre"
+            const windowHeight = window.innerHeight;
+            
+            // **EFEITOS MAIS RÁPIDOS - COMEÇAM MAIS CEDO E TERMINAM ANTES DA SEÇÃO DE CAPACIDADES**
+            
+            // Rotação começa quando a seção aparece (50% da viewport)
+            const startRotation = aboutTop - windowHeight * 0.5;
+            // Rotação termina bem antes da seção de capacidades (80% da seção "sobre")
+            const endRotation = aboutTop + aboutHeight * 0.8;
+            
+            // Progresso da rotação (0 a 1)
+            let rotationProgress = 0;
+            
+            if (scrollPosition > startRotation && scrollPosition < endRotation) {
+                rotationProgress = (scrollPosition - startRotation) / (endRotation - startRotation);
+            } else if (scrollPosition >= endRotation) {
+                rotationProgress = 1;
+            }
+            
+            // Limita o progresso entre 0 e 1
+            rotationProgress = Math.max(0, Math.min(1, rotationProgress));
+            
+            // Rotação máxima de -9 graus (anti-horário)
+            const maxRotation = -9;
+            const currentRotation = maxRotation * rotationProgress;
+            
+            // Aplica a rotação
+            celularImage.style.transform = `rotate(${currentRotation}deg)`;
+            
+            // Efeito do texto - MAIS RÁPIDO
+            const textContent = document.querySelector('#text-content');
+            const textStart = aboutTop - windowHeight * 0.3;
+            const textEnd = aboutTop + aboutHeight * 0.4;
+            
+            if (scrollPosition > textStart && scrollPosition < textEnd) {
+                const textProgress = (scrollPosition - textStart) / (textEnd - textStart);
+                if (textProgress > 0.2) {
+                    textContent.classList.add('text-visible');
+                }
+            } else if (scrollPosition >= textEnd) {
+                textContent.classList.add('text-visible');
+            } else {
+                textContent.classList.remove('text-visible');
+            }
+            
+            // **EFEITO DE APARIÇÃO DAS MENSAGENS - MUITO MAIS RÁPIDO E TERMINA ANTES**
+            const messages = [
+                document.getElementById('msg1'),
+                document.getElementById('msg2'), 
+                document.getElementById('msg3'),
+                document.getElementById('msg4')
+            ];
+            
+            // Mensagens começam quando a seção aparece (40% da viewport)
+            const messagesStart = aboutTop - windowHeight * 0.4;
+            // Mensagens terminam no meio da seção "sobre" (antes da seção de capacidades)
+            const messagesEnd = aboutTop + aboutHeight * 0.6;
+            
+            if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
+                const messagesProgress = (scrollPosition - messagesStart) / (messagesEnd - messagesStart);
+                
+                // **SEQUÊNCIA MUITO MAIS RÁPIDA**
+                // Todas as mensagens aparecem em 40% do progresso
+                if (messagesProgress >= 0) messages[0].classList.add('visible');
+                if (messagesProgress >= 0.1) messages[1].classList.add('visible');
+                if (messagesProgress >= 0.2) messages[2].classList.add('visible');
+                if (messagesProgress >= 0.3) messages[3].classList.add('visible');
+                
+            } else if (scrollPosition >= messagesEnd) {
+                // Todas as mensagens visíveis
+                messages.forEach(message => {
+                    message.classList.add('visible');
+                });
+            } else {
+                // Nenhuma mensagem visível
+                messages.forEach(message => {
+                    message.classList.remove('visible');
+                });
+            }
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll para links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
         // Formulário com AJAX para evitar redirecionamento
         document.getElementById('capturaForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -254,7 +2349,6 @@
             const submitButton = document.getElementById('submitButton');
             const submitText = document.getElementById('submitText');
             const loadingText = document.getElementById('loadingText');
-            const testStatus = document.getElementById('testStatus');
             
             // Mostra loading
             submitText.style.display = 'none';
@@ -277,15 +2371,13 @@
                 // Método 1: Tentar enviar via FormSubmit AJAX
                 const formData = new FormData();
                 formData.append('_replyto', email);
-                formData.append('_subject', '🎯 TESTE FORMULÁRIO - Auton I.A');
+                formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
                 formData.append('nome', nome);
                 formData.append('email', email);
                 formData.append('whatsapp', whatsapp);
                 formData.append('empresa', empresa || 'Não informada');
                 formData.append('_captcha', 'false');
                 formData.append('_template', 'table');
-                
-                console.log('Enviando dados para FormSubmit...');
                 
                 const response = await fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
                     method: 'POST',
@@ -298,19 +2390,15 @@
                 const result = await response.json();
                 
                 if (response.ok && result.success) {
-                    console.log('✅ FormSubmit respondeu com sucesso');
-                    testStatus.innerHTML = '✅ Sem redirecionamento - Email enviado com sucesso';
+                    // Sucesso - mostra a página de obrigado
                     mostrarPaginaObrigado();
                 } else {
-                    console.log('⚠️ FormSubmit retornou erro, usando fallback');
-                    testStatus.innerHTML = '⚠️ Sem redirecionamento - Email pode não ter sido enviado';
+                    // Se o FormSubmit falhar, mostra a página de obrigado mesmo assim
                     mostrarPaginaObrigado();
                 }
                 
             } catch (error) {
-                console.log('❌ Erro no FormSubmit:', error);
-                // Método alternativo: Mostrar sucesso mesmo com erro
-                testStatus.innerHTML = '❌ Sem redirecionamento - Erro no envio do email';
+                // Em caso de erro, ainda mostra a página de obrigado
                 mostrarPaginaObrigado();
             }
         });
@@ -332,19 +2420,13 @@
             }, 1000);
         }
 
-        // Monitora se há redirecionamento
-        let redirecionado = false;
+        // Inicializa os efeitos
+        window.dispatchEvent(new Event('scroll'));
         
-        // Verifica se a página foi recarregada (possível redirecionamento)
-        window.addEventListener('beforeunload', function(e) {
-            redirecionado = true;
-        });
-
-        window.addEventListener('load', function() {
-            if (redirecionado) {
-                document.getElementById('testStatus').innerHTML = '❌ REDIRECIONAMENTO DETECTADO';
-            }
-        });
+        // Ativa animação do hero imediatamente
+        setTimeout(() => {
+            document.querySelector('.hero').classList.add('visible');
+        }, 500);
     </script>
 </body>
 </html>
