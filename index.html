@@ -1039,24 +1039,42 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
-        .form-message {
-            text-align: center;
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 10px;
+        /* ESTILOS DA PÁGINA DE OBRIGADO MINIMALISTA */
+        .thank-you-container {
             display: none;
+            text-align: center;
+            padding: 3rem 2rem;
         }
 
-        .form-message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+        .thank-you-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
         }
 
-        .form-message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+        .thank-you-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .thank-you-message {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .thank-you-details {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .thank-you-details p {
+            margin-bottom: 0.5rem;
+            color: #4a5568;
         }
 
         /* SEÇÃO FAQ ATUALIZADA */
@@ -2016,7 +2034,7 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO DE FORMULÁRIO - LADO A LADO -->
+    <!-- SEÇÃO DE FORMULÁRIO COM PÁGINA DE OBRIGADO INTEGRADA -->
     <section class="form-section" id="formulario">
         <div class="form-container">
             <div class="form-content">
@@ -2025,13 +2043,12 @@
             </div>
             
             <div class="form-box">
-                <!-- ✅ FORMULÁRIO COM FORMSUBMIT CONFIGURADO -->
-                <form action="https://formsubmit.co/autonia.contato@gmail.com" method="POST">
+                <!-- FORMULÁRIO ORIGINAL -->
+                <form action="https://formsubmit.co/autonia.contato@gmail.com" method="POST" id="capturaForm">
                     <!-- Configurações do FormSubmit -->
                     <input type="hidden" name="_subject" value="🎯 NOVO LEAD - Auton I.A">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
                     
                     <div class="form-grid">
                         <div class="form-group">
@@ -2057,6 +2074,22 @@
                     
                     <button type="submit" class="form-submit">Enviar Formulário</button>
                 </form>
+
+                <!-- PÁGINA DE OBRIGADO MINIMALISTA -->
+                <div class="thank-you-container" id="thankYouPage">
+                    <div class="thank-you-icon">✅</div>
+                    <h2 class="thank-you-title">Cadastro enviado!</h2>
+                    <p class="thank-you-message">
+                        Entraremos em contato em até 24 horas.
+                    </p>
+                    
+                    <div class="thank-you-details">
+                        <p><strong>Nome:</strong> <span id="resumoNome"></span></p>
+                        <p><strong>E-mail:</strong> <span id="resumoEmail"></span></p>
+                        <p><strong>WhatsApp:</strong> <span id="resumoWhatsapp"></span></p>
+                        <p><strong>Empresa:</strong> <span id="resumoEmpresa"></span></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -2299,6 +2332,30 @@
                     });
                 }
             });
+        });
+
+        // Formulário com página de obrigado integrada
+        document.getElementById('capturaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Captura os dados do formulário
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const empresa = document.getElementById('empresa').value;
+            
+            // Preenche o resumo na página de obrigado
+            document.getElementById('resumoNome').textContent = nome;
+            document.getElementById('resumoEmail').textContent = email;
+            document.getElementById('resumoWhatsapp').textContent = whatsapp;
+            document.getElementById('resumoEmpresa').textContent = empresa || 'Não informada';
+            
+            // Oculta o formulário e mostra a página de obrigado
+            document.getElementById('capturaForm').style.display = 'none';
+            document.getElementById('thankYouPage').style.display = 'block';
+            
+            // Envia o formulário para o FormSubmit
+            this.submit();
         });
 
         // Inicializa os efeitos
