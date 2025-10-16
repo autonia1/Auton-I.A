@@ -301,7 +301,7 @@
             transform: translateY(0);
         }
 
-        /* SEÇÃO SOBRE COM IMAGEM, BLOCOS E ANIMAÇÕES */
+        /* SEÇÃO SOBRE COM IMAGEM, BLOCOS E ANIMAÇÕES - ATUALIZADA */
         .about-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -312,14 +312,15 @@
 
         .about-image {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             position: relative;
-            min-height: 500px;
+            min-height: 650px;
+            margin-left: -20px;
         }
 
         .about-image img.celular {
-            max-width: 80%;
+            max-width: 105%;
             height: auto;
             transition: transform 0.3s ease-out;
             transform: rotate(0deg);
@@ -333,23 +334,23 @@
         }
 
         .about-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1.5rem;
             color: #1a1a1a;
             text-align: left;
-            transition: all 0.6s ease-out;
+            opacity: 0;
             transform: translateY(30px);
-            opacity: 1;
+            transition: all 0.8s ease-out;
         }
 
         .about-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: #4a5568;
             line-height: 1.7;
             text-align: left;
-            transition: all 0.6s ease-out;
-            transform: translateY(30px);
             opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out 0.2s;
         }
 
         /* EFEITO PROGRESSIVO - TEXTO */
@@ -1200,7 +1201,7 @@
             padding: 2rem 5%;
         }
 
-        /* ESTILOS DO CHAT PARA SOBREPOR A IMAGEM */
+        /* ESTILOS DO CHAT PARA SOBREPOR A IMAGEM - ATUALIZADOS */
         .chat-overlay {
             position: absolute;
             top: 0;
@@ -1215,19 +1216,19 @@
         }
 
         .chat-container {
-            width: 75%;
-            max-width: 320px;
-            padding: 15px;
+            width: 90%;
+            max-width: 420px;
+            padding: 25px;
             position: relative;
             pointer-events: none;
         }
 
         .message {
             display: flex;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
             position: relative;
             pointer-events: none;
-            opacity: 1;
+            opacity: 0;
             transition: all 0.6s ease-out;
         }
 
@@ -1241,7 +1242,7 @@
 
         .message-content {
             display: flex;
-            max-width: 85%;
+            max-width: 95%;
             pointer-events: none;
         }
 
@@ -1254,11 +1255,11 @@
         }
 
         .profile-pic {
-            width: 28px;
-            height: 28px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 6px;
+            margin: 0 10px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             pointer-events: none;
         }
@@ -1267,8 +1268,8 @@
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-radius: 14px;
-            padding: 8px 12px;
+            border-radius: 22px;
+            padding: 16px 20px;
             color: black;
             max-width: 100%;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -1285,8 +1286,8 @@
         }
 
         .message-text {
-            line-height: 1.3;
-            font-size: 12px;
+            line-height: 1.4;
+            font-size: 16px;
             font-weight: 700;
             pointer-events: none;
         }
@@ -1295,17 +1296,17 @@
         .audio-message {
             display: flex;
             align-items: center;
-            padding: 5px 10px;
-            gap: 6px;
+            padding: 10px 15px;
+            gap: 10px;
             pointer-events: none;
         }
 
         .play-triangle {
             width: 0;
             height: 0;
-            border-top: 8px solid transparent;
-            border-left: 12px solid black;
-            border-bottom: 8px solid transparent;
+            border-top: 12px solid transparent;
+            border-left: 16px solid black;
+            border-bottom: 12px solid transparent;
             border-radius: 3px;
             cursor: default;
             pointer-events: none;
@@ -1321,7 +1322,7 @@
 
         .progress-line {
             width: 100%;
-            height: 3px;
+            height: 5px;
             background: rgba(0, 0, 0, 0.55);
             border-radius: 2px;
             position: relative;
@@ -1341,8 +1342,8 @@
         }
 
         .progress-circle {
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
             background: black;
             border-radius: 50%;
             position: absolute;
@@ -1354,8 +1355,8 @@
         }
 
         .audio-line {
-            width: 90px;
-            height: 4px;
+            width: 120px;
+            height: 5px;
             background: rgba(0, 0, 0, 0.55);
             border-radius: 2px;
             pointer-events: none;
@@ -1363,43 +1364,43 @@
 
         /* Classes para ajuste individual das mensagens - ESTADO INICIAL (fora da tela) */
         .message-1 {
-            transform: translateX(100px) translateY(-20px);
+            transform: translateX(140px) translateY(-30px);
         }
         
         .message-2 {
-            transform: translateX(-100px) translateY(-15px);
+            transform: translateX(-140px) translateY(-25px);
         }
         
         .message-3 {
-            transform: translateX(100px) translateY(-10px);
+            transform: translateX(140px) translateY(-20px);
         }
         
         .message-4 {
-            transform: translateX(-100px) translateY(-5px);
+            transform: translateX(-140px) translateY(-15px);
         }
 
         /* Classes para estado VISÍVEL */
         .message-1.visible {
             opacity: 1;
-            transform: translateX(65px) translateY(-20px);
+            transform: translateX(90px) translateY(-30px);
             transition-delay: 0s;
         }
         
         .message-2.visible {
             opacity: 1;
-            transform: translateX(-50px) translateY(-15px);
+            transform: translateX(-70px) translateY(-25px);
             transition-delay: 0.1s;
         }
         
         .message-3.visible {
             opacity: 1;
-            transform: translateX(65px) translateY(-10px);
+            transform: translateX(90px) translateY(-20px);
             transition-delay: 0.2s;
         }
         
         .message-4.visible {
             opacity: 1;
-            transform: translateX(-50px) translateY(-5px);
+            transform: translateX(-70px) translateY(-15px);
             transition-delay: 0.3s;
         }
 
@@ -1463,16 +1464,18 @@
             }
             
             .about-image {
-                min-height: 400px;
+                min-height: 550px;
+                margin-left: 0;
+                justify-content: center;
             }
 
             .about-title {
-                font-size: 2rem;
+                font-size: 2.4rem;
                 text-align: center;
             }
             
             .about-subtitle {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 text-align: center;
             }
 
@@ -1624,54 +1627,54 @@
 
             /* Ajustes do chat no mobile */
             .chat-container {
-                width: 85%;
-                max-width: 280px;
+                width: 95%;
+                max-width: 350px;
             }
             
             .profile-pic {
-                width: 24px;
-                height: 24px;
+                width: 36px;
+                height: 36px;
             }
             
             .message-text {
-                font-size: 11px;
+                font-size: 14px;
             }
             
             .message-bubble {
-                padding: 6px 10px;
+                padding: 14px 18px;
             }
 
             /* Ajustes das posições no mobile */
             .message-1 {
-                transform: translateX(80px) translateY(-15px);
+                transform: translateX(120px) translateY(-25px);
             }
             
             .message-2 {
-                transform: translateX(-80px) translateY(-10px);
+                transform: translateX(-120px) translateY(-20px);
             }
             
             .message-3 {
-                transform: translateX(80px) translateY(-5px);
+                transform: translateX(120px) translateY(-15px);
             }
             
             .message-4 {
-                transform: translateX(-80px) translateY(0px);
+                transform: translateX(-120px) translateY(-10px);
             }
 
             .message-1.visible {
-                transform: translateX(30px) translateY(-15px);
+                transform: translateX(50px) translateY(-25px);
             }
             
             .message-2.visible {
-                transform: translateX(-25px) translateY(-10px);
+                transform: translateX(-45px) translateY(-20px);
             }
             
             .message-3.visible {
-                transform: translateX(30px) translateY(-5px);
+                transform: translateX(50px) translateY(-15px);
             }
             
             .message-4.visible {
-                transform: translateX(-25px) translateY(0px);
+                transform: translateX(-45px) translateY(-10px);
             }
         }
     </style>
@@ -2234,12 +2237,69 @@
             // Calcula o progresso do scroll dentro da seção "sobre"
             const windowHeight = window.innerHeight;
             
-            // **EFEITOS MAIS RÁPIDOS - COMEÇAM MAIS CEDO E TERMINAM ANTES DA SEÇÃO DE CAPACIDADES**
+            // **EFEITO DAS MENSAGENS - COMEÇA MUITO MAIS CEDO**
+            const messages = [
+                document.getElementById('msg1'),
+                document.getElementById('msg2'), 
+                document.getElementById('msg3'),
+                document.getElementById('msg4')
+            ];
             
-            // Rotação começa quando a seção aparece (50% da viewport)
-            const startRotation = aboutTop - windowHeight * 0.5;
-            // Rotação termina bem antes da seção de capacidades (80% da seção "sobre")
-            const endRotation = aboutTop + aboutHeight * 0.8;
+            // Mensagens começam quando a seção aparece (80% da viewport)
+            const messagesStart = aboutTop - windowHeight * 0.8;
+            // Mensagens terminam no primeiro 25% da seção "sobre"
+            const messagesEnd = aboutTop + aboutHeight * 0.25;
+            
+            // **EFEITO DO TEXTO - COMEÇA UM POUCO DEPOIS DAS MENSAGENS**
+            const textContent = document.getElementById('text-content');
+            const textStart = aboutTop - windowHeight * 0.6;
+            const textEnd = aboutTop + aboutHeight * 0.3;
+            
+            // Controle da visibilidade das mensagens
+            if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
+                const messagesProgress = (scrollPosition - messagesStart) / (messagesEnd - messagesStart);
+                
+                // **SEQUÊNCIA MUITO RÁPIDA - APARECEM UMA POR UMA CONFORME O SCROLL**
+                if (messagesProgress >= 0) messages[0].classList.add('visible');
+                if (messagesProgress >= 0.15) messages[1].classList.add('visible');
+                if (messagesProgress >= 0.3) messages[2].classList.add('visible');
+                if (messagesProgress >= 0.45) messages[3].classList.add('visible');
+                
+                // **EFEITO REVERSO - DESAPARECEM QUANDO SCROLLA PRA CIMA**
+                if (messagesProgress < 0.45) messages[3].classList.remove('visible');
+                if (messagesProgress < 0.3) messages[2].classList.remove('visible');
+                if (messagesProgress < 0.15) messages[1].classList.remove('visible');
+                if (messagesProgress < 0) messages[0].classList.remove('visible');
+                
+            } else if (scrollPosition >= messagesEnd) {
+                // Todas as mensagens visíveis quando passa do ponto final
+                messages.forEach(message => {
+                    message.classList.add('visible');
+                });
+            } else {
+                // Nenhuma mensagem visível quando está antes do ponto inicial
+                messages.forEach(message => {
+                    message.classList.remove('visible');
+                });
+            }
+            
+            // Controle da visibilidade do texto
+            if (scrollPosition > textStart && scrollPosition < textEnd) {
+                const textProgress = (scrollPosition - textStart) / (textEnd - textStart);
+                if (textProgress > 0.2) {
+                    textContent.classList.add('text-visible');
+                } else {
+                    textContent.classList.remove('text-visible');
+                }
+            } else if (scrollPosition >= textEnd) {
+                textContent.classList.add('text-visible');
+            } else {
+                textContent.classList.remove('text-visible');
+            }
+            
+            // Rotação progressiva do celular baseada no scroll
+            const startRotation = aboutTop - windowHeight * 0.7;
+            const endRotation = aboutTop + aboutHeight * 0.25;
             
             // Progresso da rotação (0 a 1)
             let rotationProgress = 0;
@@ -2248,6 +2308,8 @@
                 rotationProgress = (scrollPosition - startRotation) / (endRotation - startRotation);
             } else if (scrollPosition >= endRotation) {
                 rotationProgress = 1;
+            } else if (scrollPosition <= startRotation) {
+                rotationProgress = 0;
             }
             
             // Limita o progresso entre 0 e 1
@@ -2259,57 +2321,6 @@
             
             // Aplica a rotação
             celularImage.style.transform = `rotate(${currentRotation}deg)`;
-            
-            // Efeito do texto - MAIS RÁPIDO
-            const textContent = document.querySelector('#text-content');
-            const textStart = aboutTop - windowHeight * 0.3;
-            const textEnd = aboutTop + aboutHeight * 0.4;
-            
-            if (scrollPosition > textStart && scrollPosition < textEnd) {
-                const textProgress = (scrollPosition - textStart) / (textEnd - textStart);
-                if (textProgress > 0.2) {
-                    textContent.classList.add('text-visible');
-                }
-            } else if (scrollPosition >= textEnd) {
-                textContent.classList.add('text-visible');
-            } else {
-                textContent.classList.remove('text-visible');
-            }
-            
-            // **EFEITO DE APARIÇÃO DAS MENSAGENS - MUITO MAIS RÁPIDO E TERMINA ANTES**
-            const messages = [
-                document.getElementById('msg1'),
-                document.getElementById('msg2'), 
-                document.getElementById('msg3'),
-                document.getElementById('msg4')
-            ];
-            
-            // Mensagens começam quando a seção aparece (40% da viewport)
-            const messagesStart = aboutTop - windowHeight * 0.4;
-            // Mensagens terminam no meio da seção "sobre" (antes da seção de capacidades)
-            const messagesEnd = aboutTop + aboutHeight * 0.6;
-            
-            if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
-                const messagesProgress = (scrollPosition - messagesStart) / (messagesEnd - messagesStart);
-                
-                // **SEQUÊNCIA MUITO MAIS RÁPIDA**
-                // Todas as mensagens aparecem em 40% do progresso
-                if (messagesProgress >= 0) messages[0].classList.add('visible');
-                if (messagesProgress >= 0.1) messages[1].classList.add('visible');
-                if (messagesProgress >= 0.2) messages[2].classList.add('visible');
-                if (messagesProgress >= 0.3) messages[3].classList.add('visible');
-                
-            } else if (scrollPosition >= messagesEnd) {
-                // Todas as mensagens visíveis
-                messages.forEach(message => {
-                    message.classList.add('visible');
-                });
-            } else {
-                // Nenhuma mensagem visível
-                messages.forEach(message => {
-                    message.classList.remove('visible');
-                });
-            }
         });
 
         // FAQ functionality
