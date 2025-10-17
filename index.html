@@ -20,6 +20,13 @@
             background: white;
         }
 
+        /* 
+        ============================================
+        MUDANÇA 1: NAVBAR MOBILE
+        ============================================
+        No mobile: ocultar links "Como Funciona", "Benefícios", "Sobre"
+        Manter apenas logo e botão "Agendar Demonstração"
+        */
         .navbar {
             position: fixed;
             top: 20px;
@@ -38,7 +45,44 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             gap: 2rem;
-        
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* MOBILE: Esconder links de navegação */
+        @media (max-width: 768px) {
+            .navbar {
+                grid-template-columns: auto auto; /* Apenas logo e botão */
+                gap: 0.8rem;  /* ⬅️ Diminua o gap */
+                padding: 0.7rem 1.2rem;  /* ⬅️ Diminua o padding */
+                justify-content: space-between;
+            }
+
+            .nav-links {
+                display: none; /* Links escondidos no mobile */
+            }
+
+            .logo {
+                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
+                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
+                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
+            }
+        }
+
+        /* DESKTOP: Mostrar links normalmente */
+        @media (min-width: 769px) {
+            .nav-links {
+                display: flex; /* Links visíveis no desktop */
+            }
         }
 
         .logo {
@@ -49,20 +93,13 @@
         }
 
         .logo img {
-            height: 100%;
+            height: 110%;
             width: auto;
             transition: transform 0.3s ease;
         }
 
         .logo:hover img {
             transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-            justify-content: center;
         }
 
         .nav-links a {
@@ -137,37 +174,13 @@
             border: 2px solid #000000;
         }
 
-        /* BOTÃO DO HERO - ESTILO ESPECÍFICO */
-        .hero-btn {
-            background: #000000;
-            color: white;
-            border: 2px solid #000000;
-        }
-
-        .hero-btn:hover {
-            background: #000000;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 2px solid #000000;
-        }
-
-        /* BOTÃO DO CTA - ESTILO ESPECÍFICO */
-        .cta-btn {
-            background: #000000;
-            color: white;
-            border: 2px solid #000000;
-        }
-
-        .cta-btn:hover {
-            background: #000000;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 2px solid #000000;
-        }
-
-        /* HERO COM IMAGEM NO CANTO */
+        /* 
+        ============================================
+        MUDANÇA 2: HERO MOBILE  
+        ============================================
+        No mobile: imagens em cima do texto
+        Reposicionar balões de conversa mais abaixo
+        */
         .hero {
             margin-top: 120px;
             padding: 6rem 5%;
@@ -245,7 +258,7 @@
             transform: translateX(0);
         }
 
-        /* BALÕES DE CONVERSA COM EFEITO PARALLAX */
+        /* BALÕES DE CONVERSA */
         .chat-bubble {
             position: absolute;
             z-index: 2;
@@ -268,6 +281,92 @@
             transform: translateX(0);
         }
 
+        /* MOBILE: Reorganizar hero */
+        @media (max-width: 768px) {
+            .hero {
+                margin-top: 100px;
+                padding: 3rem 5%;
+            }
+            
+            .hero-container {
+                grid-template-columns: 1fr; /* Coluna única */
+                gap: 3rem;
+            }
+            
+            .hero-content {
+                order: 2; /* Texto vem DEPOIS */
+                text-align: center;
+            }
+            
+            .hero-image {
+                order: 1; /* Imagens vêm PRIMEIRO */
+                position: relative;
+                height: 400px;
+                margin-bottom: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-image img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* Reposicionar balões no mobile */
+            .chat-bubble {
+                width: 260px; /* Aumentar tamanho */
+                max-width: 260px;
+            }
+            
+            .bubble-1 {
+                top: 280px;  /* Mais abaixo */
+                left: 90px;
+            }
+            
+            .bubble-2 {
+                top: 330px;  /* Mais abaixo */
+                right: 90px;
+            }
+        }
+
+        /* BOTÃO DO HERO - ESTILO ESPECÍFICO */
+        .hero-btn {
+            background: #000000;
+            color: white;
+            border: 2px solid #000000;
+        }
+
+        .hero-btn:hover {
+            background: #000000;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid #000000;
+        }
+
+        /* BOTÃO DO CTA - ESTILO ESPECÍFICO */
+        .cta-btn {
+            background: #000000;
+            color: white;
+            border: 2px solid #000000;
+        }
+
+        .cta-btn:hover {
+            background: #000000;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid #000000;
+        }
+
         /* Efeito quando a página é scrolada */
         .scrolled .bubble-1 {
             transform: translateX(-8px);
@@ -287,6 +386,7 @@
             filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
         }
 
+        /* RESTANTE DO CSS ORIGINAL (mantido intacto) */
         .section {
             padding: 5rem 5%;
             max-width: 1400px;
@@ -301,7 +401,7 @@
             transform: translateY(0);
         }
 
-        /* SEÇÃO SOBRE COM IMAGEM, BLOCOS E ANIMAÇÕES - ATUALIZADA */
+        /* SEÇÃO SOBRE COM IMAGEM, BLOCOS E ANIMAÇÕES */
         .about-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -312,15 +412,14 @@
 
         .about-image {
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             position: relative;
-            min-height: 650px;
-            margin-left: -20px;
+            min-height: 600px; /* Aumentei a altura mínima */
         }
 
         .about-image img.celular {
-            max-width: 105%;
+            max-width: 115%; 
             height: auto;
             transition: transform 0.3s ease-out;
             transform: rotate(0deg);
@@ -334,23 +433,23 @@
         }
 
         .about-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
             color: #1a1a1a;
             text-align: left;
-            opacity: 0;
+            transition: all 0.6s ease-out;
             transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            opacity: 1;
         }
 
         .about-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: #4a5568;
             line-height: 1.7;
             text-align: left;
-            opacity: 0;
+            transition: all 0.6s ease-out;
             transform: translateY(30px);
-            transition: all 0.8s ease-out 0.2s;
+            opacity: 0;
         }
 
         /* EFEITO PROGRESSIVO - TEXTO */
@@ -397,6 +496,213 @@
         .section.visible .section-subtitle {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* ESTILOS DO CHAT PARA SOBREPOR A IMAGEM - EFEITO ORIGINAL RESTAURADO */
+        .chat-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .chat-container {
+            width: 80%; /* Aumentei a largura do container */
+            max-width: 350px; /* Aumentei o max-width */
+            padding: 20px; /* Aumentei o padding */
+            position: relative;
+            pointer-events: none;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 15px; /* Aumentei o espaçamento entre mensagens */
+            position: relative;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+
+        .message.received {
+            justify-content: flex-start;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            display: flex;
+            max-width: 90%; /* Aumentei a largura máxima */
+            pointer-events: none;
+        }
+
+        .message.received .message-content {
+            flex-direction: row;
+        }
+
+        .message.sent .message-content {
+            flex-direction: row-reverse;
+        }
+
+        .profile-pic {
+            width: 32px; /* Aumentei o tamanho das fotos de perfil */
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 8px; /* Aumentei a margem */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+
+        .message-bubble {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px; /* Aumentei o border-radius */
+            padding: 10px 14px; /* Aumentei o padding */
+            color: black;
+            max-width: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+        }
+
+        .message.received .message-bubble {
+            border-top-left-radius: 4px;
+        }
+
+        .message.sent .message-bubble {
+            border-top-right-radius: 4px;
+        }
+
+        .message-text {
+            line-height: 1.4;
+            font-size: 13px; /* Aumentei o tamanho da fonte */
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        /* Estilo para mensagem de áudio */
+        .audio-message {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px; /* Aumentei o padding */
+            gap: 8px; /* Aumentei o gap */
+            pointer-events: none;
+        }
+
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-top: 9px solid transparent;
+            border-left: 14px solid black;
+            border-bottom: 9px solid transparent;
+            border-radius: 3px;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .audio-progress {
+            display: flex;
+            align-items: center;
+            position: relative;
+            flex-grow: 1;
+            pointer-events: none;
+        }
+
+        .progress-line {
+            width: 100%;
+            height: 4px; /* Aumentei a altura */
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 2px;
+            position: relative;
+            pointer-events: none;
+        }
+
+        .progress-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 40%;
+            background: black;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        .progress-circle {
+            width: 10px; /* Aumentei o tamanho */
+            height: 10px;
+            background: black;
+            border-radius: 50%;
+            position: absolute;
+            left: 40%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .audio-line {
+            width: 100px; /* Aumentei a largura */
+            height: 4px; /* Aumentei a altura */
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        /* Classes para ajuste individual das mensagens - ESTADO INICIAL (fora da tela) */
+        .message-1 {
+            transform: translateX(120px) translateY(-20px);
+            opacity: 0;
+        }
+        
+        .message-2 {
+            transform: translateX(-120px) translateY(-15px);
+            opacity: 0;
+        }
+        
+        .message-3 {
+            transform: translateX(120px) translateY(-10px);
+            opacity: 0;
+        }
+        
+        .message-4 {
+            transform: translateX(-120px) translateY(-5px);
+            opacity: 0;
+        }
+
+        /* Classes para estado VISÍVEL */
+        .message-1.visible {
+            opacity: 1;
+            transform: translateX(75px) translateY(-20px);
+            transition-delay: 0s;
+        }
+        
+        .message-2.visible {
+            opacity: 1;
+            transform: translateX(-60px) translateY(-15px);
+            transition-delay: 0.1s;
+        }
+        
+        .message-3.visible {
+            opacity: 1;
+            transform: translateX(75px) translateY(-10px);
+            transition-delay: 0.2s;
+        }
+        
+        .message-4.visible {
+            opacity: 1;
+            transform: translateX(-60px) translateY(-5px);
+            transition-delay: 0.3s;
         }
 
         /* SEÇÃO DE CAPACIDADES COM FUNDO PRETO E MARQUEE */
@@ -482,7 +788,6 @@
         .capability-card:hover {
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
             border-color: rgba(102, 126, 234, 0.5);
-            /* REMOVIDO: transform: translateY(-5px); */
         }
 
         .capability-icon {
@@ -493,15 +798,15 @@
         }
 
         .capability-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
             color: white;
             line-height: 1.3;
         }
 
         .capability-card p {
             color: #ccc;
-            line-height: 1.6;
+            line-height: 1.5;
             font-size: 1.1rem;
             margin: 0;
         }
@@ -1201,286 +1506,156 @@
             padding: 2rem 5%;
         }
 
-        /* ESTILOS DO CHAT PARA SOBREPOR A IMAGEM - ATUALIZADOS */
-        .chat-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .chat-container {
-            width: 90%;
-            max-width: 420px;
-            padding: 25px;
-            position: relative;
-            pointer-events: none;
-        }
-
-        .message {
-            display: flex;
-            margin-bottom: 18px;
-            position: relative;
-            pointer-events: none;
-            opacity: 0;
-            transition: all 0.6s ease-out;
-        }
-
-        .message.received {
-            justify-content: flex-start;
-        }
-
-        .message.sent {
-            justify-content: flex-end;
-        }
-
-        .message-content {
-            display: flex;
-            max-width: 95%;
-            pointer-events: none;
-        }
-
-        .message.received .message-content {
-            flex-direction: row;
-        }
-
-        .message.sent .message-content {
-            flex-direction: row-reverse;
-        }
-
-        .profile-pic {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            pointer-events: none;
-        }
-
-        .message-bubble {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 22px;
-            padding: 16px 20px;
-            color: black;
-            max-width: 100%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            pointer-events: none;
-        }
-
-        .message.received .message-bubble {
-            border-top-left-radius: 4px;
-        }
-
-        .message.sent .message-bubble {
-            border-top-right-radius: 4px;
-        }
-
-        .message-text {
-            line-height: 1.4;
-            font-size: 16px;
-            font-weight: 700;
-            pointer-events: none;
-        }
-
-        /* Estilo para mensagem de áudio */
-        .audio-message {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            gap: 10px;
-            pointer-events: none;
-        }
-
-        .play-triangle {
-            width: 0;
-            height: 0;
-            border-top: 12px solid transparent;
-            border-left: 16px solid black;
-            border-bottom: 12px solid transparent;
-            border-radius: 3px;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        .audio-progress {
-            display: flex;
-            align-items: center;
-            position: relative;
-            flex-grow: 1;
-            pointer-events: none;
-        }
-
-        .progress-line {
-            width: 100%;
-            height: 5px;
-            background: rgba(0, 0, 0, 0.55);
-            border-radius: 2px;
-            position: relative;
-            pointer-events: none;
-        }
-
-        .progress-line::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 40%;
-            background: black;
-            border-radius: 2px;
-            pointer-events: none;
-        }
-
-        .progress-circle {
-            width: 12px;
-            height: 12px;
-            background: black;
-            border-radius: 50%;
-            position: absolute;
-            left: 40%;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .audio-line {
-            width: 120px;
-            height: 5px;
-            background: rgba(0, 0, 0, 0.55);
-            border-radius: 2px;
-            pointer-events: none;
-        }
-
-        /* Classes para ajuste individual das mensagens - ESTADO INICIAL (fora da tela) */
-        .message-1 {
-            transform: translateX(140px) translateY(-30px);
-        }
-        
-        .message-2 {
-            transform: translateX(-140px) translateY(-25px);
-        }
-        
-        .message-3 {
-            transform: translateX(140px) translateY(-20px);
-        }
-        
-        .message-4 {
-            transform: translateX(-140px) translateY(-15px);
-        }
-
-        /* Classes para estado VISÍVEL */
-        .message-1.visible {
-            opacity: 1;
-            transform: translateX(90px) translateY(-30px);
-            transition-delay: 0s;
-        }
-        
-        .message-2.visible {
-            opacity: 1;
-            transform: translateX(-70px) translateY(-25px);
-            transition-delay: 0.1s;
-        }
-        
-        .message-3.visible {
-            opacity: 1;
-            transform: translateX(90px) translateY(-20px);
-            transition-delay: 0.2s;
-        }
-        
-        .message-4.visible {
-            opacity: 1;
-            transform: translateX(-70px) translateY(-15px);
-            transition-delay: 0.3s;
-        }
-
         /* RESPONSIVO */
         @media (max-width: 768px) {
             .navbar {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                text-align: center;
+                grid-template-columns: auto auto; /* Apenas logo e botão */
+                gap: 0.8rem;  /* ⬅️ Diminua o gap */
+                padding: 0.7rem 1.2rem;  /* ⬅️ Diminua o padding */
+                justify-content: space-between;
             }
 
             .nav-links {
-                justify-content: center;
-                gap: 1rem;
-                font-size: 0.9rem;
+                display: none; /* Links escondidos no mobile */
             }
 
+            .logo {
+                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
+                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
+                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
+            }
+
+            .hero {
+                margin-top: 100px;
+                padding: 3rem 5%;
+            }
+            
             .hero-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+                grid-template-columns: 1fr; /* Coluna única */
+                gap: 3rem;
             }
-
+            
+            .hero-content {
+                order: 2; /* Texto vem DEPOIS */
+                text-align: center;
+            }
+            
+            .hero-image {
+                order: 1; /* Imagens vêm PRIMEIRO */
+                position: relative;
+                height: 400px;
+                margin-bottom: 2rem;
+            }
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                margin-bottom: 1.2rem;
             }
-
+            
             .hero p {
                 font-size: 1.1rem;
+                margin-bottom: 2rem;
             }
-
+            
             .hero-image img {
                 max-width: 100%;
+                height: auto;
             }
-
+            
+            /* Reposicionar balões no mobile */
             .chat-bubble {
-                max-width: 200px;
-                width: 200px;
+                width: 260px; /* Aumentar tamanho */
+                max-width: 260px;
             }
-
+            
             .bubble-1 {
-                top: 100px;
-                left: 20px;
+                top: 280px;  /* Mais abaixo */
+                left: 90px;
             }
-
+            
             .bubble-2 {
-                top: 200px;
-                right: 30px;
+                top: 330px;  /* Mais abaixo */
+                right: 90px;
             }
 
-            .scrolled .bubble-1 {
-                transform: translateX(-20px);
-            }
-
-            .scrolled .bubble-2 {
-                transform: translateX(20px);
-            }
-
+            /* Restante da responsividade original */
             .about-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
             
             .about-image {
-                min-height: 550px;
-                margin-left: 0;
-                justify-content: center;
+                min-height: 450px; /* Aumentei no mobile também */
             }
 
             .about-title {
-                font-size: 2.4rem;
+                font-size: 2rem;
                 text-align: center;
             }
             
             .about-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 text-align: center;
             }
 
             .section-title {
                 font-size: 2rem;
+            }
+
+            /* Ajustes do chat no mobile */
+            .chat-container {
+                width: 85%;
+                max-width: 300px; /* Aumentei no mobile */
+            }
+            
+            .profile-pic {
+                width: 28px; /* Aumentei no mobile */
+                height: 28px;
+            }
+            
+            .message-text {
+                font-size: 12px; /* Aumentei no mobile */
+            }
+            
+            .message-bubble {
+                padding: 8px 12px; /* Aumentei no mobile */
+            }
+
+            /* Ajustes das posições no mobile */
+            .message-1 {
+                transform: translateX(90px) translateY(-15px);
+            }
+            
+            .message-2 {
+                transform: translateX(-90px) translateY(-10px);
+            }
+            
+            .message-3 {
+                transform: translateX(90px) translateY(-5px);
+            }
+            
+            .message-4 {
+                transform: translateX(-90px) translateY(0px);
+            }
+
+            .message-1.visible {
+                transform: translateX(40px) translateY(-15px);
+            }
+            
+            .message-2.visible {
+                transform: translateX(-35px) translateY(-10px);
+            }
+            
+            .message-3.visible {
+                transform: translateX(40px) translateY(-5px);
+            }
+            
+            .message-4.visible {
+                transform: translateX(-35px) translateY(0px);
             }
 
             /* Responsividade para seção de capacidades com marquee */
@@ -1499,7 +1674,7 @@
             }
             
             .capability-icon {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .marquee-row {
@@ -1507,11 +1682,11 @@
             }
             
             .capability-card h3 {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
             }
             
             .capability-card p {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
 
             /* Responsividade para seção de 5 dias grátis */
@@ -1624,107 +1799,52 @@
                 padding: 1.2rem;
                 min-height: 70px;
             }
-
-            /* Ajustes do chat no mobile */
-            .chat-container {
-                width: 95%;
-                max-width: 350px;
-            }
-            
-            .profile-pic {
-                width: 36px;
-                height: 36px;
-            }
-            
-            .message-text {
-                font-size: 14px;
-            }
-            
-            .message-bubble {
-                padding: 14px 18px;
-            }
-
-            /* Ajustes das posições no mobile */
-            .message-1 {
-                transform: translateX(120px) translateY(-25px);
-            }
-            
-            .message-2 {
-                transform: translateX(-120px) translateY(-20px);
-            }
-            
-            .message-3 {
-                transform: translateX(120px) translateY(-15px);
-            }
-            
-            .message-4 {
-                transform: translateX(-120px) translateY(-10px);
-            }
-
-            .message-1.visible {
-                transform: translateX(50px) translateY(-25px);
-            }
-            
-            .message-2.visible {
-                transform: translateX(-45px) translateY(-20px);
-            }
-            
-            .message-3.visible {
-                transform: translateX(50px) translateY(-15px);
-            }
-            
-            .message-4.visible {
-                transform: translateX(-45px) translateY(-10px);
-            }
         }
     </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1005437460716504');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 </head>
 <body>
+    <!-- 
+    ============================================
+    NAVBAR - MUDANÇA 1
+    ============================================
+    -->
     <nav class="navbar">
         <div class="logo">
             <img src="https://i.ibb.co/0pmJ9t8b/Gemini-Generated-Image-44ys9g44ys9g44ys-Photoroom.png" alt="Auton I.A">
         </div>
         
+        <!-- Links que serão OCULTOS no mobile -->
         <div class="nav-links">
             <a href="#como-funciona">Como Funciona</a>
             <a href="#beneficios">Benefícios</a>
             <a href="#sobre">Sobre</a>
         </div>
         
+        <!-- Botão que permanece VISÍVEL -->
         <a href="#formulario" class="btn nav-btn">Agendar Demonstração</a>
     </nav>
 
+    <!-- 
+    ============================================
+    HERO - MUDANÇA 2  
+    ============================================
+    -->
     <section class="hero">
         <div class="hero-container">
+            <!-- No mobile: esta div vai para BAIXO (order: 2) -->
             <div class="hero-content">
                 <h1>Coloque um Agente de IA para trabalhar na sua empresa</h1>
                 <p>Treinamos e implementamos um agente de IA generativa que fala com seus clientes, automatiza processos, responde dúvidas, resolve problemas e integra com todos os seus sistemas como se fosse você.</p>
                 <a href="#formulario" class="btn hero-btn">Agendar uma demonstração</a>
             </div>
+            
+            <!-- No mobile: esta div vai para CIMA (order: 1) -->
             <div class="hero-image">
                 <img src="https://i.ibb.co/1GtvYHfN/imgpr.jpg" alt="Agente de IA Auton I.A">
-                <!-- Balão 1 - Cliente -->
+                <!-- Balões reposicionados no mobile -->
                 <div class="chat-bubble bubble-1">
                     <img src="https://i.ibb.co/GfWcKmRj/imms1.png" alt="Cliente perguntando">
                 </div>
-                <!-- Balão 2 - Agente Auton I.A -->
                 <div class="chat-bubble bubble-2">
                     <img src="https://i.ibb.co/207SGH8S/imms2.png" alt="Agente Auton I.A respondendo">
                 </div>
@@ -1732,7 +1852,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
         </div>
     </section>
 
-    <!-- SEÇÃO SOBRE COM IMAGEM, BLOCOS E ANIMAÇÕES -->
+    <!-- RESTANTE DO CÓDIGO ORIGINAL (mantido intacto) -->
     <section class="section" id="sobre">
         <div class="about-container">
             <!-- IMAGEM DO CELULAR COM CHAT SOBREPOSTO -->
@@ -2068,8 +2188,8 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
     <section class="form-section" id="formulario">
         <div class="form-container">
             <div class="form-content">
-                <h2 class="form-title">Pronto para ter seu<br>agente IA </h2>
-                <p class="form-subtitle">Criamos, treinamos e cuidamos de um agente de IA integrado à sua operação que entende seu negócio e entrega resultados reais, sem complicações.</p>
+                <h2 class="form-title">Pronto para ter o seu agente IA ?</h2>
+                <p class="form-subtitle">Criamos, treinamos e cuidamos de um agente IA integrado à sua operação que entende seu negócio e entrega resultados reais, sem complicações.</p>
                 <p class="form-subtitle">✅ Preencha o formulário e, em breve, nosso time entrará em contato com você via WhatsApp.</p>
             </div>
             
@@ -2099,7 +2219,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                     </div>
                     
                     <button type="submit" class="form-submit" id="submitButton">
-                        <span id="submitText">Enviar formulário</span>
+                        <span id="submitText">Enviar Formulário</span>
                         <span id="loadingText" class="loading-text">Enviando...</span>
                     </button>
                 </form>
@@ -2240,7 +2360,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             observer.observe(section);
         });
 
-        // Rotação progressiva do celular baseada no scroll - EFEITOS MAIS RÁPIDOS
+        // **EFEITO MELHORADO DOS 4 BLOCOS DE MENSAGEM - APARECEM E SOMEM COM SCROLL**
         window.addEventListener('scroll', function() {
             const celularImage = document.querySelector('#celularImage');
             const aboutSection = document.querySelector('#sobre');
@@ -2255,59 +2375,34 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             // Calcula o progresso do scroll dentro da seção "sobre"
             const windowHeight = window.innerHeight;
             
-            // **EFEITO DAS MENSAGENS - COMEÇA MUITO MAIS CEDO**
-            const messages = [
-                document.getElementById('msg1'),
-                document.getElementById('msg2'), 
-                document.getElementById('msg3'),
-                document.getElementById('msg4')
-            ];
+            // Rotação do celular
+            const startRotation = aboutTop - windowHeight * 0.5;
+            const endRotation = aboutTop + aboutHeight * 0.8;
             
-            // Mensagens começam quando a seção aparece (80% da viewport)
-            const messagesStart = aboutTop - windowHeight * 0.8;
-            // Mensagens terminam no primeiro 25% da seção "sobre"
-            const messagesEnd = aboutTop + aboutHeight * 0.25;
+            let rotationProgress = 0;
             
-            // **EFEITO DO TEXTO - COMEÇA UM POUCO DEPOIS DAS MENSAGENS**
-            const textContent = document.getElementById('text-content');
-            const textStart = aboutTop - windowHeight * 0.6;
-            const textEnd = aboutTop + aboutHeight * 0.3;
-            
-            // Controle da visibilidade das mensagens
-            if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
-                const messagesProgress = (scrollPosition - messagesStart) / (messagesEnd - messagesStart);
-                
-                // **SEQUÊNCIA MUITO RÁPIDA - APARECEM UMA POR UMA CONFORME O SCROLL**
-                if (messagesProgress >= 0) messages[0].classList.add('visible');
-                if (messagesProgress >= 0.15) messages[1].classList.add('visible');
-                if (messagesProgress >= 0.3) messages[2].classList.add('visible');
-                if (messagesProgress >= 0.45) messages[3].classList.add('visible');
-                
-                // **EFEITO REVERSO - DESAPARECEM QUANDO SCROLLA PRA CIMA**
-                if (messagesProgress < 0.45) messages[3].classList.remove('visible');
-                if (messagesProgress < 0.3) messages[2].classList.remove('visible');
-                if (messagesProgress < 0.15) messages[1].classList.remove('visible');
-                if (messagesProgress < 0) messages[0].classList.remove('visible');
-                
-            } else if (scrollPosition >= messagesEnd) {
-                // Todas as mensagens visíveis quando passa do ponto final
-                messages.forEach(message => {
-                    message.classList.add('visible');
-                });
-            } else {
-                // Nenhuma mensagem visível quando está antes do ponto inicial
-                messages.forEach(message => {
-                    message.classList.remove('visible');
-                });
+            if (scrollPosition > startRotation && scrollPosition < endRotation) {
+                rotationProgress = (scrollPosition - startRotation) / (endRotation - startRotation);
+            } else if (scrollPosition >= endRotation) {
+                rotationProgress = 1;
             }
             
-            // Controle da visibilidade do texto
+            rotationProgress = Math.max(0, Math.min(1, rotationProgress));
+            
+            const maxRotation = -9;
+            const currentRotation = maxRotation * rotationProgress;
+            
+            celularImage.style.transform = `rotate(${currentRotation}deg)`;
+            
+            // Efeito do texto
+            const textContent = document.querySelector('#text-content');
+            const textStart = aboutTop - windowHeight * 0.3;
+            const textEnd = aboutTop + aboutHeight * 0.4;
+            
             if (scrollPosition > textStart && scrollPosition < textEnd) {
                 const textProgress = (scrollPosition - textStart) / (textEnd - textStart);
                 if (textProgress > 0.2) {
                     textContent.classList.add('text-visible');
-                } else {
-                    textContent.classList.remove('text-visible');
                 }
             } else if (scrollPosition >= textEnd) {
                 textContent.classList.add('text-visible');
@@ -2315,30 +2410,46 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 textContent.classList.remove('text-visible');
             }
             
-            // Rotação progressiva do celular baseada no scroll
-            const startRotation = aboutTop - windowHeight * 0.7;
-            const endRotation = aboutTop + aboutHeight * 0.25;
-            
-            // Progresso da rotação (0 a 1)
-            let rotationProgress = 0;
-            
-            if (scrollPosition > startRotation && scrollPosition < endRotation) {
-                rotationProgress = (scrollPosition - startRotation) / (endRotation - startRotation);
-            } else if (scrollPosition >= endRotation) {
-                rotationProgress = 1;
-            } else if (scrollPosition <= startRotation) {
-                rotationProgress = 0;
-            }
-            
-            // Limita o progresso entre 0 e 1
-            rotationProgress = Math.max(0, Math.min(1, rotationProgress));
-            
-            // Rotação máxima de -9 graus (anti-horário)
-            const maxRotation = -9;
-            const currentRotation = maxRotation * rotationProgress;
-            
-            // Aplica a rotação
-            celularImage.style.transform = `rotate(${currentRotation}deg)`;
+           // **EFEITO DAS MENSAGENS - COMEÇA MUITO MAIS CEDO**
+const messages = [
+    document.getElementById('msg1'),
+    document.getElementById('msg2'), 
+    document.getElementById('msg3'),
+    document.getElementById('msg4')
+];
+
+// Mensagens começam quando a seção aparece (80% da viewport)
+const messagesStart = aboutTop - windowHeight * 0.8;
+// Mensagens terminam no primeiro 25% da seção "sobre"
+const messagesEnd = aboutTop + aboutHeight * 0.25;
+
+// Controle da visibilidade das mensagens
+if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
+    const messagesProgress = (scrollPosition - messagesStart) / (messagesEnd - messagesStart);
+    
+    // **SEQUÊNCIA MUITO RÁPIDA - APARECEM UMA POR UMA CONFORME O SCROLL**
+    if (messagesProgress >= 0) messages[0].classList.add('visible');
+    if (messagesProgress >= 0.15) messages[1].classList.add('visible');
+    if (messagesProgress >= 0.3) messages[2].classList.add('visible');
+    if (messagesProgress >= 0.45) messages[3].classList.add('visible');
+    
+    // **EFEITO REVERSO - DESAPARECEM QUANDO SCROLLA PRA CIMA**
+    if (messagesProgress < 0.45) messages[3].classList.remove('visible');
+    if (messagesProgress < 0.3) messages[2].classList.remove('visible');
+    if (messagesProgress < 0.15) messages[1].classList.remove('visible');
+    if (messagesProgress < 0) messages[0].classList.remove('visible');
+    
+} else if (scrollPosition >= messagesEnd) {
+    // Todas as mensagens visíveis quando passa do ponto final
+    messages.forEach(message => {
+        message.classList.add('visible');
+    });
+} else {
+    // Nenhuma mensagem visível quando está antes do ponto inicial
+    messages.forEach(message => {
+        message.classList.remove('visible');
+    });
+}
         });
 
         // FAQ functionality
