@@ -54,30 +54,6 @@
             justify-content: center;
         }
 
-        /* MOBILE: Esconder links de navegação */
-        @media (max-width: 768px) {
-            .navbar {
-                grid-template-columns: auto auto; /* Apenas logo e botão */
-                gap: 0.8rem;  /* ⬅️ Diminua o gap */
-                padding: 0.7rem 1.2rem;  /* ⬅️ Diminua o padding */
-                justify-content: space-between;
-            }
-
-            .nav-links {
-                display: none; /* Links escondidos no mobile */
-            }
-
-            .logo {
-                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
-            }
-
-            .nav-btn {
-                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
-                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
-                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
-            }
-        }
-
         /* DESKTOP: Mostrar links normalmente */
         @media (min-width: 769px) {
             .nav-links {
