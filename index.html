@@ -1532,7 +1532,46 @@
     .hero {
         margin-top: 120px !important;
             }
-            
+            // PREVINE COMPORTAMENTOS INDESEJADOS NA NAVBAR MOBILE
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    const navBtn = document.querySelector('.nav-btn');
+    
+    // Remove qualquer transição da navbar
+    navbar.style.transition = 'none';
+    
+    // Previne focus outlines
+    navBtn.addEventListener('focus', function(e) {
+        this.style.outline = 'none';
+        this.style.boxShadow = 'none';
+    });
+    
+    // Previne active states
+    navBtn.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+    });
+    
+    navBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+    });
+});
+
+// FORÇA ESTILOS CONSISTENTES NA NAVBAR
+function forceNavbarStyles() {
+    const navbar = document.querySelector('.navbar');
+    if (window.innerWidth <= 768) {
+        navbar.style.minHeight = '70px';
+        navbar.style.height = '70px';
+        navbar.style.transform = 'translateX(-50%)';
+        navbar.style.position = 'fixed';
+        navbar.style.top = '20px';
+    }
+}
+
+// Executa quando a página carrega e quando redimensiona
+window.addEventListener('load', forceNavbarStyles);
+window.addEventListener('resize', forceNavbarStyles);
+window.addEventListener('scroll', forceNavbarStyles);
             .hero-content {
                 order: 2; /* Texto vem DEPOIS */
                 text-align: center;
