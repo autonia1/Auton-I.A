@@ -1481,38 +1481,43 @@
             text-align: center;
             padding: 2rem 5%;
         }
-
 @media (max-width: 768px) {
     .navbar {
         grid-template-columns: auto auto;
-        gap: 1.5rem; /* ← Aumentei o gap */
-        padding: 0.8rem 1.5rem; /* ← Padding consistente */
-        justify-content: center; /* ← Centraliza */
+        gap: 1.5rem;
+        padding: 0.8rem 1.5rem;
+        justify-content: center;
         align-items: center;
-        width: 90%; /* ← Largura fixa */
-        min-height: 60px; /* ← Altura mínima fixa */
-        box-sizing: border-box; /* ← Importante! */
+        width: 90%;
+        min-height: 70px; /* ← ALTURA MÍNIMA FIXA */
+        height: 70px; /* ← ALTURA FIXA */
+        box-sizing: border-box;
+        position: fixed; /* ← GARANTE POSIÇÃO FIXA */
+        top: 20px; /* ← MESMA POSIÇÃO DO DESKTOP */
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .nav-links {
-        display: none;
+        display: none !important; /* ← FORÇA ESCONDER */
     }
 
     .logo {
         height: 35px;
-        margin: 0; /* ← Remove margens extras */
+        margin: 0;
     }
 
     .nav-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.85rem;
         white-space: nowrap;
-        margin: 0; /* ← Remove margens extras */
+        margin: 0;
     }
-}
-            .hero {
-                margin-top: 100px;
-                padding: 3rem 5%;
+    
+    /* AJUSTE O HERO PARA COMPENSAR A NAVBAR FIXA */
+    .hero {
+        margin-top: 100px; /* ← AUMENTE SE PRECISAR */
+    }
             }
             
             .hero-container {
