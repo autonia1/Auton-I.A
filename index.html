@@ -54,31 +54,45 @@
             justify-content: center;
         }
 
-        @media (max-width: 768px) {
+/* MOBILE: NAVBAR COMPACTA E FIXA */
+@media (max-width: 768px) {
     .navbar {
-        grid-template-columns: auto auto; /* Apenas logo e botão */
-        gap: 0.8rem;
-        padding: 0.7rem 1.2rem;
+        grid-template-columns: 1fr auto; /* Logo ocupa espaço disponível, botão fica à direita */
+        gap: 1rem;
+        padding: 0.8rem 1.5rem;
         justify-content: space-between;
+        align-items: center;
+        width: 95%; /* Um pouco menor para dar respiro */
+        max-width: 100%;
+        min-height: 60px; /* ALTURA FIXA */
+        height: 60px; /* ALTURA FIXA */
     }
 
     /* REMOVER COMPLETAMENTE os links no mobile */
     .nav-links {
-        display: none !important; /* Força a remoção */
-        width: 0;
-        height: 0;
-        overflow: hidden;
+        display: none !important;
+    }
 
-            .logo {
-                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
-            }
+    .logo {
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
 
-            .nav-btn {
-                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
-                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
-                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
-            }
-        }
+    .logo img {
+        height: 100%;
+        width: auto;
+        max-height: 35px; /* LIMITE MÁXIMO */
+    }
+
+    .nav-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        min-width: fit-content; /* Só o necessário para o texto */
+    }
+}
 
         /* DESKTOP: Mostrar links normalmente */
         @media (min-width: 769px) {
