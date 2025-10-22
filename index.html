@@ -1482,30 +1482,34 @@
             padding: 2rem 5%;
         }
 
-        /* RESPONSIVO */
-        @media (max-width: 768px) {
-            .navbar {
-                grid-template-columns: auto auto;
-                gap: 0.8rem;
-                padding: 0.7rem 1.2rem;
-                justify-content: center;
-                align-items: center;
-            }
+@media (max-width: 768px) {
+    .navbar {
+        grid-template-columns: auto auto;
+        gap: 1.5rem; /* ← Aumentei o gap */
+        padding: 0.8rem 1.5rem; /* ← Padding consistente */
+        justify-content: center; /* ← Centraliza */
+        align-items: center;
+        width: 90%; /* ← Largura fixa */
+        min-height: 60px; /* ← Altura mínima fixa */
+        box-sizing: border-box; /* ← Importante! */
+    }
 
-            .nav-links {
-                display: none; /* Links escondidos no mobile */
-            }
+    .nav-links {
+        display: none;
+    }
 
-            .logo {
-                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
-            }
+    .logo {
+        height: 35px;
+        margin: 0; /* ← Remove margens extras */
+    }
 
-            .nav-btn {
-                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
-                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
-                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
-            }
-
+    .nav-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        margin: 0; /* ← Remove margens extras */
+    }
+}
             .hero {
                 margin-top: 100px;
                 padding: 3rem 5%;
