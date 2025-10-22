@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auton I.A - Agentes de IA para sua Empresa</title>
+    <title>Auton I.A</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -56,34 +56,27 @@
 
         /* MOBILE: Esconder links de navegação */
         @media (max-width: 768px) {
-    .navbar {
-        grid-template-columns: auto auto !important;
-        justify-content: space-between !important;
-        padding: 0.8rem 1.5rem !important;
-        height: 70px !important; /* ALTURA FIXA */
-        min-height: 70px !important; /* ALTURA MÍNIMA FIXA */
-        gap: 1rem !important;
-        width: 95% !important; /* LARGURA FIXA */
-    }
+            .navbar {
+                grid-template-columns: auto auto; /* Apenas logo e botão */
+                gap: 0.8rem;  /* ⬅️ Diminua o gap */
+                padding: 0.7rem 1.2rem;  /* ⬅️ Diminua o padding */
+                justify-content: space-between;
+            }
 
-    .nav-links {
-        display: none !important;
-        width: 0 !important; /* FORÇA LARGURA ZERO */
-        opacity: 0 !important;
-    }
+            .nav-links {
+                display: none; /* Links escondidos no mobile */
+            }
 
-    .logo {
-        height: 35px !important;
-        flex-shrink: 0 !important; /* IMPEDE QUE ENCOLHA */
-    }
+            .logo {
+                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
+            }
 
-    .nav-btn {
-        padding: 0.6rem 1.2rem !important;
-        font-size: 0.85rem !important;
-        white-space: nowrap !important;
-        flex-shrink: 0 !important; /* IMPEDE QUE ENCOLHA */
-    }
-}
+            .nav-btn {
+                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
+                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
+                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
+            }
+        }
 
         /* DESKTOP: Mostrar links normalmente */
         @media (min-width: 769px) {
@@ -1513,6 +1506,29 @@
             padding: 2rem 5%;
         }
 
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .navbar {
+                grid-template-columns: auto auto; /* Apenas logo e botão */
+                gap: 0.8rem;  /* ⬅️ Diminua o gap */
+                padding: 0.7rem 1.2rem;  /* ⬅️ Diminua o padding */
+                justify-content: space-between;
+            }
+
+            .nav-links {
+                display: none; /* Links escondidos no mobile */
+            }
+
+            .logo {
+                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
+                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
+                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
+            }
+
             .hero {
                 margin-top: 100px;
                 padding: 3rem 5%;
@@ -1797,31 +1813,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1005437460716504');
 fbq('track', 'PageView');
-// Remove os links de navegação no mobile
-function adjustNavbarForMobile() {
-    const navLinks = document.querySelector('.nav-links');
-    const navbar = document.querySelector('.navbar');
-    
-    if (window.innerWidth <= 768) {
-        // Esconde os links no mobile
-        if (navLinks) {
-            navLinks.style.display = 'none';
-        }
-        // Ajusta o grid para apenas 2 colunas (logo + botão)
-        navbar.style.gridTemplateColumns = 'auto auto';
-    } else {
-        // Mostra os links no desktop
-        if (navLinks) {
-            navLinks.style.display = 'flex';
-        }
-        // Volta ao grid original (3 colunas)
-        navbar.style.gridTemplateColumns = 'auto 1fr auto';
-    }
-}
-
-// Executa quando a página carrega e quando redimensiona
-window.addEventListener('load', adjustNavbarForMobile);
-window.addEventListener('resize', adjustNavbarForMobile);
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
