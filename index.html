@@ -1483,46 +1483,54 @@
         }
 @media (max-width: 768px) {
     .navbar {
-        grid-template-columns: auto auto;
-        gap: 1.5rem;
-        padding: 0.8rem 1.5rem;
-        justify-content: center;
-        align-items: center;
-        width: 90%;
-        min-height: 70px; /* ← ALTURA MÍNIMA FIXA */
-        height: 70px; /* ← ALTURA FIXA */
-        box-sizing: border-box;
-        position: fixed; /* ← GARANTE POSIÇÃO FIXA */
-        top: 20px; /* ← MESMA POSIÇÃO DO DESKTOP */
-        left: 50%;
-        transform: translateX(-50%);
+        grid-template-columns: auto auto !important;
+        gap: 1.5rem !important;
+        padding: 0.8rem 1.5rem !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 90% !important;
+        min-height: 70px !important;
+        height: 70px !important;
+        box-sizing: border-box !important;
+        position: fixed !important;
+        top: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        transition: none !important;
+        backdrop-filter: blur(20px) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
     }
 
     .nav-links {
-        display: none !important; /* ← FORÇA ESCONDER */
+        display: none !important;
     }
 
     .logo {
-        height: 35px;
-        margin: 0;
+        height: 35px !important;
+        margin: 0 !important;
+    }
+
+    .logo img {
+        transform: none !important;
     }
 
     .nav-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
-        white-space: nowrap;
-        margin: 0;
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.85rem !important;
+        white-space: nowrap !important;
+        margin: 0 !important;
+        transform: none !important;
+        box-shadow: none !important;
     }
     
-    /* AJUSTE O HERO PARA COMPENSAR A NAVBAR FIXA */
-    .hero {
-        margin-top: 100px; /* ← AUMENTE SE PRECISAR */
+    /* REMOVA EFEITOS HOVER NO MOBILE */
+    .nav-btn:hover {
+        transform: none !important;
+        box-shadow: none !important;
     }
-            }
-            
-            .hero-container {
-                grid-template-columns: 1fr; /* Coluna única */
-                gap: 3rem;
+    
+    .hero {
+        margin-top: 120px !important;
             }
             
             .hero-content {
@@ -2328,13 +2336,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 heroImage.classList.remove('scrolled');
             }
             
-            // Efeito na navbar
-            const navbar = document.querySelector('.navbar');
-            if (scrollPosition > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
         });
 
         // Sistema de animação por scroll para todas as seções
