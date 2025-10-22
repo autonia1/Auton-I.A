@@ -2600,6 +2600,44 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
         setTimeout(() => {
             document.querySelector('.hero').classList.add('visible');
         }, 500);
+/* MOBILE: REMOVER TODOS OS EFEITOS QUE ALTERAM O TAMANHO */
+@media (max-width: 768px) {
+    /* Remove efeitos hover da navbar */
+    .navbar {
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    /* Remove efeitos hover do botão na navbar */
+    .nav-btn:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        background: #000000 !important;
+    }
+    
+    /* Remove efeitos hover dos links (se ainda estiverem aplicando) */
+    .nav-links a:hover {
+        transform: none !important;
+    }
+    
+    /* Remove o efeito ::before dos botões no mobile */
+    .nav-btn::before {
+        display: none !important;
+    }
+    
+    /* Garante que a navbar não mexa */
+    .navbar.scrolled {
+        transform: none !important;
+    }
+    
+    /* Remove qualquer transição que possa causar movimento */
+    .navbar,
+    .nav-btn,
+    .logo,
+    .logo img {
+        transition: none !important;
+    }
+}
     </script>
 </body>
 </html>
