@@ -55,28 +55,31 @@
         }
 
         /* MOBILE: Esconder links de navegação */
-        @media (max-width: 768px) {
-            .navbar {
-                grid-template-columns: auto auto; /* Apenas logo e botão */
-                gap: 0.8rem;  /* ⬅️ Diminua o gap */
-                padding: 0.7rem 1.2rem;  /* ⬅️ Diminua o padding */
-                justify-content: space-between;
-            }
+@media (max-width: 768px) {
+    .navbar {
+        grid-template-columns: 1fr auto; /* MUDANÇA AQUI */
+        gap: 0.8rem;
+        padding: 0.7rem 1.2rem;
+        justify-content: space-between;
+        align-items: center; /* ADICIONE */
+    }
 
-            .nav-links {
-                display: none; /* Links escondidos no mobile */
-            }
+    .nav-links {
+        display: none;
+    }
 
-            .logo {
-                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
-            }
+    .logo {
+        height: 35px;
+        justify-self: start; /* ADICIONE */
+    }
 
-            .nav-btn {
-                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
-                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
-                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
-            }
-        }
+    .nav-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        justify-self: end; /* ADICIONE */
+    }
+}
 
         /* DESKTOP: Mostrar links normalmente */
         @media (min-width: 769px) {
@@ -1509,28 +1512,27 @@
         /* RESPONSIVO */
 @media (max-width: 768px) {
     .navbar {
-        /* MUDANÇA CRÍTICA: Remove a coluna dos links */
-        grid-template-columns: 1fr auto; /* Logo ocupa espaço, botão à direita */
+        grid-template-columns: 1fr auto; /* MUDANÇA AQUI */
         gap: 0.8rem;
         padding: 0.7rem 1.2rem;
         justify-content: space-between;
-        align-items: center;
+        align-items: center; /* ADICIONE */
     }
 
     .nav-links {
-        display: none; /* Links escondidos no mobile */
+        display: none;
     }
 
     .logo {
         height: 35px;
-        justify-self: start; /* Logo à esquerda */
+        justify-self: start; /* ADICIONE */
     }
 
     .nav-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.85rem;
         white-space: nowrap;
-        justify-self: end; /* Botão à direita */
+        justify-self: end; /* ADICIONE */
     }
 
             .hero {
