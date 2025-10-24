@@ -20,172 +20,10 @@
             background: white;
         }
 
-        /* 
-        ============================================
-        MUDANÇA 1: NAVBAR MOBILE
-        ============================================
-        No mobile: ocultar links "Como Funciona", "Benefícios", "Sobre"
-        Manter apenas logo e botão "Agendar Demonstração"
-        */
-        .navbar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            padding: 1rem 2rem;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            z-index: 1000;
-            border-radius: 50px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            gap: 2rem;
-        }
+        /* REMOVIDA TODA A NAVBAR */
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* MOBILE: Esconder links de navegação */
-@media (max-width: 768px) {
-    .navbar {
-        grid-template-columns: 1fr auto; /* MUDANÇA AQUI */
-        gap: 0.8rem;
-        padding: 0.7rem 1.2rem;
-        justify-content: space-between;
-        align-items: center; /* ADICIONE */
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .logo {
-        height: 35px;
-        justify-self: start; /* ADICIONE */
-    }
-
-    .nav-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
-        white-space: nowrap;
-        justify-self: end; /* ADICIONE */
-    }
-}
-
-        /* DESKTOP: Mostrar links normalmente */
-        @media (min-width: 769px) {
-            .nav-links {
-                display: flex; /* Links visíveis no desktop */
-            }
-        }
-
-        .logo {
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .logo img {
-            height: 110%;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover img {
-            transform: scale(1.05);
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #000000;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #667eea;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* BOTÕES PRINCIPAIS - ESTILO GERAL */
-        .btn {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        /* BOTÃO DA NAVBAR - ESTILO ESPECÍFICO */
-        .nav-btn {
-            background: #000000;
-            color: white !important;
-            border: 2px solid #000000;
-        }
-
-        .nav-btn:hover {
-            background: #000000;
-            color: white !important;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 2px solid #000000;
-        }
-
-        /* 
-        ============================================
-        MUDANÇA 2: HERO MOBILE  
-        ============================================
-        No mobile: imagens em cima do texto
-        Reposicionar balões de conversa mais abaixo
-        */
         .hero {
-            margin-top: 120px;
+            margin-top: 40px;
             padding: 6rem 5%;
             background: white;
             color: #1a1a1a;
@@ -287,22 +125,22 @@
         /* MOBILE: Reorganizar hero */
         @media (max-width: 768px) {
             .hero {
-                margin-top: 100px;
+                margin-top: 20px;
                 padding: 3rem 5%;
             }
             
             .hero-container {
-                grid-template-columns: 1fr; /* Coluna única */
+                grid-template-columns: 1fr;
                 gap: 3rem;
             }
             
             .hero-content {
-                order: 2; /* Texto vem DEPOIS */
+                order: 2;
                 text-align: center;
             }
             
             .hero-image {
-                order: 1; /* Imagens vêm PRIMEIRO */
+                order: 1;
                 position: relative;
                 height: 400px;
                 margin-bottom: 2rem;
@@ -325,19 +163,49 @@
             
             /* Reposicionar balões no mobile */
             .chat-bubble {
-                width: 260px; /* Aumentar tamanho */
+                width: 260px;
                 max-width: 260px;
             }
             
             .bubble-1 {
-                top: 280px;  /* Mais abaixo */
+                top: 280px;
                 left: 90px;
             }
             
             .bubble-2 {
-                top: 330px;  /* Mais abaixo */
+                top: 330px;
                 right: 90px;
             }
+        }
+
+        /* BOTÕES PRINCIPAIS - ESTILO GERAL */
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         /* BOTÃO DO HERO - ESTILO ESPECÍFICO */
@@ -418,7 +286,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            min-height: 600px; /* Aumentei a altura mínima */
+            min-height: 600px;
         }
 
         .about-image img.celular {
@@ -516,16 +384,16 @@
         }
 
         .chat-container {
-            width: 80%; /* Aumentei a largura do container */
-            max-width: 350px; /* Aumentei o max-width */
-            padding: 20px; /* Aumentei o padding */
+            width: 80%;
+            max-width: 350px;
+            padding: 20px;
             position: relative;
             pointer-events: none;
         }
 
         .message {
             display: flex;
-            margin-bottom: 15px; /* Aumentei o espaçamento entre mensagens */
+            margin-bottom: 15px;
             position: relative;
             pointer-events: none;
             opacity: 0;
@@ -542,7 +410,7 @@
 
         .message-content {
             display: flex;
-            max-width: 90%; /* Aumentei a largura máxima */
+            max-width: 90%;
             pointer-events: none;
         }
 
@@ -555,11 +423,11 @@
         }
 
         .profile-pic {
-            width: 32px; /* Aumentei o tamanho das fotos de perfil */
+            width: 32px;
             height: 32px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 8px; /* Aumentei a margem */
+            margin: 0 8px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             pointer-events: none;
         }
@@ -568,8 +436,8 @@
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px; /* Aumentei o border-radius */
-            padding: 10px 14px; /* Aumentei o padding */
+            border-radius: 16px;
+            padding: 10px 14px;
             color: black;
             max-width: 100%;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -587,7 +455,7 @@
 
         .message-text {
             line-height: 1.4;
-            font-size: 13px; /* Aumentei o tamanho da fonte */
+            font-size: 13px;
             font-weight: 700;
             pointer-events: none;
         }
@@ -596,8 +464,8 @@
         .audio-message {
             display: flex;
             align-items: center;
-            padding: 6px 12px; /* Aumentei o padding */
-            gap: 8px; /* Aumentei o gap */
+            padding: 6px 12px;
+            gap: 8px;
             pointer-events: none;
         }
 
@@ -622,7 +490,7 @@
 
         .progress-line {
             width: 100%;
-            height: 4px; /* Aumentei a altura */
+            height: 4px;
             background: rgba(0, 0, 0, 0.55);
             border-radius: 2px;
             position: relative;
@@ -642,7 +510,7 @@
         }
 
         .progress-circle {
-            width: 10px; /* Aumentei o tamanho */
+            width: 10px;
             height: 10px;
             background: black;
             border-radius: 50%;
@@ -655,8 +523,8 @@
         }
 
         .audio-line {
-            width: 100px; /* Aumentei a largura */
-            height: 4px; /* Aumentei a altura */
+            width: 100px;
+            height: 4px;
             background: rgba(0, 0, 0, 0.55);
             border-radius: 2px;
             pointer-events: none;
@@ -1069,7 +937,7 @@
             transform: translate(-50%, -50%);
             width: 100px;
             height: 100px;
-            z-index: 1; /* ATRÁS do card (z-index: 3) */
+            z-index: 1;
             pointer-events: none;
         }
 
@@ -1226,7 +1094,7 @@
             width: 60px;
             height: 60px;
             background-color: white;
-            border-radius: 8px; /* Menos arredondado, mais quadrado */
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1509,58 +1377,25 @@
             padding: 2rem 5%;
         }
 
+        /* RESPONSIVO */
         @media (max-width: 768px) {
-    .navbar {
-        grid-template-columns: 1fr auto;
-        gap: 0.8rem;
-        padding: 0.7rem 1.2rem;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .logo {
-        height: 35px;
-        justify-self: start;
-    }
-
-    .nav-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
-        white-space: nowrap;
-        justify-self: end;
-        
-        /* LINHAS NOVAS - REMOVEM EFEITOS PROBLEMÁTICOS */
-        transform: none !important;
-        box-shadow: none !important;
-        pointer-events: none;
-    }
-    
-    /* REMOVE EFEITO ::before NO MOBILE */
-    .nav-btn::before {
-        display: none !important;
-    }
-}
             .hero {
-                margin-top: 100px;
+                margin-top: 20px;
                 padding: 3rem 5%;
             }
             
             .hero-container {
-                grid-template-columns: 1fr; /* Coluna única */
+                grid-template-columns: 1fr;
                 gap: 3rem;
             }
             
             .hero-content {
-                order: 2; /* Texto vem DEPOIS */
+                order: 2;
                 text-align: center;
             }
             
             .hero-image {
-                order: 1; /* Imagens vêm PRIMEIRO */
+                order: 1;
                 position: relative;
                 height: 400px;
                 margin-bottom: 2rem;
@@ -1583,17 +1418,17 @@
             
             /* Reposicionar balões no mobile */
             .chat-bubble {
-                width: 260px; /* Aumentar tamanho */
+                width: 260px;
                 max-width: 260px;
             }
             
             .bubble-1 {
-                top: 280px;  /* Mais abaixo */
+                top: 280px;
                 left: 90px;
             }
             
             .bubble-2 {
-                top: 330px;  /* Mais abaixo */
+                top: 330px;
                 right: 90px;
             }
 
@@ -1604,7 +1439,7 @@
             }
             
             .about-image {
-                min-height: 450px; /* Aumentei no mobile também */
+                min-height: 450px;
             }
 
             .about-title {
@@ -1624,20 +1459,20 @@
             /* Ajustes do chat no mobile */
             .chat-container {
                 width: 85%;
-                max-width: 300px; /* Aumentei no mobile */
+                max-width: 300px;
             }
             
             .profile-pic {
-                width: 28px; /* Aumentei no mobile */
+                width: 28px;
                 height: 28px;
             }
             
             .message-text {
-                font-size: 12px; /* Aumentei no mobile */
+                font-size: 12px;
             }
             
             .message-bubble {
-                padding: 8px 12px; /* Aumentei no mobile */
+                padding: 8px 12px;
             }
 
             /* Ajustes das posições no mobile */
@@ -1835,45 +1670,18 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head>
 <body>
-    <!-- 
-    ============================================
-    NAVBAR - MUDANÇA 1
-    ============================================
-    -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="https://i.ibb.co/0pmJ9t8b/Gemini-Generated-Image-44ys9g44ys9g44ys-Photoroom.png" alt="Auton I.A">
-        </div>
-        
-        <!-- Links que serão OCULTOS no mobile -->
-        <div class="nav-links">
-            <a href="#como-funciona">Como Funciona</a>
-            <a href="#beneficios">Benefícios</a>
-            <a href="#sobre">Sobre</a>
-        </div>
-        
-        <!-- Botão que permanece VISÍVEL -->
-        <a href="#formulario" class="btn nav-btn">Agendar Demonstração</a>
-    </nav>
+    <!-- NAVBAR COMPLETAMENTE REMOVIDA -->
 
-    <!-- 
-    ============================================
-    HERO - MUDANÇA 2  
-    ============================================
-    -->
     <section class="hero">
         <div class="hero-container">
-            <!-- No mobile: esta div vai para BAIXO (order: 2) -->
             <div class="hero-content">
                 <h1>Coloque um Agente de IA para trabalhar na sua empresa</h1>
                 <p>Treinamos e implementamos um agente de IA generativa que fala com seus clientes, automatiza processos, responde dúvidas, resolve problemas e integra com todos os seus sistemas como se fosse você.</p>
                 <a href="#formulario" class="btn hero-btn">Agendar uma demonstração</a>
             </div>
             
-            <!-- No mobile: esta div vai para CIMA (order: 1) -->
             <div class="hero-image">
                 <img src="https://i.ibb.co/1GtvYHfN/imgpr.jpg" alt="Agente de IA Auton I.A">
-                <!-- Balões reposicionados no mobile -->
                 <div class="chat-bubble bubble-1">
                     <img src="https://i.ibb.co/GfWcKmRj/imms1.png" alt="Cliente perguntando">
                 </div>
@@ -1887,15 +1695,11 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
     <!-- RESTANTE DO CÓDIGO ORIGINAL (mantido intacto) -->
     <section class="section" id="sobre">
         <div class="about-container">
-            <!-- IMAGEM DO CELULAR COM CHAT SOBREPOSTO -->
             <div class="about-image">
-                <!-- Celular principal -->
                 <img src="https://i.ibb.co/FkYwPJHR/imcel.png" alt="Agente de IA Auton I.A" class="celular" id="celularImage">
                 
-                <!-- Chat sobreposto à imagem do celular -->
                 <div class="chat-overlay">
                     <div class="chat-container">
-                        <!-- Mensagem 1 - Lado direito -->
                         <div class="message sent message-1" id="msg1">
                             <div class="message-content">
                                 <img src="https://i.ibb.co/Tx3SMvQm/imfp1.png" alt="Perfil 1" class="profile-pic">
@@ -1905,7 +1709,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                             </div>
                         </div>
                         
-                        <!-- Mensagem 2 - Lado esquerdo -->
                         <div class="message received message-2" id="msg2">
                             <div class="message-content">
                                 <img src="https://i.ibb.co/MyvMXL78/imfp2.png" alt="Perfil 2" class="profile-pic">
@@ -1915,7 +1718,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                             </div>
                         </div>
                         
-                        <!-- Mensagem 3 (Áudio) - Lado direito -->
                         <div class="message sent message-3" id="msg3">
                             <div class="message-content">
                                 <img src="https://i.ibb.co/Tx3SMvQm/imfp1.png" alt="Perfil 1" class="profile-pic">
@@ -1932,7 +1734,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                             </div>
                         </div>
                         
-                        <!-- Mensagem 4 - Lado esquerdo -->
                         <div class="message received message-4" id="msg4">
                             <div class="message-content">
                                 <img src="https://i.ibb.co/MyvMXL78/imfp2.png" alt="Perfil 2" class="profile-pic">
@@ -1945,7 +1746,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 </div>
             </div>
             
-            <!-- CONTEÚDO DE TEXTO -->
             <div class="about-content" id="text-content">
                 <h2 class="about-title">O que é um Agente de IA da Auton I.A?</h2>
                 <p class="about-subtitle">
@@ -1965,7 +1765,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
         <p class="section-subtitle">Nosso agente de IA é capaz de executar diversas tarefas complexas de forma autônoma e inteligente.</p>
         
         <div class="marquee-rows-container">
-            <!-- PRIMEIRA FILEIRA - DIREITA -->
             <div class="marquee-row marquee-row-top">
                 <div class="marquee-track">
                     <div class="capability-card">
@@ -2010,7 +1809,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                             <p>Avalia situações e toma decisões baseadas em regras e contexto.</p>
                         </div>
                     </div>
-                    <!-- DUPLICAÇÃO PARA EFEITO CONTÍNUO -->
                     <div class="capability-card">
                         <div class="card-content">
                             <div class="capability-icon">💬</div>
@@ -2035,7 +1833,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 </div>
             </div>
 
-            <!-- SEGUNDA FILEIRA - ESQUERDA -->
             <div class="marquee-row marquee-row-bottom">
                 <div class="marquee-track">
                     <div class="capability-card">
@@ -2080,7 +1877,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                             <p>Adapta-se ao tom de voz e personalidade da sua marca.</p>
                         </div>
                     </div>
-                    <!-- DUPLICAÇÃO PARA EFEITO CONTÍNUO -->
                     <div class="capability-card">
                         <div class="card-content">
                             <div class="capability-icon">🤖</div>
@@ -2112,9 +1908,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
         <h2 class="section-title" style="margin-bottom: 0.5rem;">Experimente 5 Dias Grátis</h2>
         
         <div class="trial-container">
-            <!-- CONTAINER DO CARD COM CONFETES ATRÁS -->
             <div class="card-container">
-                <!-- ÁREA DOS CONFETES - ATRÁS DO CARD -->
                 <div class="confetti-area">
                     <div class="confetti" style="--x: 0; --y: -1;"></div>
                     <div class="confetti" style="--x: 0.5; --y: -0.87;"></div>
@@ -2142,7 +1936,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                     <div class="confetti" style="--x: -0.34; --y: -0.94;"></div>
                 </div>
                 
-                <!-- CARD COM EFEITO GLASS MAIS SUAVE -->
                 <div class="trial-card">
                     <span class="gift-emoji">🎁</span>
                     <h3 class="trial-title">5 Dias Grátis</h3>
@@ -2151,7 +1944,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 </div>
             </div>
             
-            <!-- CONTEÚDO EXPLICATIVO -->
             <div class="trial-content">
                 <h3>Como funciona o teste grátis?</h3>
                 <p>Durante 5 dias, você terá acesso completo à nossa plataforma de automação com IA. Veja na prática como nossos agentes podem transformar o atendimento da sua empresa:</p>
@@ -2226,7 +2018,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             </div>
             
             <div class="form-box">
-                <!-- FORMULÁRIO ORIGINAL -->
                 <form id="capturaForm">
                     <div class="form-grid">
                         <div class="form-group">
@@ -2256,7 +2047,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                     </button>
                 </form>
 
-                <!-- PÁGINA DE OBRIGADO MINIMALISTA -->
                 <div class="thank-you-container" id="thankYouPage">
                     <div class="thank-you-icon">✅</div>
                     <h2 class="thank-you-title">Cadastro enviado!</h2>
@@ -2355,14 +2145,6 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 heroImage.classList.add('scrolled');
             } else {
                 heroImage.classList.remove('scrolled');
-            }
-            
-            // Efeito na navbar
-            const navbar = document.querySelector('.navbar');
-            if (scrollPosition > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
             }
         });
 
