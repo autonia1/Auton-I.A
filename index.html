@@ -54,45 +54,29 @@
             justify-content: center;
         }
 
-/* MOBILE: NAVBAR COMPACTA E FIXA */
-@media (max-width: 768px) {
-    .navbar {
-        grid-template-columns: 1fr auto; /* Logo ocupa espaço disponível, botão fica à direita */
-        gap: 1rem;
-        padding: 0.8rem 1.5rem;
-        justify-content: space-between;
-        align-items: center;
-        width: 95%; /* Um pouco menor para dar respiro */
-        max-width: 100%;
-        min-height: 60px; /* ALTURA FIXA */
-        height: 60px; /* ALTURA FIXA */
-    }
+        /* MOBILE: Esconder links de navegação */
+        @media (max-width: 768px) {
+            .navbar {
+                grid-template-columns: auto auto; /* Apenas logo e botão */
+                gap: 0.8rem;  /* ⬅️ Diminua o gap */
+                padding: 0.7rem 1.2rem;  /* ⬅️ Diminua o padding */
+                justify-content: space-between;
+            }
 
-    /* REMOVER COMPLETAMENTE os links no mobile */
-    .nav-links {
-        display: none !important;
-    }
+            .nav-links {
+                display: none; /* Links escondidos no mobile */
+            }
 
-    .logo {
-        height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
+            .logo {
+                height: 35px;  /* ⬅️ DIMINUA DE 45px PARA 35px (ou até 30px) */
+            }
 
-    .logo img {
-        height: 100%;
-        width: auto;
-        max-height: 35px; /* LIMITE MÁXIMO */
-    }
-
-    .nav-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
-        white-space: nowrap;
-        min-width: fit-content; /* Só o necessário para o texto */
-    }
-}
+            .nav-btn {
+                padding: 0.6rem 1.2rem;  /* ⬅️ Diminua o padding */
+                font-size: 0.85rem;       /* ⬅️ Diminua um pouco a fonte */
+                white-space: nowrap;      /* ⬅️ IMPEDE QUEBRA DE LINHA */
+            }
+        }
 
         /* DESKTOP: Mostrar links normalmente */
         @media (min-width: 769px) {
@@ -2600,44 +2584,6 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
         setTimeout(() => {
             document.querySelector('.hero').classList.add('visible');
         }, 500);
-/* MOBILE: REMOVER TODOS OS EFEITOS QUE ALTERAM O TAMANHO */
-@media (max-width: 768px) {
-    /* Remove efeitos hover da navbar */
-    .navbar {
-        transform: none !important;
-        transition: none !important;
-    }
-    
-    /* Remove efeitos hover do botão na navbar */
-    .nav-btn:hover {
-        transform: none !important;
-        box-shadow: none !important;
-        background: #000000 !important;
-    }
-    
-    /* Remove efeitos hover dos links (se ainda estiverem aplicando) */
-    .nav-links a:hover {
-        transform: none !important;
-    }
-    
-    /* Remove o efeito ::before dos botões no mobile */
-    .nav-btn::before {
-        display: none !important;
-    }
-    
-    /* Garante que a navbar não mexa */
-    .navbar.scrolled {
-        transform: none !important;
-    }
-    
-    /* Remove qualquer transição que possa causar movimento */
-    .navbar,
-    .nav-btn,
-    .logo,
-    .logo img {
-        transition: none !important;
-    }
-}
     </script>
 </body>
 </html>
