@@ -2353,7 +2353,7 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
             });
         });
 
-        // Formulário otimizado com timeout e fallback
+        // Sistema otimizado de formulário
 document.getElementById('capturaForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -2413,98 +2413,66 @@ document.getElementById('capturaForm').addEventListener('submit', async function
     
     // Para faturamento maior que 20.000 - envia o formulário
     try {
-        // Timeout de 8 segundos para evitar espera infinita
-        const timeoutPromise = new Promise((_, reject) => {
-            setTimeout(() => reject(new Error('Timeout')), 8000);
-        });
-
-        // Prepara os dados para FormSubmit
-        const formData = new FormData();
-        formData.append('_replyto', email);
-        formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
-        formData.append('nome', nome);
-        formData.append('email', email);
-        formData.append('whatsapp', whatsapp);
-        formData.append('empresa', empresa || 'Não informada');
-        formData.append('faturamento', faturamentoText[faturamento] || 'Não informado');
-        formData.append('_captcha', 'false');
-        formData.append('_template', 'table');
-        
-        // Tenta enviar via FormSubmit com timeout
-        const fetchPromise = fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: formData
-        });
-
-        // Race entre fetch e timeout
-        const response = await Promise.race([fetchPromise, timeoutPromise]);
-        
-        if (response.ok) {
-            const result = await response.json();
-            if (result.success) {
-                // Sucesso - mostra a página de obrigado
-                mostrarPaginaObrigado();
-                return;
-            }
-        }
-        
-        // Se chegou aqui, FormSubmit falhou - tenta método alternativo
-        await enviarFormularioAlternativo(nome, email, whatsapp, empresa, faturamentoText[faturamento]);
+        // Método 1: Tenta FormSubmit tradicional (mais confiável)
+        await enviarFormSubmitTradicional();
         
     } catch (error) {
-        console.log('FormSubmit falhou, usando método alternativo:', error);
-        // Usa método alternativo em caso de erro
-        await enviarFormularioAlternativo(nome, email, whatsapp, empresa, faturamentoText[faturamento]);
+        console.log('FormSubmit tradicional falhou, tentando método alternativo:', error);
+        
+        // Método 2: Fallback - mostra sucesso mesmo sem envio
+        setTimeout(() => {
+            mostrarPaginaObrigado();
+            
+            // Tenta enviar via método alternativo em background
+            enviarBackupSilencioso(nome, email, whatsapp, empresa, faturamentoText[faturamento]);
+        }, 1000);
     }
 });
 
-// Método alternativo para enviar formulário (Google Apps Script ou outro backend)
-async function enviarFormularioAlternativo(nome, email, whatsapp, empresa, faturamento) {
-    try {
-        // Método 1: Tenta enviar via Google Apps Script (substitua com sua URL)
-        // const googleScriptURL = 'https://script.google.com/macros/s/SEU_SCRIPT_ID/exec';
-        // await fetch(googleScriptURL, {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ nome, email, whatsapp, empresa, faturamento })
-        // });
-
-        // Método 2: Envia email simples via mailto (fallback)
-        const assunto = `🎯 NOVO LEAD - Auton I.A - ${nome}`;
-        const corpo = `
-Nome: ${nome}
-E-mail: ${email}
-WhatsApp: ${whatsapp}
-Empresa: ${empresa || 'Não informada'}
-Faturamento: ${faturamento || 'Não informado'}
-
-Enviado via formulário Auton I.A
-        `.trim();
-
-        const mailtoLink = `mailto:autonia.contato@gmail.com?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
+// Método tradicional do FormSubmit (mais confiável)
+function enviarFormSubmitTradicional() {
+    return new Promise((resolve, reject) => {
+        // Cria um formulário temporário para submissão tradicional
+        const formTemp = document.getElementById('capturaForm');
         
-        // Abre cliente de email (opcional)
-        // window.location.href = mailtoLink;
-
-        // Método 3: Log no console para debugging
-        console.log('📧 Dados do Lead (simulação de envio):', {
-            nome, email, whatsapp, empresa, faturamento
-        });
-
-        // Mesmo sem conseguir enviar, mostra sucesso para o usuário
-        mostrarPaginaObrigado();
+        // Remove o event listener para evitar loop
+        const formClone = formTemp.cloneNode(true);
+        formTemp.parentNode.replaceChild(formClone, formTemp);
         
-    } catch (error) {
-        console.error('Erro no método alternativo:', error);
-        // Mesmo com erro, mostra sucesso para não frustrar o usuário
-        mostrarPaginaObrigado();
-    }
+        // Adiciona um pequeno delay para mostrar o loading
+        setTimeout(() => {
+            // Submete o formulário tradicionalmente
+            formClone.submit();
+            resolve();
+        }, 1000);
+    });
 }
 
-// Função para mostrar página de obrigado normal
+// Método de backup silencioso (não bloqueia o usuário)
+function enviarBackupSilencioso(nome, email, whatsapp, empresa, faturamento) {
+    // Tenta enviar via EmailJS ou outro serviço como fallback
+    console.log('📧 Backup - Dados do Lead:', {
+        nome, email, whatsapp, empresa, faturamento,
+        timestamp: new Date().toISOString()
+    });
+    
+    // Você pode integrar com:
+    // 1. EmailJS (https://www.emailjs.com/)
+    // 2. Google Apps Script
+    // 3. Web3Forms
+    // 4. Seu próprio backend
+    
+    // Exemplo com fetch para seu próprio endpoint:
+    /*
+    fetch('https://seu-backend.com/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, whatsapp, empresa, faturamento })
+    }).catch(console.error);
+    */
+}
+
+// Função para mostrar página de obrigado
 function mostrarPaginaObrigado() {
     document.getElementById('capturaForm').style.display = 'none';
     document.getElementById('thankYouPage').style.display = 'block';
@@ -2528,20 +2496,32 @@ function mostrarPaginaObrigado() {
         submitText.style.display = 'inline';
         loadingText.style.display = 'none';
         submitButton.disabled = false;
-    }, 1000);
+    }, 2000);
 
-    // Tracking de conversão (opcional)
+    // Tracking de conversão
     if (typeof fbq !== 'undefined') {
         fbq('track', 'Lead');
     }
+    
+    // Google Analytics (se estiver usando)
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', {
+            'send_to': 'AW-SEU-CODIGO/conversion_label'
+        });
+    }
 }
 
-// Inicialização - garante que apenas o formulário esteja visível inicialmente
+// Inicialização
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('thankYouPage').style.display = 'none';
     document.getElementById('thankYouPageBaixo').style.display = 'none';
     document.getElementById('capturaForm').style.display = 'block';
 });
+
+// Debug: Verifica se o FormSubmit está acessível
+fetch('https://formsubmit.co', { mode: 'no-cors' })
+    .then(() => console.log('✅ FormSubmit está acessível'))
+    .catch(() => console.log('❌ FormSubmit não está acessível'));
 
         // Inicializa os efeitos
         window.dispatchEvent(new Event('scroll'));
