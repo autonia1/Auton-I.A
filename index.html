@@ -2518,11 +2518,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('capturaForm').style.display = 'block';
 });
 
-// Debug: Verifica se o FormSubmit está acessível
-fetch('https://formsubmit.co', { mode: 'no-cors' })
-    .then(() => console.log('✅ FormSubmit está acessível'))
-    .catch(() => console.log('❌ FormSubmit não está acessível'));
-
         // Inicializa os efeitos
         window.dispatchEvent(new Event('scroll'));
         
