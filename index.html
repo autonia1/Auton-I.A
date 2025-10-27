@@ -1156,6 +1156,7 @@
             padding: 3rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             height: fit-content;
+            position: relative;
         }
 
         .form-grid {
@@ -1183,6 +1184,7 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             width: 100%;
+            font-family: inherit;
         }
 
         .form-input::placeholder {
@@ -1194,6 +1196,16 @@
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Estilo específico para o select */
+        select.form-input {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+            padding-right: 3rem;
         }
 
         .form-submit {
@@ -1226,7 +1238,7 @@
             display: none;
         }
 
-        /* ESTILOS DA PÁGINA DE OBRIGADO MINIMALISTA */
+        /* ESTILOS DAS PÁGINAS DE OBRIGADO */
         .thank-you-container {
             display: none;
             text-align: center;
@@ -1236,6 +1248,7 @@
         .thank-you-icon {
             font-size: 4rem;
             margin-bottom: 1.5rem;
+            display: block;
         }
 
         .thank-you-title {
@@ -1249,6 +1262,9 @@
             color: #4a5568;
             margin-bottom: 2rem;
             line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .thank-you-details {
@@ -1257,6 +1273,9 @@
             border-radius: 10px;
             margin-bottom: 1rem;
             text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .thank-you-details p {
@@ -1377,7 +1396,7 @@
             padding: 2rem 5%;
         }
 
-        /* RESPONSIVO */
+        /* RESPONSIVIDADE */
         @media (max-width: 768px) {
             .hero {
                 margin-top: 20px;
@@ -1629,6 +1648,18 @@
             .form-subtitle {
                 font-size: 1.1rem;
                 text-align: center;
+            }
+            
+            .thank-you-container {
+                padding: 2rem 1rem;
+            }
+            
+            .thank-you-title {
+                font-size: 1.7rem;
+            }
+            
+            .thank-you-message {
+                font-size: 1rem;
             }
 
             /* Responsividade para FAQ */
@@ -2039,6 +2070,19 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                             <label class="form-label" for="empresa">Empresa</label>
                             <input type="text" id="empresa" name="empresa" class="form-input" placeholder="ex: Minha Empresa LTDA">
                         </div>
+                        
+                        <!-- NOVO CAMPO: FATURAMENTO MENSAL -->
+                        <div class="form-group">
+                            <label class="form-label" for="faturamento">Qual é o seu faturamento mensal? *</label>
+                            <select id="faturamento" name="faturamento" class="form-input" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="menos-20000">Menos que R$ 20.000</option>
+                                <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
+                                <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
+                                <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
+                                <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <button type="submit" class="form-submit" id="submitButton">
@@ -2047,6 +2091,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                     </button>
                 </form>
 
+                <!-- Página de obrigado normal -->
                 <div class="thank-you-container" id="thankYouPage">
                     <div class="thank-you-icon">✅</div>
                     <h2 class="thank-you-title">Cadastro enviado!</h2>
@@ -2059,7 +2104,19 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                         <p><strong>E-mail:</strong> <span id="resumoEmail"></span></p>
                         <p><strong>WhatsApp:</strong> <span id="resumoWhatsapp"></span></p>
                         <p><strong>Empresa:</strong> <span id="resumoEmpresa"></span></p>
+                        <p><strong>Faturamento:</strong> <span id="resumoFaturamento"></span></p>
                     </div>
+                </div>
+
+                <!-- NOVA PÁGINA PARA FATURAMENTO BAIXO -->
+                <div class="thank-you-container" id="thankYouPageBaixo">
+                    <div class="thank-you-icon">⚠️</div>
+                    <h2 class="thank-you-title">Agradecemos seu interesse!</h2>
+                    <p class="thank-you-message">
+                        No momento, não podemos estabelecer uma parceria, pois seu faturamento mensal está abaixo do necessário para nossa solução.
+                        <br><br>
+                        Recomendamos que nos procure novamente quando seu negócio atingir um faturamento superior a R$ 20.000 mensais.
+                    </p>
                 </div>
             </div>
         </div>
@@ -2303,6 +2360,7 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
             const submitButton = document.getElementById('submitButton');
             const submitText = document.getElementById('submitText');
             const loadingText = document.getElementById('loadingText');
+            const faturamento = document.getElementById('faturamento').value;
             
             // Mostra loading
             submitText.style.display = 'none';
@@ -2321,8 +2379,40 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
             document.getElementById('resumoWhatsapp').textContent = whatsapp;
             document.getElementById('resumoEmpresa').textContent = empresa || 'Não informada';
             
+            // Mapeia o valor do faturamento para texto legível
+            const faturamentoText = {
+                'menos-20000': 'Menos que R$ 20.000',
+                '20000-40000': 'De R$ 20.000 a R$ 40.000',
+                '41000-60000': 'De R$ 41.000 a R$ 60.000',
+                '61000-100000': 'De R$ 61.000 a R$ 100.000',
+                '100000-500000': 'De R$ 100.000 a R$ 500.000'
+            };
+            
+            document.getElementById('resumoFaturamento').textContent = faturamentoText[faturamento] || 'Não informado';
+            
+            // Verifica se o faturamento é menor que 20.000
+            if (faturamento === 'menos-20000') {
+                // Mostra página de faturamento baixo (não envia o formulário)
+                setTimeout(() => {
+                    document.getElementById('capturaForm').style.display = 'none';
+                    document.getElementById('thankYouPageBaixo').style.display = 'block';
+                    document.getElementById('thankYouPage').style.display = 'none';
+                    submitText.style.display = 'inline';
+                    loadingText.style.display = 'none';
+                    submitButton.disabled = false;
+                    
+                    // Scroll suave para o topo da seção de formulário
+                    document.getElementById('formulario').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 1000);
+                
+                return; // Para a execução aqui, não envia o formulário
+            }
+            
             try {
-                // Método 1: Tentar enviar via FormSubmit AJAX
+                // Método 1: Tentar enviar via FormSubmit AJAX (apenas para faturamento > 20.000)
                 const formData = new FormData();
                 formData.append('_replyto', email);
                 formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
@@ -2330,6 +2420,7 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
                 formData.append('email', email);
                 formData.append('whatsapp', whatsapp);
                 formData.append('empresa', empresa || 'Não informada');
+                formData.append('faturamento', faturamentoText[faturamento] || 'Não informado');
                 formData.append('_captcha', 'false');
                 formData.append('_template', 'table');
                 
@@ -2357,10 +2448,11 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
             }
         });
 
-        // Função para mostrar página de obrigado
+        // Função para mostrar página de obrigado normal
         function mostrarPaginaObrigado() {
             document.getElementById('capturaForm').style.display = 'none';
             document.getElementById('thankYouPage').style.display = 'block';
+            document.getElementById('thankYouPageBaixo').style.display = 'none';
             
             // Scroll suave para o topo da seção de formulário
             document.getElementById('formulario').scrollIntoView({ 
@@ -2373,6 +2465,13 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
                 document.getElementById('capturaForm').reset();
             }, 1000);
         }
+
+        // Inicialização - garante que apenas o formulário esteja visível inicialmente
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('thankYouPage').style.display = 'none';
+            document.getElementById('thankYouPageBaixo').style.display = 'none';
+            document.getElementById('capturaForm').style.display = 'block';
+        });
 
         // Inicializa os efeitos
         window.dispatchEvent(new Event('scroll'));
