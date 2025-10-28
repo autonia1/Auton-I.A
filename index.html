@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste Formspree - Auton I.A</title>
+    <title>Teste Google Sheets - Auton I.A</title>
     <style>
         * {
             margin: 0;
@@ -87,6 +87,12 @@
             transform: translateY(-2px);
         }
 
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .status {
             margin-top: 20px;
             padding: 15px;
@@ -114,33 +120,6 @@
             border: 1px solid #ffeaa7;
         }
 
-        .method-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e1e1e1;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .tab.active {
-            border-bottom-color: #667eea;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
         .instructions {
             background: #f8f9fa;
             padding: 15px;
@@ -158,182 +137,126 @@
 </head>
 <body>
     <div class="test-container">
-        <h1>🧪 Teste Formspree</h1>
-        <p class="subtitle">Teste de formulário para Auton I.A</p>
+        <h1>📊 Teste Google Sheets</h1>
+        <p class="subtitle">Solução 100% funcional - Sem Formspree/FormSubmit</p>
 
-        <div class="method-tabs">
-            <div class="tab active" onclick="switchTab(1)">Método 1 - Tradicional</div>
-            <div class="tab" onclick="switchTab(2)">Método 2 - AJAX</div>
-        </div>
-
-        <!-- MÉTODO 1: Formulário tradicional -->
-        <div class="tab-content active" id="tab1">
-            <h3>📨 Envio Tradicional</h3>
-            <form action="https://formspree.io/f/xjvneraa" method="POST">
-                <input type="hidden" name="_subject" value="🎯 NOVO LEAD - Auton I.A">
-                <input type="hidden" name="_language" value="pt">
-                
-                <div class="form-group">
-                    <label>Nome Completo *</label>
-                    <input type="text" name="nome" required placeholder="Seu nome completo">
-                </div>
-                
-                <div class="form-group">
-                    <label>Email *</label>
-                    <input type="email" name="email" required placeholder="seu@email.com">
-                </div>
-                
-                <div class="form-group">
-                    <label>WhatsApp *</label>
-                    <input type="tel" name="whatsapp" required placeholder="11 99999-9999">
-                </div>
-                
-                <div class="form-group">
-                    <label>Empresa</label>
-                    <input type="text" name="empresa" placeholder="Nome da sua empresa">
-                </div>
-                
-                <div class="form-group">
-                    <label>Faturamento Mensal *</label>
-                    <select name="faturamento" required>
-                        <option value="">Selecione...</option>
-                        <option value="menos-20000">Menos que R$ 20.000</option>
-                        <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
-                        <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
-                        <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
-                        <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
-                    </select>
-                </div>
-                
-                <button type="submit">📤 Enviar Formulário</button>
-            </form>
-        </div>
-
-        <!-- MÉTODO 2: Formulário com AJAX -->
-        <div class="tab-content" id="tab2">
-            <h3>⚡ Envio com AJAX</h3>
-            <form id="ajaxForm">
-                <div class="form-group">
-                    <label>Nome Completo *</label>
-                    <input type="text" id="ajaxNome" required placeholder="Seu nome completo">
-                </div>
-                
-                <div class="form-group">
-                    <label>Email *</label>
-                    <input type="email" id="ajaxEmail" required placeholder="seu@email.com">
-                </div>
-                
-                <div class="form-group">
-                    <label>WhatsApp *</label>
-                    <input type="tel" id="ajaxWhatsapp" required placeholder="11 99999-9999">
-                </div>
-                
-                <div class="form-group">
-                    <label>Empresa</label>
-                    <input type="text" id="ajaxEmpresa" placeholder="Nome da sua empresa">
-                </div>
-                
-                <div class="form-group">
-                    <label>Faturamento Mensal *</label>
-                    <select id="ajaxFaturamento" required>
-                        <option value="">Selecione...</option>
-                        <option value="menos-20000">Menos que R$ 20.000</option>
-                        <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
-                        <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
-                        <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
-                        <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
-                    </select>
-                </div>
-                
-                <button type="submit">🚀 Enviar via AJAX</button>
-            </form>
-        </div>
+        <form id="googleSheetsForm">
+            <div class="form-group">
+                <label>Nome Completo *</label>
+                <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+            </div>
+            
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label>WhatsApp *</label>
+                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="11 99999-9999">
+            </div>
+            
+            <div class="form-group">
+                <label>Empresa</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Nome da sua empresa">
+            </div>
+            
+            <div class="form-group">
+                <label>Faturamento Mensal *</label>
+                <select id="faturamento" name="faturamento" required>
+                    <option value="">Selecione...</option>
+                    <option value="menos-20000">Menos que R$ 20.000</option>
+                    <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
+                    <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
+                    <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
+                    <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
+                </select>
+            </div>
+            
+            <button type="submit" id="submitBtn">
+                <span id="btnText">🚀 Enviar para Google Sheets</span>
+                <span id="btnLoading" style="display: none;">⏳ Enviando...</span>
+            </button>
+        </form>
 
         <div id="statusMessage" class="status"></div>
 
         <div class="instructions">
-            <h3>📋 Como usar:</h3>
-            <p><strong>Método 1:</strong> Redireciona para página de confirmação do Formspree</p>
-            <p><strong>Método 2:</strong> Fica na mesma página (melhor experiência)</p>
-            <p><strong>Email de destino:</strong> autonia.contato@gmail.com</p>
+            <h3>✅ Vantagens desta solução:</h3>
+            <p>• ⚡ <strong>Instantâneo</strong> - Chega em segundos</p>
+            <p>• 💾 <strong>Salva na planilha</strong> - Nunca perde leads</p>
+            <p>• 📧 <strong>Email automático</strong> - Chega direto no Gmail</p>
+            <p>• 🆓 <strong>100% gratuito</strong> - Sem limites</p>
+            <p>• 🔒 <strong>Confiável</strong> - Infraestrutura Google</p>
         </div>
     </div>
 
     <script>
-        // Alternar entre abas
-        function switchTab(tabNumber) {
-            // Remove classe active de todas as abas
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Adiciona classe active na aba clicada
-            document.querySelectorAll('.tab')[tabNumber - 1].classList.add('active');
-            document.getElementById('tab' + tabNumber).classList.add('active');
-        }
+        // ⚡ CONFIGURAÇÃO - COLE SUA URL DO GOOGLE SCRIPT AQUI!
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/SUA_URL_AQUI/exec';
 
-        // Método 2: AJAX
-        document.getElementById('ajaxForm').addEventListener('submit', function(e) {
+        document.getElementById('googleSheetsForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnLoading = document.getElementById('btnLoading');
             const statusMessage = document.getElementById('statusMessage');
+            
+            // Mostra loading
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline';
+            
             statusMessage.className = 'status loading';
             statusMessage.style.display = 'block';
-            statusMessage.textContent = '⏳ Enviando formulário...';
+            statusMessage.textContent = '⏳ Conectando com Google Sheets...';
             
-            // Prepara os dados
-            const formData = new FormData();
-            formData.append('nome', document.getElementById('ajaxNome').value);
-            formData.append('email', document.getElementById('ajaxEmail').value);
-            formData.append('whatsapp', document.getElementById('ajaxWhatsapp').value);
-            formData.append('empresa', document.getElementById('ajaxEmpresa').value);
-            formData.append('faturamento', document.getElementById('ajaxFaturamento').value);
-            formData.append('_subject', '🎯 NOVO LEAD - Auton I.A (AJAX)');
-            formData.append('_language', 'pt');
-            
-            // Envia para Formspree
-            fetch('https://formspree.io/f/xjvneraa', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na rede: ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Sucesso:', data);
-                statusMessage.className = 'status success';
-                statusMessage.textContent = '✅ Formulário enviado com sucesso! Email chegando...';
+            try {
+                // Prepara os dados
+                const formData = new FormData();
+                formData.append('nome', document.getElementById('nome').value);
+                formData.append('email', document.getElementById('email').value);
+                formData.append('whatsapp', document.getElementById('whatsapp').value);
+                formData.append('empresa', document.getElementById('empresa').value);
+                formData.append('faturamento', document.getElementById('faturamento').value);
                 
-                // Limpa o formulário
-                document.getElementById('ajaxForm').reset();
+                // Envia para Google Apps Script
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                });
                 
-                // Esconde a mensagem após 5 segundos
-                setTimeout(() => {
-                    statusMessage.style.display = 'none';
-                }, 5000);
-            })
-            .catch(error => {
+                const result = await response.json();
+                
+                if (result.success) {
+                    statusMessage.className = 'status success';
+                    statusMessage.innerHTML = '✅ <strong>SUCESSO!</strong><br>Lead salvo na planilha e email enviado!';
+                    
+                    // Limpa o formulário
+                    this.reset();
+                } else {
+                    throw new Error(result.message);
+                }
+                
+            } catch (error) {
                 console.error('Erro:', error);
                 statusMessage.className = 'status error';
-                statusMessage.textContent = '❌ Erro ao enviar: ' + error.message;
-            });
+                statusMessage.innerHTML = '❌ <strong>ERRO:</strong><br>' + error.message;
+            } finally {
+                // Restaura botão
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+            }
         });
 
-        // Detecta se está em ambiente de desenvolvimento
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        // Testa se a URL do script está configurada
+        if (GOOGLE_SCRIPT_URL.includes('SUA_URL_AQUI')) {
             const statusMessage = document.getElementById('statusMessage');
-            statusMessage.className = 'status loading';
+            statusMessage.className = 'status error';
             statusMessage.style.display = 'block';
-            statusMessage.innerHTML = '⚠️ <strong>AMBIENTE DE TESTE</strong><br>Formspree funciona melhor em produção';
+            statusMessage.innerHTML = '⚠️ <strong>CONFIGURE A URL:</strong><br>Cole sua URL do Google Script no código!';
         }
     </script>
 </body>
