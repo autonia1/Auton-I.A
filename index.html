@@ -1,49 +1,340 @@
-<!-- SEÇÃO DE FORMULÁRIO COM FORMSPREE -->
-<section class="form-section" id="formulario">
-    <div class="form-container">
-        <div class="form-content">
-            <h2 class="form-title">Pronto para ter o seu agente IA?</h2>
-            <p class="form-subtitle">Preencha o formulário e nosso time entrará em contato via WhatsApp.</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Formspree - Auton I.A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .test-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .method-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e1e1e1;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            border-bottom-color: #667eea;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .instructions h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Teste Formspree</h1>
+        <p class="subtitle">Teste de formulário para Auton I.A</p>
+
+        <div class="method-tabs">
+            <div class="tab active" onclick="switchTab(1)">Método 1 - Tradicional</div>
+            <div class="tab" onclick="switchTab(2)">Método 2 - AJAX</div>
         </div>
-        
-        <div class="form-box">
-            <form action="https://formspree.io/f/xjvneraa" method="POST" id="capturaForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label" for="nome">Nome Completo *</label>
-                        <input type="text" id="nome" name="nome" class="form-input" required placeholder="ex: João Silva">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="email">E-mail *</label>
-                        <input type="email" id="email" name="email" class="form-input" required placeholder="ex: joao@empresa.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="whatsapp">WhatsApp *</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" required placeholder="ex: 11 99999-9999">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="empresa">Empresa</label>
-                        <input type="text" id="empresa" name="empresa" class="form-input" placeholder="ex: Minha Empresa LTDA">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="faturamento">Faturamento Mensal *</label>
-                        <select id="faturamento" name="faturamento" class="form-input" required>
-                            <option value="">Selecione uma opção</option>
-                            <option value="menos-20000">Menos que R$ 20.000</option>
-                            <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
-                            <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
-                            <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
-                            <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
-                        </select>
-                    </div>
+
+        <!-- MÉTODO 1: Formulário tradicional -->
+        <div class="tab-content active" id="tab1">
+            <h3>📨 Envio Tradicional</h3>
+            <form action="https://formspree.io/f/xjvneraa" method="POST">
+                <input type="hidden" name="_subject" value="🎯 NOVO LEAD - Auton I.A">
+                <input type="hidden" name="_language" value="pt">
+                
+                <div class="form-group">
+                    <label>Nome Completo *</label>
+                    <input type="text" name="nome" required placeholder="Seu nome completo">
                 </div>
                 
-                <button type="submit" class="form-submit">Enviar Formulário</button>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required placeholder="seu@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>WhatsApp *</label>
+                    <input type="tel" name="whatsapp" required placeholder="11 99999-9999">
+                </div>
+                
+                <div class="form-group">
+                    <label>Empresa</label>
+                    <input type="text" name="empresa" placeholder="Nome da sua empresa">
+                </div>
+                
+                <div class="form-group">
+                    <label>Faturamento Mensal *</label>
+                    <select name="faturamento" required>
+                        <option value="">Selecione...</option>
+                        <option value="menos-20000">Menos que R$ 20.000</option>
+                        <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
+                        <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
+                        <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
+                        <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
+                    </select>
+                </div>
+                
+                <button type="submit">📤 Enviar Formulário</button>
             </form>
         </div>
+
+        <!-- MÉTODO 2: Formulário com AJAX -->
+        <div class="tab-content" id="tab2">
+            <h3>⚡ Envio com AJAX</h3>
+            <form id="ajaxForm">
+                <div class="form-group">
+                    <label>Nome Completo *</label>
+                    <input type="text" id="ajaxNome" required placeholder="Seu nome completo">
+                </div>
+                
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="ajaxEmail" required placeholder="seu@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>WhatsApp *</label>
+                    <input type="tel" id="ajaxWhatsapp" required placeholder="11 99999-9999">
+                </div>
+                
+                <div class="form-group">
+                    <label>Empresa</label>
+                    <input type="text" id="ajaxEmpresa" placeholder="Nome da sua empresa">
+                </div>
+                
+                <div class="form-group">
+                    <label>Faturamento Mensal *</label>
+                    <select id="ajaxFaturamento" required>
+                        <option value="">Selecione...</option>
+                        <option value="menos-20000">Menos que R$ 20.000</option>
+                        <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
+                        <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
+                        <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
+                        <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
+                    </select>
+                </div>
+                
+                <button type="submit">🚀 Enviar via AJAX</button>
+            </form>
+        </div>
+
+        <div id="statusMessage" class="status"></div>
+
+        <div class="instructions">
+            <h3>📋 Como usar:</h3>
+            <p><strong>Método 1:</strong> Redireciona para página de confirmação do Formspree</p>
+            <p><strong>Método 2:</strong> Fica na mesma página (melhor experiência)</p>
+            <p><strong>Email de destino:</strong> autonia.contato@gmail.com</p>
+        </div>
     </div>
-</section>
+
+    <script>
+        // Alternar entre abas
+        function switchTab(tabNumber) {
+            // Remove classe active de todas as abas
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Adiciona classe active na aba clicada
+            document.querySelectorAll('.tab')[tabNumber - 1].classList.add('active');
+            document.getElementById('tab' + tabNumber).classList.add('active');
+        }
+
+        // Método 2: AJAX
+        document.getElementById('ajaxForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.className = 'status loading';
+            statusMessage.style.display = 'block';
+            statusMessage.textContent = '⏳ Enviando formulário...';
+            
+            // Prepara os dados
+            const formData = new FormData();
+            formData.append('nome', document.getElementById('ajaxNome').value);
+            formData.append('email', document.getElementById('ajaxEmail').value);
+            formData.append('whatsapp', document.getElementById('ajaxWhatsapp').value);
+            formData.append('empresa', document.getElementById('ajaxEmpresa').value);
+            formData.append('faturamento', document.getElementById('ajaxFaturamento').value);
+            formData.append('_subject', '🎯 NOVO LEAD - Auton I.A (AJAX)');
+            formData.append('_language', 'pt');
+            
+            // Envia para Formspree
+            fetch('https://formspree.io/f/xjvneraa', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na rede: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Sucesso:', data);
+                statusMessage.className = 'status success';
+                statusMessage.textContent = '✅ Formulário enviado com sucesso! Email chegando...';
+                
+                // Limpa o formulário
+                document.getElementById('ajaxForm').reset();
+                
+                // Esconde a mensagem após 5 segundos
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                statusMessage.className = 'status error';
+                statusMessage.textContent = '❌ Erro ao enviar: ' + error.message;
+            });
+        });
+
+        // Detecta se está em ambiente de desenvolvimento
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.className = 'status loading';
+            statusMessage.style.display = 'block';
+            statusMessage.innerHTML = '⚠️ <strong>AMBIENTE DE TESTE</strong><br>Formspree funciona melhor em produção';
+        }
+    </script>
+</body>
+</html>
