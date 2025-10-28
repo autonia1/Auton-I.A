@@ -1,213 +1,49 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste FormSubmit</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .test-container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 100%;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background: #333;
-        }
-
-        .status {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            display: none;
-        }
-
-        .success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .loading {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeaa7;
-        }
-    </style>
-</head>
-<body>
-    <div class="test-container">
-        <h1>Teste FormSubmit</h1>
+<!-- SEÇÃO DE FORMULÁRIO COM FORMSPREE -->
+<section class="form-section" id="formulario">
+    <div class="form-container">
+        <div class="form-content">
+            <h2 class="form-title">Pronto para ter o seu agente IA?</h2>
+            <p class="form-subtitle">Preencha o formulário e nosso time entrará em contato via WhatsApp.</p>
+        </div>
         
-        <!-- MÉTODO 1: Formulário tradicional -->
-        <h3>Método 1: Formulário Tradicional</h3>
-        <form action="https://formsubmit.co/autonia.contato@gmail.com" method="POST">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_subject" value="🎯 TESTE FormSubmit">
-            
-            <div class="form-group">
-                <label>Nome:</label>
-                <input type="text" name="nome" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Mensagem:</label>
-                <input type="text" name="mensagem" value="Teste do FormSubmit" required>
-            </div>
-            
-            <button type="submit">Enviar (Método 1)</button>
-        </form>
-
-        <hr style="margin: 20px 0;">
-
-        <!-- MÉTODO 2: Formulário com AJAX -->
-        <h3>Método 2: Formulário com AJAX</h3>
-        <form id="ajaxForm">
-            <div class="form-group">
-                <label>Nome:</label>
-                <input type="text" id="ajaxNome" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" id="ajaxEmail" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Mensagem:</label>
-                <input type="text" id="ajaxMensagem" value="Teste AJAX FormSubmit" required>
-            </div>
-            
-            <button type="submit">Enviar (Método 2)</button>
-        </form>
-
-        <div id="statusMessage" class="status"></div>
-    </div>
-
-    <script>
-        // Método 2: AJAX
-        document.getElementById('ajaxForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const statusMessage = document.getElementById('statusMessage');
-            statusMessage.className = 'status loading';
-            statusMessage.style.display = 'block';
-            statusMessage.textContent = 'Enviando...';
-            
-            const formData = new FormData();
-            formData.append('nome', document.getElementById('ajaxNome').value);
-            formData.append('email', document.getElementById('ajaxEmail').value);
-            formData.append('mensagem', document.getElementById('ajaxMensagem').value);
-            formData.append('_captcha', 'false');
-            formData.append('_template', 'table');
-            formData.append('_subject', '🎯 TESTE AJAX FormSubmit');
-            
-            fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na rede: ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Sucesso:', data);
-                statusMessage.className = 'status success';
-                statusMessage.textContent = '✅ Formulário enviado com sucesso!';
+        <div class="form-box">
+            <form action="https://formspree.io/f/xjvneraa" method="POST" id="capturaForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" class="form-input" required placeholder="ex: João Silva">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" class="form-input" required placeholder="ex: joao@empresa.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="whatsapp">WhatsApp *</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" required placeholder="ex: 11 99999-9999">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="empresa">Empresa</label>
+                        <input type="text" id="empresa" name="empresa" class="form-input" placeholder="ex: Minha Empresa LTDA">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="faturamento">Faturamento Mensal *</label>
+                        <select id="faturamento" name="faturamento" class="form-input" required>
+                            <option value="">Selecione uma opção</option>
+                            <option value="menos-20000">Menos que R$ 20.000</option>
+                            <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
+                            <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
+                            <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
+                            <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
+                        </select>
+                    </div>
+                </div>
                 
-                // Limpa o formulário
-                document.getElementById('ajaxForm').reset();
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                statusMessage.className = 'status error';
-                statusMessage.textContent = '❌ Erro ao enviar: ' + error.message;
-            });
-        });
-
-        // Verifica se estamos em localhost
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            const statusMessage = document.getElementById('statusMessage');
-            statusMessage.className = 'status loading';
-            statusMessage.style.display = 'block';
-            statusMessage.textContent = '⚠️ AVISO: Você está em localhost. FormSubmit pode não funcionar. Suba o site para um servidor real.';
-        }
-    </script>
-</body>
-</html>
+                <button type="submit" class="form-submit">Enviar Formulário</button>
+            </form>
+        </div>
+    </div>
+</section>
