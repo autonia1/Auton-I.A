@@ -2522,90 +2522,73 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
             });
         });
 
-// Função de envio do formulário - CORRIGIDA
-document.getElementById('capturaForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitButton = document.getElementById('submitButton');
-    const submitText = document.getElementById('submitText');
-    const loadingText = document.getElementById('loadingText');
-    const faturamento = document.getElementById('faturamento').value;
-    
-    // Mostra loading
-    submitText.style.display = 'none';
-    loadingText.style.display = 'inline';
-    submitButton.disabled = true;
-    
-    // Captura os dados do formulário
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const whatsapp = document.getElementById('whatsapp').value;
-    const empresa = document.getElementById('empresa').value;
-    
-    // Preenche o resumo na página de obrigado
-    document.getElementById('resumoNome').textContent = nome;
-    document.getElementById('resumoEmail').textContent = email;
-    document.getElementById('resumoWhatsapp').textContent = whatsapp;
-    document.getElementById('resumoEmpresa').textContent = empresa || 'Não informada';
-    
-    // Mapeia o valor do faturamento para texto legível
-    const faturamentoText = {
-        'menos-20000': 'Menos que R$ 20.000',
-        '20000-40000': 'De R$ 20.000 a R$ 40.000', 
-        '41000-60000': 'De R$ 41.000 a R$ 60.000',
-        '61000-100000': 'De R$ 61.000 a R$ 100.000',
-        '100000-500000': 'De R$ 100.000 a R$ 500.000'
-    };
-    
-    document.getElementById('resumoFaturamento').textContent = faturamentoText[faturamento] || 'Não informado';
-    
-    // Verifica se o faturamento é menor que 20.000
-    if (faturamento === 'menos-20000') {
-        // Mostra página de faturamento baixo
-        document.getElementById('capturaForm').style.display = 'none';
-        document.getElementById('thankYouPageBaixo').style.display = 'block';
-        document.getElementById('thankYouPage').style.display = 'none';
+// FORMULÁRIO CORRIGIDO - FUNCIONANDO COM FORMSUBMIT
+    document.getElementById('capturaForm').addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        // Scroll suave para o topo da seção de formulário
-        document.getElementById('formulario').scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-        });
+        const submitButton = document.getElementById('submitButton');
+        const submitText = document.getElementById('submitText');
+        const loadingText = document.getElementById('loadingText');
+        const faturamento = document.getElementById('faturamento').value;
         
-        // Reativa o botão
-        submitText.style.display = 'inline';
-        loadingText.style.display = 'none';
-        submitButton.disabled = false;
+        // Mostra loading
+        submitText.style.display = 'none';
+        loadingText.style.display = 'inline';
+        submitButton.disabled = true;
         
-        return;
-    }
-    
-    // DETECTA SE ESTÁ EM DESENVOLVIMENTO LOCAL
-    const isLocalDevelopment = window.location.protocol === 'file:' || 
-                              window.location.hostname === 'localhost' || 
-                              window.location.hostname === '127.0.0.1';
-    
-    if (isLocalDevelopment) {
-        console.log('Modo desenvolvimento: Simulando envio do formulário');
-        // Simula o envio (para desenvolvimento)
-        setTimeout(() => {
-            console.log('Dados que seriam enviados:');
-            console.log('Nome:', nome);
-            console.log('Email:', email);
-            console.log('WhatsApp:', whatsapp);
-            console.log('Empresa:', empresa);
-            console.log('Faturamento:', faturamentoText[faturamento]);
+        // Captura os dados do formulário
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const whatsapp = document.getElementById('whatsapp').value;
+        const empresa = document.getElementById('empresa').value;
+        
+        // Preenche o resumo na página de obrigado
+        document.getElementById('resumoNome').textContent = nome;
+        document.getElementById('resumoEmail').textContent = email;
+        document.getElementById('resumoWhatsapp').textContent = whatsapp;
+        document.getElementById('resumoEmpresa').textContent = empresa || 'Não informada';
+        
+        // Mapeia o valor do faturamento para texto legível
+        const faturamentoText = {
+            'menos-20000': 'Menos que R$ 20.000',
+            '20000-40000': 'De R$ 20.000 a R$ 40.000', 
+            '41000-60000': 'De R$ 41.000 a R$ 60.000',
+            '61000-100000': 'De R$ 61.000 a R$ 100.000',
+            '100000-500000': 'De R$ 100.000 a R$ 500.000'
+        };
+        
+        document.getElementById('resumoFaturamento').textContent = faturamentoText[faturamento] || 'Não informado';
+        
+        // Verifica se o faturamento é menor que 20.000
+        if (faturamento === 'menos-20000') {
+            // Mostra página de faturamento baixo
+            document.getElementById('capturaForm').style.display = 'none';
+            document.getElementById('thankYouPageBaixo').style.display = 'block';
+            document.getElementById('thankYouPage').style.display = 'none';
             
-            mostrarPaginaObrigado();
-        }, 1500);
-    } else {
-        // PRODUÇÃO - Envia para o FormSubmit
+            // Scroll suave para o topo da seção de formulário
+            document.getElementById('formulario').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+            
+            // Reativa o botão
+            submitText.style.display = 'inline';
+            loadingText.style.display = 'none';
+            submitButton.disabled = false;
+            
+            return;
+        }
+        
+        // PARA FATURAMENTO MAIOR QUE 20.000 - ENVIA O FORMULÁRIO
+        // Configuração correta do FormSubmit
         const formData = new FormData(this);
         formData.append('_captcha', 'false');
         formData.append('_template', 'table');
         formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
         formData.append('_replyto', email);
         
+        // ENVIO CORRETO PARA O FORMSUBMIT
         fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
             method: 'POST',
             body: formData,
@@ -2617,7 +2600,7 @@ document.getElementById('capturaForm').addEventListener('submit', function(e) {
         })
         .catch((error) => {
             console.error('Erro:', error);
-            // Fallback: mostra página de obrigado mesmo com erro
+            // Mesmo em caso de erro, mostra a página de obrigado
             mostrarPaginaObrigado();
         });
     });
