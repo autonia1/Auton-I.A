@@ -2524,7 +2524,7 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
             });
         });
 
- // FORMULÁRIO OTIMIZADO - ENVIO RÁPIDO
+// FORMULÁRIO CORRIGIDO - FUNCIONANDO COM FORMSUBMIT
     document.getElementById('capturaForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -2533,12 +2533,12 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
         const loadingText = document.getElementById('loadingText');
         const faturamento = document.getElementById('faturamento').value;
         
-        // Mostra loading IMEDIATAMENTE
+        // Mostra loading
         submitText.style.display = 'none';
         loadingText.style.display = 'inline';
         submitButton.disabled = true;
         
-        // Captura os dados do formulário RÁPIDO
+        // Captura os dados do formulário
         const nome = document.getElementById('nome').value;
         const email = document.getElementById('email').value;
         const whatsapp = document.getElementById('whatsapp').value;
@@ -2561,9 +2561,9 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
         
         document.getElementById('resumoFaturamento').textContent = faturamentoText[faturamento] || 'Não informado';
         
-        // Verifica se o faturamento é menor que 20.000 - DECISÃO RÁPIDA
+        // Verifica se o faturamento é menor que 20.000
         if (faturamento === 'menos-20000') {
-            // Mostra página de faturamento baixo IMEDIATAMENTE (sem delay)
+            // Mostra página de faturamento baixo
             document.getElementById('capturaForm').style.display = 'none';
             document.getElementById('thankYouPageBaixo').style.display = 'block';
             document.getElementById('thankYouPage').style.display = 'none';
@@ -2574,47 +2574,40 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
                 block: 'start' 
             });
             
-            return; // Para a execução aqui, não envia o formulário
+            // Reativa o botão
+            submitText.style.display = 'inline';
+            loadingText.style.display = 'none';
+            submitButton.disabled = false;
+            
+            return;
         }
         
-        // PARA FATURAMENTO MAIOR QUE 20.000 - ENVIO RÁPIDO
-        // Cria os dados do formulário
-        const formData = new FormData();
-        formData.append('_replyto', email);
-        formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
-        formData.append('nome', nome);
-        formData.append('email', email);
-        formData.append('whatsapp', whatsapp);
-        formData.append('empresa', empresa || 'Não informada');
-        formData.append('faturamento', faturamentoText[faturamento] || 'Não informado');
+        // PARA FATURAMENTO MAIOR QUE 20.000 - ENVIA O FORMULÁRIO
+        // Configuração correta do FormSubmit
+        const formData = new FormData(this);
         formData.append('_captcha', 'false');
         formData.append('_template', 'table');
+        formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
+        formData.append('_replyto', email);
         
-        // ENVIO EM SEGUNDO PLANO - NÃO BLOQUEIA A INTERFACE
+        // ENVIO CORRETO PARA O FORMSUBMIT
         fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: formData
+            body: formData,
         })
         .then(response => response.json())
-        .then(result => {
-            // Mostra a página de obrigado independente do resultado
+        .then(data => {
+            console.log('Sucesso:', data);
             mostrarPaginaObrigado();
         })
-        .catch(error => {
-            // Mesmo se der erro, mostra a página de obrigado
+        .catch((error) => {
+            console.error('Erro:', error);
+            // Mesmo em caso de erro, mostra a página de obrigado
             mostrarPaginaObrigado();
         });
-        
-        // MOSTRA A PÁGINA DE OBRIGADO IMEDIATAMENTE (não espera pela resposta)
-        setTimeout(() => {
-            mostrarPaginaObrigado();
-        }, 500); // Apenas 0.5 segundos de delay para efeito visual
     });
 
-    // Função para mostrar página de obrigado normal - OTIMIZADA
+    // Função para mostrar página de obrigado
     function mostrarPaginaObrigado() {
         document.getElementById('capturaForm').style.display = 'none';
         document.getElementById('thankYouPage').style.display = 'block';
@@ -2637,14 +2630,14 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
         
         // Limpa o formulário
         document.getElementById('capturaForm').reset();
-    }       
- 
-        // Inicialização - garante que apenas o formulário esteja visível inicialmente
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('thankYouPage').style.display = 'none';
-            document.getElementById('thankYouPageBaixo').style.display = 'none';
-            document.getElementById('capturaForm').style.display = 'block';
-        });
+    }
+
+    // Inicialização - garante que apenas o formulário esteja visível inicialmente
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('thankYouPage').style.display = 'none';
+        document.getElementById('thankYouPageBaixo').style.display = 'none';
+        document.getElementById('capturaForm').style.display = 'block';
+    });
 
         // Inicializa os efeitos
         window.dispatchEvent(new Event('scroll'));
