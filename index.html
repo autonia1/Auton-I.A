@@ -2588,29 +2588,22 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
         formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
         formData.append('_replyto', email);
         
-        // ENVIO CORRETO PARA O FORMSUBMIT - COM MAIS DETALHES
-fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json'
-    },
-    body: formData,
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Erro na rede: ' + response.statusText);
-    }
-    return response.json();
-})
-.then(data => {
-    console.log('Sucesso:', data);
-    mostrarPaginaObrigado();
-})
-.catch((error) => {
-    console.error('Erro completo:', error);
-    // Tenta uma abordagem alternativa
-    enviarFormularioAlternativo();
-});
+        // ENVIO CORRETO PARA O FORMSUBMIT
+        fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Sucesso:', data);
+            mostrarPaginaObrigado();
+        })
+        .catch((error) => {
+            console.error('Erro:', error);
+            // Mesmo em caso de erro, mostra a página de obrigado
+            mostrarPaginaObrigado();
+        });
+    });
 
     // Função para mostrar página de obrigado
     function mostrarPaginaObrigado() {
