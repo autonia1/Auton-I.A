@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Auton I.A</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Adicione Font Awesome para ícones consistentes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -25,6 +27,56 @@
             color: #1a1a1a;
             overflow-x: hidden;
             background: white;
+        }
+
+        /* OTIMIZAÇÃO DE EMOJIS PARA TODAS AS PLATAFORMAS */
+        .emoji-square,
+        .capability-icon,
+        .icone-emoji,
+        .gift-emoji,
+        .thank-you-icon,
+        .faq-toggle,
+        .feature-list i,
+        .vantagens-grid i {
+            font-family: 
+                "Apple Color Emoji", 
+                "Segoe UI Emoji", 
+                "Segoe UI Symbol", 
+                "Noto Color Emoji", 
+                "Android Emoji",
+                "Twemoji Mozilla",
+                "Segoe UI", 
+                sans-serif;
+            font-weight: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Garantir tamanhos consistentes */
+        .emoji-square {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .capability-icon {
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        .gift-emoji {
+            font-size: 4.5rem;
+            line-height: 1;
+        }
+
+        .icone-emoji {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .thank-you-icon {
+            font-size: 4rem;
+            line-height: 1;
         }
 
         /* NAVBAR ESTILO GLASS */
@@ -147,14 +199,14 @@
         /* MOBILE: Esconder links de navegação */
         @media (max-width: 768px) {
             .navbar {
-                grid-template-columns: auto auto; /* Apenas logo e botão */
+                grid-template-columns: auto auto;
                 gap: 0.8rem;
                 padding: 0.7rem 1.2rem;
                 justify-content: space-between;
             }
 
             .nav-links {
-                display: none; /* Links escondidos no mobile */
+                display: none;
             }
 
             .logo {
@@ -171,7 +223,7 @@
         /* DESKTOP: Mostrar links normalmente */
         @media (min-width: 769px) {
             .nav-links {
-                display: flex; /* Links visíveis no desktop */
+                display: flex;
             }
         }
 
@@ -189,7 +241,7 @@
 
         /* AJUSTE DO HERO PARA COMPENSAR A NAVBAR FIXA */
         .hero {
-            margin-top: 120px; /* Aumentado para compensar a navbar fixa */
+            margin-top: 120px;
             padding: 6rem 5%;
             background: white;
             color: #1a1a1a;
@@ -291,7 +343,7 @@
         /* MOBILE: Reorganizar hero */
         @media (max-width: 768px) {
             .hero {
-                margin-top: 100px; /* Ajustado para mobile com navbar */
+                margin-top: 100px;
                 padding: 3rem 5%;
             }
             
@@ -1555,7 +1607,7 @@
         /* RESPONSIVIDADE */
         @media (max-width: 768px) {
             .hero {
-                margin-top: 100px; /* Ajustado para mobile com navbar */
+                margin-top: 100px;
                 padding: 3rem 5%;
             }
             
@@ -2150,23 +2202,33 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 
                 <ul class="feature-list">
                     <li>
-                        <div class="emoji-square">📱</div>
+                        <div class="emoji-square">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
                         <span>Atendimento automático 24/7 no WhatsApp</span>
                     </li>
                     <li>
-                        <div class="emoji-square">🔗</div>
+                        <div class="emoji-square">
+                            <i class="fas fa-link"></i>
+                        </div>
                         <span>Integração com seus sistemas atuais</span>
                     </li>
                     <li>
-                        <div class="emoji-square">💬</div>
+                        <div class="emoji-square">
+                            <i class="fas fa-comments"></i>
+                        </div>
                         <span>Resposta inteligente a dúvidas dos clientes</span>
                     </li>
                     <li>
-                        <div class="emoji-square">⚡</div>
+                        <div class="emoji-square">
+                            <i class="fas fa-bolt"></i>
+                        </div>
                         <span>Automação de processos internos</span>
                     </li>
                     <li>
-                        <div class="emoji-square">📊</div>
+                        <div class="emoji-square">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
                         <span>Relatórios e análises em tempo real</span>
                     </li>
                 </ul>
@@ -2183,7 +2245,9 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
         
         <div class="vantagens-grid">
             <div class="vantagem-item">
-                <div class="icone-emoji">⚡</div>
+                <div class="icone-emoji">
+                    <i class="fas fa-bolt"></i>
+                </div>
                 <div class="vantagem-conteudo">
                     <h3>Velocidade e Eficiência</h3>
                     <p>Reduza em até 70% o tempo de resposta e economize centenas de horas mensais em tarefas repetitivas.</p>
@@ -2191,7 +2255,9 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             </div>
             
             <div class="vantagem-item">
-                <div class="icone-emoji">🤖</div>
+                <div class="icone-emoji">
+                    <i class="fas fa-robot"></i>
+                </div>
                 <div class="vantagem-conteudo">
                     <h3>Tecnologia Inteligente</h3>
                     <p>Nossos agentes de IA alcançam 98% de satisfação dos clientes, com respostas precisas e naturais.</p>
@@ -2199,7 +2265,9 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             </div>
             
             <div class="vantagem-item">
-                <div class="icone-emoji">🚀</div>
+                <div class="icone-emoji">
+                    <i class="fas fa-rocket"></i>
+                </div>
                 <div class="vantagem-conteudo">
                     <h3>Implementação Rápida</h3>
                     <p>Comece a usar seu agente em apenas 1 dia após a conclusão do seu projeto.</p>
