@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Auton I.A</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Adicione Font Awesome para ícones consistentes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Apple Color Emoji Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Apple+Color+Emoji&display=swap" rel="stylesheet">
+    
+    <!-- Twitter Emoji Font (Fallback) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -29,54 +34,54 @@
             background: white;
         }
 
-        /* OTIMIZAÇÃO DE EMOJIS PARA TODAS AS PLATAFORMAS */
+        /* EMOJI FONT STACK - IGUAL KYONDIGITAL */
+        .emoji-font {
+            font-family: 
+                "Apple Color Emoji", 
+                "Segoe UI Emoji", 
+                "Segoe UI Symbol", 
+                "Noto Color Emoji",
+                "Twemoji Mozilla",
+                "EmojiOne Color",
+                "Android Emoji",
+                sans-serif;
+            font-weight: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "kern";
+            font-kerning: normal;
+        }
+
+        /* Aplicar a todos os elementos com emojis */
         .emoji-square,
         .capability-icon,
         .icone-emoji,
         .gift-emoji,
         .thank-you-icon,
         .faq-toggle,
-        .feature-list i,
-        .vantagens-grid i {
+        .feature-list .emoji-square,
+        .vantagens-grid .icone-emoji {
             font-family: 
                 "Apple Color Emoji", 
                 "Segoe UI Emoji", 
                 "Segoe UI Symbol", 
-                "Noto Color Emoji", 
-                "Android Emoji",
+                "Noto Color Emoji",
                 "Twemoji Mozilla",
-                "Segoe UI", 
+                "EmojiOne Color",
+                "Android Emoji",
                 sans-serif;
             font-weight: normal;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
         }
 
-        /* Garantir tamanhos consistentes */
-        .emoji-square {
-            font-size: 1.2rem;
-            line-height: 1;
-        }
-
-        .capability-icon {
-            font-size: 3rem;
-            line-height: 1;
-        }
-
-        .gift-emoji {
-            font-size: 4.5rem;
-            line-height: 1;
-        }
-
-        .icone-emoji {
-            font-size: 1.8rem;
-            line-height: 1;
-        }
-
-        .thank-you-icon {
-            font-size: 4rem;
-            line-height: 1;
+        /* Forçar renderização de emoji como texto */
+        .emoji-render {
+            display: inline-block;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000;
         }
 
         /* NAVBAR ESTILO GLASS */
@@ -227,18 +232,6 @@
             }
         }
 
-        /* Garante que todas as sections não ultrapassem a largura da tela */
-        section {
-            max-width: 100%;
-            overflow: hidden;
-        }
-
-        /* Corrige possíveis problemas com imagens muito largas */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
         /* AJUSTE DO HERO PARA COMPENSAR A NAVBAR FIXA */
         .hero {
             margin-top: 120px;
@@ -266,31 +259,26 @@
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            opacity: 1;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2.5rem;
-            opacity: 1;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out 0.2s;
             line-height: 1.6;
         }
 
         .hero-btn {
-            opacity: 1;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out 0.4s;
+            background: #000000;
+            color: white;
+            border: 2px solid #000000;
         }
 
-        .hero.visible h1,
-        .hero.visible p,
-        .hero.visible .hero-btn {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-btn:hover {
+            background: #000000;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid #000000;
         }
 
         .hero-image {
@@ -305,16 +293,6 @@
             height: auto;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 1;
-            opacity: 1;
-            transform: translateX(50px);
-            transition: all 1s ease-out 0.3s;
-        }
-
-        .hero.visible .hero-image img {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         /* BALÕES DE CONVERSA */
@@ -323,21 +301,16 @@
             z-index: 2;
             max-width: 850px;
             width: 300px;
-            transition: all 0.8s ease-out;
-            filter: blur(0px);
-            opacity: 1;
         }
 
         .bubble-1 {
             top: 280px;
             left: 50px;
-            transform: translateX(0);
         }
 
         .bubble-2 {
             top: 350px;
             right: 370px;
-            transform: translateX(0);
         }
 
         /* MOBILE: Reorganizar hero */
@@ -359,30 +332,18 @@
             
             .hero-image {
                 order: 1;
-                position: relative;
-                height: 400px;
-                margin-bottom: 2rem;
             }
             
             .hero h1 {
                 font-size: 2.2rem;
-                margin-bottom: 1.2rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
-                margin-bottom: 2rem;
             }
             
-            .hero-image img {
-                max-width: 100%;
-                height: auto;
-            }
-            
-            /* Reposicionar balões no mobile */
             .chat-bubble {
                 width: 260px;
-                max-width: 260px;
             }
             
             .bubble-1 {
@@ -394,395 +355,13 @@
                 top: 330px;
                 right: 90px;
             }
-
-            /* Correção do overflow no mobile */
-            .hero, .section, .free-trial-section, .form-section, .faq-section {
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-            
-            /* Força que todos os elementos respeitem a largura da tela */
-            * {
-                max-width: 100vw;
-            }
         }
 
-        /* BOTÃO DO HERO - ESTILO ESPECÍFICO */
-        .hero-btn {
-            background: #000000;
-            color: white;
-            border: 2px solid #000000;
-        }
-
-        .hero-btn:hover {
-            background: #000000;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 2px solid #000000;
-        }
-
-        /* BOTÃO DO CTA - ESTILO ESPECÍFICO */
-        .cta-btn {
-            background: #000000;
-            color: white;
-            border: 2px solid #000000;
-        }
-
-        .cta-btn:hover {
-            background: #000000;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 2px solid #000000;
-        }
-
-        /* Efeito quando a página é scrolada */
-        .scrolled .bubble-1 {
-            transform: translateX(-8px);
-            filter: blur(2px);
-            opacity: 0.8;
-        }
-
-        .scrolled .bubble-2 {
-            transform: translateX(8px);
-            filter: blur(2px);
-            opacity: 0.8;
-        }
-
-        .chat-bubble img {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
-        }
-
-        /* RESTANTE DO CSS ORIGINAL (mantido intacto) */
-        .section {
-            padding: 5rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-            opacity: 1;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* SEÇÃO SOBRE COM IMAGEM, BLOCOS E ANIMAÇÕES */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-        }
-
-        .about-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            min-height: 600px;
-        }
-
-        .about-image img.celular {
-            max-width: 115%; 
-            height: auto;
-            transition: transform 0.3s ease-out;
-            transform: rotate(0deg);
-            position: relative;
-            z-index: 2;
-        }
-
-        /* CONTEÚDO DE TEXTO COM ANIMAÇÃO PROGRESSIVA */
-        .about-content {
-            text-align: left;
-        }
-
-        .about-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #1a1a1a;
-            text-align: left;
-            transition: all 0.6s ease-out;
-            transform: translateY(30px);
-            opacity: 1;
-        }
-
-        .about-subtitle {
-            font-size: 1.2rem;
-            color: #4a5568;
-            line-height: 1.7;
-            text-align: left;
-            transition: all 0.6s ease-out;
-            transform: translateY(30px);
-            opacity: 0;
-        }
-
-        /* EFEITO PROGRESSIVO - TEXTO */
-        .text-visible .about-title {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.1s;
-        }
-
-        .text-visible .about-subtitle {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.2s;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-            opacity: 1;
-            transform: translateY(-25px);
-            transition: all 0.8s ease-out;
-        }
-
-        .section.visible .section-title {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #4a5568;
-            margin-bottom: 4rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 1;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out 0.2s;
-        }
-
-        .section.visible .section-subtitle {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ESTILOS DO CHAT PARA SOBREPOR A IMAGEM - EFEITO ORIGINAL RESTAURADO */
-        .chat-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .chat-container {
-            width: 80%;
-            max-width: 350px;
-            padding: 20px;
-            position: relative;
-            pointer-events: none;
-        }
-
-        .message {
-            display: flex;
-            margin-bottom: 15px;
-            position: relative;
-            pointer-events: none;
-            opacity: 0;
-            transition: all 0.6s ease-out;
-        }
-
-        .message.received {
-            justify-content: flex-start;
-        }
-
-        .message.sent {
-            justify-content: flex-end;
-        }
-
-        .message-content {
-            display: flex;
-            max-width: 90%;
-            pointer-events: none;
-        }
-
-        .message.received .message-content {
-            flex-direction: row;
-        }
-
-        .message.sent .message-content {
-            flex-direction: row-reverse;
-        }
-
-        .profile-pic {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 8px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            pointer-events: none;
-        }
-
-        .message-bubble {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 10px 14px;
-            color: black;
-            max-width: 100%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            pointer-events: none;
-        }
-
-        .message.received .message-bubble {
-            border-top-left-radius: 4px;
-        }
-
-        .message.sent .message-bubble {
-            border-top-right-radius: 4px;
-        }
-
-        .message-text {
-            line-height: 1.4;
-            font-size: 13px;
-            font-weight: 700;
-            pointer-events: none;
-        }
-
-        /* Estilo para mensagem de áudio */
-        .audio-message {
-            display: flex;
-            align-items: center;
-            padding: 6px 12px;
-            gap: 8px;
-            pointer-events: none;
-        }
-
-        .play-triangle {
-            width: 0;
-            height: 0;
-            border-top: 9px solid transparent;
-            border-left: 14px solid black;
-            border-bottom: 9px solid transparent;
-            border-radius: 3px;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        .audio-progress {
-            display: flex;
-            align-items: center;
-            position: relative;
-            flex-grow: 1;
-            pointer-events: none;
-        }
-
-        .progress-line {
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.55);
-            border-radius: 2px;
-            position: relative;
-            pointer-events: none;
-        }
-
-        .progress-line::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 40%;
-            background: black;
-            border-radius: 2px;
-            pointer-events: none;
-        }
-
-        .progress-circle {
-            width: 10px;
-            height: 10px;
-            background: black;
-            border-radius: 50%;
-            position: absolute;
-            left: 40%;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .audio-line {
-            width: 100px;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.55);
-            border-radius: 2px;
-            pointer-events: none;
-        }
-
-        /* Classes para ajuste individual das mensagens - ESTADO INICIAL (fora da tela) */
-        .message-1 {
-            transform: translateX(120px) translateY(-20px);
-            opacity: 0;
-        }
-        
-        .message-2 {
-            transform: translateX(-120px) translateY(-15px);
-            opacity: 0;
-        }
-        
-        .message-3 {
-            transform: translateX(120px) translateY(-10px);
-            opacity: 0;
-        }
-        
-        .message-4 {
-            transform: translateX(-120px) translateY(-5px);
-            opacity: 0;
-        }
-
-        /* Classes para estado VISÍVEL */
-        .message-1.visible {
-            opacity: 1;
-            transform: translateX(75px) translateY(-20px);
-            transition-delay: 0s;
-        }
-        
-        .message-2.visible {
-            opacity: 1;
-            transform: translateX(-60px) translateY(-15px);
-            transition-delay: 0.1s;
-        }
-        
-        .message-3.visible {
-            opacity: 1;
-            transform: translateX(75px) translateY(-10px);
-            transition-delay: 0.2s;
-        }
-        
-        .message-4.visible {
-            opacity: 1;
-            transform: translateX(-60px) translateY(-5px);
-            transition-delay: 0.3s;
-        }
-
-        /* SEÇÃO DE CAPACIDADES COM FUNDO PRETO E MARQUEE */
+        /* SEÇÃO DE CAPACIDADES */
         .capabilities-section {
             background: #000;
             color: white;
             padding: 5rem 2rem;
-            width: 100%;
-            max-width: 100%;
-            overflow: hidden;
         }
 
         .capabilities-section .section-title {
@@ -813,21 +392,10 @@
             left: 0;
         }
 
-        /* Corrige o marquee que pode estar causando overflow */
-        .marquee-row {
-            max-width: 100%;
-        }
-
-        .marquee-track {
-            max-width: 100%;
-        }
-
-        /* PRIMEIRA FILEIRA - DIREITA */
         .marquee-row-top .marquee-track {
             animation: marquee-right 25s linear infinite;
         }
 
-        /* SEGUNDA FILEIRA - ESQUERDA */
         .marquee-row-bottom .marquee-track {
             animation: marquee-left 30s linear infinite;
         }
@@ -836,8 +404,6 @@
             background: #121212;
             padding: 3rem 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
             width: 360px;
             flex-shrink: 0;
             height: 285px;
@@ -845,117 +411,39 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .capability-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .capability-card:hover::before {
-            left: 100%;
-        }
-
-        .capability-card:hover {
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
-            border-color: rgba(102, 126, 234, 0.5);
         }
 
         .capability-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             color: white;
-            transition: transform 0.3s ease;
         }
 
         .capability-card h3 {
             font-size: 1.2rem;
             margin-bottom: 1rem;
             color: white;
-            line-height: 1.3;
         }
 
         .capability-card p {
             color: #ccc;
             line-height: 1.5;
-            font-size: 1.1rem;
-            margin: 0;
         }
 
-        .card-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100%;
-        }
-
-        /* ANIMAÇÕES HORIZONTAIS */
         @keyframes marquee-right {
-            0% {
-                transform: translateX(0%);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
 
         @keyframes marquee-left {
-            0% {
-                transform: translateX(-50%);
-            }
-            100% {
-                transform: translateX(0%);
-            }
-        }
-
-        /* Efeito de pausa no hover */
-        .marquee-rows-container:hover .marquee-track {
-            animation-play-state: paused;
-        }
-
-        /* Gradiente nas bordas */
-        .marquee-row::before,
-        .marquee-row::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .marquee-row::before {
-            left: 0;
-            background: linear-gradient(90deg, #000 0%, transparent 100%);
-        }
-
-        .marquee-row::after {
-            right: 0;
-            background: linear-gradient(270deg, #000 0%, transparent 100%);
-        }
-
-        .capabilities {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
         }
 
         /* SEÇÃO DE 5 DIAS GRÁTIS */
         .free-trial-section {
             padding: 5rem 5%;
-            width: 100%;
             background: #e9ecef;
-            position: relative;
         }
 
         .trial-container {
@@ -965,11 +453,8 @@
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
         }
 
-        /* CARD COM EFEITO GLASS MAIS SUAVE */
         .trial-card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(15px);
@@ -978,48 +463,23 @@
             text-align: center;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative;
-            overflow: visible;
             min-height: 420px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 3;
-            transition: all 0.3s ease;
-        }
-
-        .trial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .trial-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         }
 
         .gift-emoji {
             font-size: 4.5rem;
             margin-bottom: 1.5rem;
             display: block;
-            position: relative;
-            z-index: 4;
             animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .trial-title {
@@ -1027,8 +487,6 @@
             margin-bottom: 1rem;
             color: #1a1a1a;
             font-weight: 700;
-            position: relative;
-            z-index: 4;
         }
 
         .trial-subtitle {
@@ -1037,11 +495,8 @@
             margin-bottom: 2.5rem;
             line-height: 1.5;
             max-width: 280px;
-            position: relative;
-            z-index: 4;
         }
 
-        /* BOTÃO */
         .trial-btn {
             background: #000000;
             color: white;
@@ -1055,22 +510,11 @@
             text-decoration: none;
             display: inline-block;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 4;
         }
 
         .trial-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-            background: #000000;
-        }
-
-        /* CONTEÚDO EXPLICATIVO */
-        .trial-content {
-            text-align: left;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 2;
         }
 
         .trial-content h3 {
@@ -1086,7 +530,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* ESTILOS PARA OS EMOJIS DA LISTA DE RECURSOS */
+        /* EMOJI SQUARE - ESTILO KYONDIGITAL */
         .emoji-square {
             width: 35px;
             height: 35px;
@@ -1113,139 +557,6 @@
             font-size: 1.1rem;
             color: #2d3748;
             padding: 0.5rem 0;
-            opacity: 1;
-            transform: translateX(-20px);
-            transition: all 0.5s ease;
-        }
-
-        .free-trial-section.visible .feature-list li {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .feature-list li:nth-child(1) { transition-delay: 0.1s; }
-        .feature-list li:nth-child(2) { transition-delay: 0.2s; }
-        .feature-list li:nth-child(3) { transition-delay: 0.3s; }
-        .feature-list li:nth-child(4) { transition-delay: 0.4s; }
-        .feature-list li:nth-child(5) { transition-delay: 0.5s; }
-
-        /* CONTAINER DO CARD COM POSIÇÃO RELATIVE PARA OS CONFETES */
-        .card-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* ÁREA DOS CONFETES - ATRÁS DO CARD */
-        .confetti-area {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* CONFETES INDIVIDUAIS - EXPLOSÃO RADIAL */
-        .confetti {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: var(--color);
-            border-radius: 2px;
-            animation: confetti-explosion 3s ease-out infinite;
-            opacity: 0;
-            left: 50%;
-            top: 50%;
-            transform-origin: center;
-            z-index: 1;
-        }
-
-        /* POSIÇÕES E CORES DOS CONFETES */
-        .confetti:nth-child(1) { --color: #ff6b6b; animation-delay: 0s; }
-        .confetti:nth-child(2) { --color: #4ecdc4; animation-delay: 0.1s; }
-        .confetti:nth-child(3) { --color: #45b7d1; animation-delay: 0.2s; }
-        .confetti:nth-child(4) { --color: #96ceb4; animation-delay: 0.3s; }
-        .confetti:nth-child(5) { --color: #feca57; animation-delay: 0.4s; }
-        .confetti:nth-child(6) { --color: #ff9ff3; animation-delay: 0.5s; }
-        .confetti:nth-child(7) { --color: #54a0ff; animation-delay: 0.6s; }
-        .confetti:nth-child(8) { --color: #5f27cd; animation-delay: 0.7s; }
-        .confetti:nth-child(9) { --color: #00d2d3; animation-delay: 0.8s; }
-        .confetti:nth-child(10) { --color: #ff9f43; animation-delay: 0.9s; }
-        .confetti:nth-child(11) { --color: #10ac84; animation-delay: 1s; }
-        .confetti:nth-child(12) { --color: #ee5a24; animation-delay: 1.1s; }
-        .confetti:nth-child(13) { --color: #0984e3; animation-delay: 1.2s; }
-        .confetti:nth-child(14) { --color: #a29bfe; animation-delay: 1.3s; }
-        .confetti:nth-child(15) { --color: #fd79a8; animation-delay: 1.4s; }
-        .confetti:nth-child(16) { --color: #fdcb6e; animation-delay: 1.5s; }
-        .confetti:nth-child(17) { --color: #e17055; animation-delay: 1.6s; }
-        .confetti:nth-child(18) { --color: #00b894; animation-delay: 1.7s; }
-        .confetti:nth-child(19) { --color: #6c5ce7; animation-delay: 1.8s; }
-        .confetti:nth-child(20) { --color: #ffeaa7; animation-delay: 1.9s; }
-        .confetti:nth-child(21) { --color: #ff7675; animation-delay: 2s; }
-        .confetti:nth-child(22) { --color: #74b9ff; animation-delay: 2.1s; }
-        .confetti:nth-child(23) { --color: #55efc4; animation-delay: 2.2s; }
-        .confetti:nth-child(24) { --color: #a29bfe; animation-delay: 2.3s; }
-
-        /* ANIMAÇÃO DE EXPLOSÃO RADIAL */
-        @keyframes confetti-explosion {
-            0% {
-                opacity: 1;
-                transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            10% {
-                opacity: 1;
-                transform: 
-                    translate(
-                        calc(var(--x) * 100px), 
-                        calc(var(--y) * 100px)
-                    ) 
-                    rotate(180deg) 
-                    scale(1.2);
-            }
-            30% {
-                opacity: 1;
-                transform: 
-                    translate(
-                        calc(var(--x) * 200px), 
-                        calc(var(--y) * 200px)
-                    ) 
-                    rotate(360deg) 
-                    scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: 
-                    translate(
-                        calc(var(--x) * 300px), 
-                        calc(var(--y) * 300px)
-                    ) 
-                    rotate(540deg) 
-                    scale(0.8);
-            }
-            70% {
-                opacity: 0.4;
-                transform: 
-                    translate(
-                        calc(var(--x) * 400px), 
-                        calc(var(--y) * 400px)
-                    ) 
-                    rotate(720deg) 
-                    scale(0.4);
-            }
-            100% {
-                opacity: 0;
-                transform: 
-                    translate(
-                        calc(var(--x) * 500px), 
-                        calc(var(--y) * 500px)
-                    ) 
-                    rotate(900deg) 
-                    scale(0);
-            }
         }
 
         /* SEÇÃO "POR QUE A AUTON I.A?" */
@@ -1274,24 +585,12 @@
             color: white;
             border-radius: 15px;
             padding: 2.5rem 2rem;
-            position: relative;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             min-height: 280px;
             display: flex;
             flex-direction: column;
-            opacity: 1;
-            transform: translateY(30px);
         }
-
-        .porque-auton.visible .vantagem-item {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .vantagem-item:nth-child(1) { transition: all 0.6s ease 0.1s; }
-        .vantagem-item:nth-child(2) { transition: all 0.6s ease 0.2s; }
-        .vantagem-item:nth-child(3) { transition: all 0.6s ease 0.3s; }
 
         .vantagem-item:hover {
             transform: translateY(-5px);
@@ -1326,7 +625,7 @@
             line-height: 1.6;
         }
 
-        /* NOVA SEÇÃO DE FORMULÁRIO - LADO A LADO */
+        /* FORMULÁRIO */
         .form-section {
             padding: 5rem 5%;
             background: #f8f9fa;
@@ -1363,8 +662,6 @@
             border-radius: 20px;
             padding: 3rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            height: fit-content;
-            position: relative;
         }
 
         .form-grid {
@@ -1395,18 +692,12 @@
             font-family: inherit;
         }
 
-        .form-input::placeholder {
-            color: #a0aec0;
-            opacity: 0.7;
-        }
-
         .form-input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        /* Estilo específico para o select */
         select.form-input {
             appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -1429,7 +720,6 @@
             display: block;
             margin: 0 auto;
             width: 100%;
-            position: relative;
         }
 
         .form-submit:hover:not(:disabled) {
@@ -1437,16 +727,11 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
-        .form-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
         .loading-text {
             display: none;
         }
 
-        /* ESTILOS DAS PÁGINAS DE OBRIGADO */
+        /* PÁGINAS DE OBRIGADO */
         .thank-you-container {
             display: none;
             text-align: center;
@@ -1491,14 +776,11 @@
             color: #4a5568;
         }
 
-        /* SEÇÃO FAQ ATUALIZADA */
+        /* FAQ */
         .faq-section {
             background: #000;
             color: white;
             padding: 5rem 2rem;
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
         }
         
         .faq-section .section-title {
@@ -1519,27 +801,7 @@
             margin-bottom: 1.5rem;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
             border: 1px solid #333;
-            transition: all 0.3s ease;
-            opacity: 1;
-            transform: translateY(20px);
-        }
-
-        .faq-section.visible .faq-item {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .faq-item:nth-child(1) { transition: all 0.5s ease 0.1s; }
-        .faq-item:nth-child(2) { transition: all 0.5s ease 0.2s; }
-        .faq-item:nth-child(3) { transition: all 0.5s ease 0.3s; }
-        .faq-item:nth-child(4) { transition: all 0.5s ease 0.4s; }
-        .faq-item:nth-child(5) { transition: all 0.5s ease 0.5s; }
-
-        .faq-item:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
         }
 
         .faq-question {
@@ -1567,20 +829,12 @@
             background: white;
             transition: all 0.5s ease;
             opacity: 0;
-            display: flex;
-            align-items: center;
-            min-height: 0;
         }
 
         .faq-item.active .faq-answer {
             max-height: 200px;
-            min-height: 80px;
             padding: 1.5rem;
             opacity: 1;
-        }
-
-        .faq-answer-content {
-            width: 100%;
         }
 
         .faq-toggle {
@@ -1588,13 +842,10 @@
             color: white;
             transition: transform 0.3s ease;
             font-weight: 300;
-            min-width: 30px;
-            text-align: center;
         }
 
         .faq-item.active .faq-toggle {
             transform: rotate(45deg);
-            color: white;
         }
 
         footer {
@@ -1623,154 +874,16 @@
             
             .hero-image {
                 order: 1;
-                position: relative;
-                height: 400px;
-                margin-bottom: 2rem;
             }
             
             .hero h1 {
                 font-size: 2.2rem;
-                margin-bottom: 1.2rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .hero-image img {
-                max-width: 100%;
-                height: auto;
-            }
-            
-            /* Reposicionar balões no mobile */
-            .chat-bubble {
-                width: 260px;
-                max-width: 260px;
-            }
-            
-            .bubble-1 {
-                top: 280px;
-                left: 90px;
-            }
-            
-            .bubble-2 {
-                top: 330px;
-                right: 90px;
             }
 
-            /* Restante da responsividade original */
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .about-image {
-                min-height: 450px;
-            }
-
-            .about-title {
-                font-size: 2rem;
-                text-align: center;
-            }
-            
-            .about-subtitle {
-                font-size: 1.1rem;
-                text-align: center;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            /* Ajustes do chat no mobile */
-            .chat-container {
-                width: 85%;
-                max-width: 300px;
-            }
-            
-            .profile-pic {
-                width: 28px;
-                height: 28px;
-            }
-            
-            .message-text {
-                font-size: 12px;
-            }
-            
-            .message-bubble {
-                padding: 8px 12px;
-            }
-
-            /* Ajustes das posições no mobile */
-            .message-1 {
-                transform: translateX(90px) translateY(-15px);
-            }
-            
-            .message-2 {
-                transform: translateX(-90px) translateY(-10px);
-            }
-            
-            .message-3 {
-                transform: translateX(90px) translateY(-5px);
-            }
-            
-            .message-4 {
-                transform: translateX(-90px) translateY(0px);
-            }
-
-            .message-1.visible {
-                transform: translateX(40px) translateY(-15px);
-            }
-            
-            .message-2.visible {
-                transform: translateX(-35px) translateY(-10px);
-            }
-            
-            .message-3.visible {
-                transform: translateX(40px) translateY(-5px);
-            }
-            
-            .message-4.visible {
-                transform: translateX(-35px) translateY(0px);
-            }
-
-            /* Responsividade para seção de capacidades com marquee */
-            .capabilities-section {
-                padding: 3rem 1rem;
-            }
-            
-            .marquee-rows-container {
-                gap: 1rem;
-            }
-            
-            .capability-card {
-                width: 300px;
-                padding: 2.5rem 2rem;
-                height: 200px;
-            }
-            
-            .capability-icon {
-                font-size: 2rem;
-            }
-            
-            .marquee-row {
-                height: 220px;
-            }
-            
-            .capability-card h3 {
-                font-size: 1.1rem;
-            }
-            
-            .capability-card p {
-                font-size: 0.95rem;
-            }
-
-            /* Responsividade para seção de 5 dias grátis */
-            .free-trial-section {
-                padding: 4rem 5%;
-            }
-            
             .trial-container {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
@@ -1791,32 +904,8 @@
             
             .trial-subtitle {
                 font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .trial-content h3 {
-                font-size: 1.7rem;
-                text-align: center;
-                margin-bottom: 1.2rem;
-            }
-            
-            .trial-content p {
-                font-size: 1rem;
-                text-align: center;
-                margin-bottom: 1.2rem;
-            }
-            
-            .trial-btn {
-                padding: 1.1rem 2.5rem;
-                font-size: 1rem;
-            }
-            
-            .feature-list li {
-                font-size: 1rem;
-                margin-bottom: 1rem;
             }
 
-            /* Responsividade para seção "Por que a Auton I.A?" */
             .vantagens-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -1832,16 +921,10 @@
                 height: 50px;
                 font-size: 1.5rem;
             }
-            
-            .vantagem-conteudo h3 {
-                font-size: 1.3rem;
-            }
 
-            /* Responsividade para formulário */
             .form-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                padding: 0 1rem;
             }
             
             .form-box {
@@ -1857,75 +940,26 @@
                 font-size: 1.1rem;
                 text-align: center;
             }
-            
-            .thank-you-container {
-                padding: 2rem 1rem;
-            }
-            
-            .thank-you-title {
-                font-size: 1.7rem;
-            }
-            
-            .thank-you-message {
-                font-size: 1rem;
-            }
-
-            /* Responsividade para FAQ */
-            .faq-section {
-                padding: 3rem 1rem;
-            }
-            
-            .faq-question {
-                padding: 1.2rem;
-                font-size: 1rem;
-            }
-            
-            .faq-answer {
-                padding: 0 1.2rem;
-            }
-            
-            .faq-item.active .faq-answer {
-                padding: 1.2rem;
-                min-height: 70px;
-            }
         }
     </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1005437460716504');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 </head>
 <body>
-    <!-- NAVBAR ADICIONADA -->
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="logo">
             <img src="https://i.ibb.co/0pmJ9t8b/Gemini-Generated-Image-44ys9g44ys9g44ys-Photoroom.png" alt="Auton I.A">
         </div>
         
-        <!-- Links que serão OCULTOS no mobile -->
         <div class="nav-links">
             <a href="#como-funciona">Como Funciona</a>
             <a href="#beneficios">Benefícios</a>
             <a href="#sobre">Sobre</a>
         </div>
         
-        <!-- Botão que permanece VISÍVEL -->
         <a href="#formulario" class="btn nav-btn">Agendar Demonstração</a>
     </nav>
 
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
@@ -1946,72 +980,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
         </div>
     </section>
 
-    <!-- RESTANTE DO CÓDIGO ORIGINAL (mantido intacto) -->
-    <section class="section" id="sobre">
-        <div class="about-container">
-            <div class="about-image">
-                <img src="https://i.ibb.co/FkYwPJHR/imcel.png" alt="Agente de IA Auton I.A" class="celular" id="celularImage">
-                
-                <div class="chat-overlay">
-                    <div class="chat-container">
-                        <div class="message sent message-1" id="msg1">
-                            <div class="message-content">
-                                <img src="https://i.ibb.co/Tx3SMvQm/imfp1.png" alt="Perfil 1" class="profile-pic">
-                                <div class="message-bubble">
-                                    <div class="message-text">Olá, gostaria de marcar uma consulta!</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="message received message-2" id="msg2">
-                            <div class="message-content">
-                                <img src="https://i.ibb.co/MyvMXL78/imfp2.png" alt="Perfil 2" class="profile-pic">
-                                <div class="message-bubble">
-                                    <div class="message-text">Claro, posso ajudar com o agendamento da sua consulta.</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="message sent message-3" id="msg3">
-                            <div class="message-content">
-                                <img src="https://i.ibb.co/Tx3SMvQm/imfp1.png" alt="Perfil 1" class="profile-pic">
-                                <div class="message-bubble">
-                                    <div class="audio-message">
-                                        <div class="play-triangle"></div>
-                                        <div class="audio-progress">
-                                            <div class="progress-line"></div>
-                                            <div class="progress-circle"></div>
-                                        </div>
-                                        <div class="audio-line"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="message received message-4" id="msg4">
-                            <div class="message-content">
-                                <img src="https://i.ibb.co/MyvMXL78/imfp2.png" alt="Perfil 2" class="profile-pic">
-                                <div class="message-bubble">
-                                    <div class="message-text">O horário das 17h está disponível. Quer que eu o agende para você?</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="about-content" id="text-content">
-                <h2 class="about-title">O que é um Agente de IA da Auton I.A?</h2>
-                <p class="about-subtitle">
-                    Ele é um agente de IA que atende, marca e desmarca consultas automaticamente, faz follow-up pós-consulta, reagenda horários e gerencia toda a agenda da sua clínica de forma autônoma e personalizada.
-                    <br><br>
-                    Nossos agentes são treinados especificamente para o seu negócio, aprendendo com cada interação e se tornando cada vez mais eficientes no atendimento aos seus pacientes.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO DE CAPACIDADES COM FUNDO PRETO E MARQUEE -->
+    <!-- SEÇÃO DE CAPACIDADES -->
     <section class="capabilities-section" id="como-funciona">
         <h2 class="section-title">Do que ele é capaz?</h2>
         <p class="section-subtitle">Nosso agente de IA é capaz de executar diversas tarefas complexas de forma autônoma e inteligente.</p>
@@ -2020,67 +989,24 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             <div class="marquee-row marquee-row-top">
                 <div class="marquee-track">
                     <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">💬</div>
-                            <h3>Atendimento Inteligente</h3>
-                            <p>Conversa com clientes, entende contexto e responde com precisão.</p>
-                        </div>
+                        <div class="capability-icon emoji-font">💬</div>
+                        <h3>Atendimento Inteligente</h3>
+                        <p>Conversa com clientes, entende contexto e responde com precisão.</p>
                     </div>
                     <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🔍</div>
-                            <h3>Busca de Informações</h3>
-                            <p>Acessa bases de dados, consulta sistemas e encontra informações instantaneamente.</p>
-                        </div>
+                        <div class="capability-icon emoji-font">🔍</div>
+                        <h3>Busca de Informações</h3>
+                        <p>Acessa bases de dados, consulta sistemas e encontra informações instantaneamente.</p>
                     </div>
                     <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">⚡</div>
-                            <h3>Automação de Tarefas</h3>
-                            <p>Executa processos complexos do início ao fim sem intervenção humana.</p>
-                        </div>
+                        <div class="capability-icon emoji-font">⚡</div>
+                        <h3>Automação de Tarefas</h3>
+                        <p>Executa processos complexos do início ao fim sem intervenção humana.</p>
                     </div>
                     <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🔗</div>
-                            <h3>Integrações Completas</h3>
-                            <p>Conecta-se com mais de 400 ferramentas e sistemas que você já usa.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">📊</div>
-                            <h3>Análise e Relatórios</h3>
-                            <p>Gera insights, planilhas e documentos automaticamente.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🎯</div>
-                            <h3>Tomada de Decisões</h3>
-                            <p>Avalia situações e toma decisões baseadas em regras e contexto.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">💬</div>
-                            <h3>Atendimento Inteligente</h3>
-                            <p>Conversa com clientes, entende contexto e responde com precisão.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🔍</div>
-                            <h3>Busca de Informações</h3>
-                            <p>Acessa bases de dados, consulta sistemas e encontra informações instantaneamente.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">⚡</div>
-                            <h3>Automação de Tarefas</h3>
-                            <p>Executa processos complexos do início ao fim sem intervenção humana.</p>
-                        </div>
+                        <div class="capability-icon emoji-font">🔗</div>
+                        <h3>Integrações Completas</h3>
+                        <p>Conecta-se com mais de 400 ferramentas e sistemas que você já usa.</p>
                     </div>
                 </div>
             </div>
@@ -2088,67 +1014,24 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             <div class="marquee-row marquee-row-bottom">
                 <div class="marquee-track">
                     <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🤖</div>
-                            <h3>Aprendizado de I.A</h3>
-                            <p>Aprende com cada interação e melhora continuamente seu desempenho.</p>
-                        </div>
+                        <div class="capability-icon emoji-font">🤖</div>
+                        <h3>Aprendizado de I.A</h3>
+                        <p>Aprende com cada interação e melhora continuamente seu desempenho.</p>
                     </div>
                     <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🌐</div>
-                            <h3>Multiplataforma</h3>
-                            <p>Funciona em diversos canais: WhatsApp, site, aplicativo e muito mais.</p>
-                        </div>
+                        <div class="capability-icon emoji-font">🌐</div>
+                        <h3>Multiplataforma</h3>
+                        <p>Funciona em diversos canais: WhatsApp, site, aplicativo e muito mais.</p>
                     </div>
                     <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🔒</div>
-                            <h3>Segurança Máxima</h3>
-                            <p>Protege dados sensíveis com criptografia de ponta a ponta.</p>
-                        </div>
+                        <div class="capability-icon emoji-font">🔒</div>
+                        <h3>Segurança Máxima</h3>
+                        <p>Protege dados sensíveis com criptografia de ponta a ponta.</p>
                     </div>
                     <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">📈</div>
-                            <h3>Análise Preditiva</h3>
-                            <p>Antecipa tendências e comportamentos com base em dados históricos.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🔄</div>
-                            <h3>Processamento em Lote</h3>
-                            <p>Executa múltiplas tarefas simultaneamente com eficiência.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🎨</div>
-                            <h3>Personalização</h3>
-                            <p>Adapta-se ao tom de voz e personalidade da sua marca.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🤖</div>
-                            <h3>Aprendizado de I.A</h3>
-                            <p>Aprende com cada interação e melhora continuamente seu desempenho.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🌐</div>
-                            <h3>Multiplataforma</h3>
-                            <p>Funciona em diversos canais: WhatsApp, site, aplicativo e muito mais.</p>
-                        </div>
-                    </div>
-                    <div class="capability-card">
-                        <div class="card-content">
-                            <div class="capability-icon">🔒</div>
-                            <h3>Segurança Máxima</h3>
-                            <p>Protege dados sensíveis com criptografia de ponta a ponta.</p>
-                        </div>
+                        <div class="capability-icon emoji-font">📈</div>
+                        <h3>Análise Preditiva</h3>
+                        <p>Antecipa tendências e comportamentos com base em dados históricos.</p>
                     </div>
                 </div>
             </div>
@@ -2157,43 +1040,14 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
 
     <!-- SEÇÃO DE 5 DIAS GRÁTIS -->
     <section class="free-trial-section" id="beneficios">
-        <h2 class="section-title" style="margin-bottom: 0.5rem;">Experimente 5 Dias Grátis</h2>
+        <h2 class="section-title">Experimente 5 Dias Grátis</h2>
         
         <div class="trial-container">
-            <div class="card-container">
-                <div class="confetti-area">
-                    <div class="confetti" style="--x: 0; --y: -1;"></div>
-                    <div class="confetti" style="--x: 0.5; --y: -0.87;"></div>
-                    <div class="confetti" style="--x: 0.87; --y: -0.5;"></div>
-                    <div class="confetti" style="--x: 1; --y: 0;"></div>
-                    <div class="confetti" style="--x: 0.87; --y: 0.5;"></div>
-                    <div class="confetti" style="--x: 0.5; --y: 0.87;"></div>
-                    <div class="confetti" style="--x: 0; --y: 1;"></div>
-                    <div class="confetti" style="--x: -0.5; --y: 0.87;"></div>
-                    <div class="confetti" style="--x: -0.87; --y: 0.5;"></div>
-                    <div class="confetti" style="--x: -1; --y: 0;"></div>
-                    <div class="confetti" style="--x: -0.87; --y: -0.5;"></div>
-                    <div class="confetti" style="--x: -0.5; --y: -0.87;"></div>
-                    <div class="confetti" style="--x: 0.71; --y: -0.71;"></div>
-                    <div class="confetti" style="--x: 0.71; --y: 0.71;"></div>
-                    <div class="confetti" style="--x: -0.71; --y: 0.71;"></div>
-                    <div class="confetti" style="--x: -0.71; --y: -0.71;"></div>
-                    <div class="confetti" style="--x: 0.94; --y: -0.34;"></div>
-                    <div class="confetti" style="--x: 0.94; --y: 0.34;"></div>
-                    <div class="confetti" style="--x: -0.94; --y: 0.34;"></div>
-                    <div class="confetti" style="--x: -0.94; --y: -0.34;"></div>
-                    <div class="confetti" style="--x: 0.34; --y: -0.94;"></div>
-                    <div class="confetti" style="--x: 0.34; --y: 0.94;"></div>
-                    <div class="confetti" style="--x: -0.34; --y: 0.94;"></div>
-                    <div class="confetti" style="--x: -0.34; --y: -0.94;"></div>
-                </div>
-                
-                <div class="trial-card">
-                    <span class="gift-emoji">🎁</span>
-                    <h3 class="trial-title">5 Dias Grátis</h3>
-                    <p class="trial-subtitle">Teste nossa automação completa sem compromisso</p>
-                    <a href="#formulario" class="trial-btn">Resgatar meus 5 dias grátis</a>
-                </div>
+            <div class="trial-card">
+                <span class="gift-emoji emoji-font">🎁</span>
+                <h3 class="trial-title">5 Dias Grátis</h3>
+                <p class="trial-subtitle">Teste nossa automação completa sem compromisso</p>
+                <a href="#formulario" class="trial-btn">Resgatar meus 5 dias grátis</a>
             </div>
             
             <div class="trial-content">
@@ -2202,38 +1056,26 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 
                 <ul class="feature-list">
                     <li>
-                        <div class="emoji-square">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
+                        <div class="emoji-square emoji-font">📱</div>
                         <span>Atendimento automático 24/7 no WhatsApp</span>
                     </li>
                     <li>
-                        <div class="emoji-square">
-                            <i class="fas fa-link"></i>
-                        </div>
+                        <div class="emoji-square emoji-font">🔗</div>
                         <span>Integração com seus sistemas atuais</span>
                     </li>
                     <li>
-                        <div class="emoji-square">
-                            <i class="fas fa-comments"></i>
-                        </div>
+                        <div class="emoji-square emoji-font">💬</div>
                         <span>Resposta inteligente a dúvidas dos clientes</span>
                     </li>
                     <li>
-                        <div class="emoji-square">
-                            <i class="fas fa-bolt"></i>
-                        </div>
+                        <div class="emoji-square emoji-font">⚡</div>
                         <span>Automação de processos internos</span>
                     </li>
                     <li>
-                        <div class="emoji-square">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
+                        <div class="emoji-square emoji-font">📊</div>
                         <span>Relatórios e análises em tempo real</span>
                     </li>
                 </ul>
-                
-                <p style="margin-top: 2rem;"><strong>Sem surpresas:</strong> Após os 5 dias, você decide se quer continuar. Sem cobranças automáticas, sem letras miúdas.</p>
             </div>
         </div>
     </section>
@@ -2245,9 +1087,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
         
         <div class="vantagens-grid">
             <div class="vantagem-item">
-                <div class="icone-emoji">
-                    <i class="fas fa-bolt"></i>
-                </div>
+                <div class="icone-emoji emoji-font">⚡</div>
                 <div class="vantagem-conteudo">
                     <h3>Velocidade e Eficiência</h3>
                     <p>Reduza em até 70% o tempo de resposta e economize centenas de horas mensais em tarefas repetitivas.</p>
@@ -2255,9 +1095,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             </div>
             
             <div class="vantagem-item">
-                <div class="icone-emoji">
-                    <i class="fas fa-robot"></i>
-                </div>
+                <div class="icone-emoji emoji-font">🤖</div>
                 <div class="vantagem-conteudo">
                     <h3>Tecnologia Inteligente</h3>
                     <p>Nossos agentes de IA alcançam 98% de satisfação dos clientes, com respostas precisas e naturais.</p>
@@ -2265,9 +1103,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
             </div>
             
             <div class="vantagem-item">
-                <div class="icone-emoji">
-                    <i class="fas fa-rocket"></i>
-                </div>
+                <div class="icone-emoji emoji-font">🚀</div>
                 <div class="vantagem-conteudo">
                     <h3>Implementação Rápida</h3>
                     <p>Comece a usar seu agente em apenas 1 dia após a conclusão do seu projeto.</p>
@@ -2276,148 +1112,95 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
         </div>
     </section>
 
-    <!-- SEÇÃO DE FORMULÁRIO COM FORMSPREE - SEM REDIRECIONAMENTO -->
+    <!-- FORMULÁRIO -->
     <section class="form-section" id="formulario">
         <div class="form-container">
             <div class="form-content">
                 <h2 class="form-title">Pronto para ter o seu agente IA?</h2>
-                <p class="form-subtitle">Pronto para automatizar seu atendimento sem complicações? Nossa IA eleva sua eficiência e qualidade.</p>
-                <p class="form-subtitle">✅ Preencha o formulário e, em breve, nosso time entrará em contato com você via WhatsApp.</p>
+                <p class="form-subtitle">Preencha o formulário e nosso time entrará em contato via WhatsApp.</p>
             </div>
             
             <div class="form-box">
                 <form id="capturaForm">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label class="form-label" for="nome">Nome Completo *</label>
-                            <input type="text" id="nome" name="nome" class="form-input" required placeholder="ex: João Silva">
+                            <label class="form-label">Nome Completo *</label>
+                            <input type="text" name="nome" class="form-input" required>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="email">E-mail *</label>
-                            <input type="email" id="email" name="email" class="form-input" required placeholder="ex: joao@empresa.com">
+                            <label class="form-label">E-mail *</label>
+                            <input type="email" name="email" class="form-input" required>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="whatsapp">WhatsApp *</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" class="form-input" required placeholder="ex: 11 99999-9999">
+                            <label class="form-label">WhatsApp *</label>
+                            <input type="tel" name="whatsapp" class="form-input" required>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="empresa">Empresa</label>
-                            <input type="text" id="empresa" name="empresa" class="form-input" placeholder="ex: Minha Empresa LTDA">
+                            <label class="form-label">Empresa</label>
+                            <input type="text" name="empresa" class="form-input">
                         </div>
                         
-                        <!-- NOVO CAMPO: FATURAMENTO MENSAL -->
                         <div class="form-group">
-                            <label class="form-label" for="faturamento">Qual é o seu faturamento mensal? *</label>
-                            <select id="faturamento" name="faturamento" class="form-input" required>
-                                <option value="">Selecione uma opção</option>
+                            <label class="form-label">Faturamento Mensal *</label>
+                            <select name="faturamento" class="form-input" required>
+                                <option value="">Selecione</option>
                                 <option value="menos-20000">Menos que R$ 20.000</option>
-                                <option value="20000-40000">De R$ 20.000 a R$ 40.000</option>
-                                <option value="41000-60000">De R$ 41.000 a R$ 60.000</option>
-                                <option value="61000-100000">De R$ 61.000 a R$ 100.000</option>
-                                <option value="100000-500000">De R$ 100.000 a R$ 500.000</option>
+                                <option value="20000-40000">R$ 20.000 a R$ 40.000</option>
+                                <option value="41000-60000">R$ 41.000 a R$ 60.000</option>
+                                <option value="61000-100000">R$ 61.000 a R$ 100.000</option>
+                                <option value="100000-500000">R$ 100.000 a R$ 500.000</option>
                             </select>
                         </div>
                     </div>
                     
-                    <button type="submit" class="form-submit" id="submitButton">
+                    <button type="submit" class="form-submit">
                         <span id="submitText">Enviar Formulário</span>
                         <span id="loadingText" class="loading-text">Enviando...</span>
                     </button>
                 </form>
 
-                <!-- Página de obrigado normal -->
                 <div class="thank-you-container" id="thankYouPage">
-                    <div class="thank-you-icon">✅</div>
+                    <div class="thank-you-icon emoji-font">✅</div>
                     <h2 class="thank-you-title">Cadastro enviado!</h2>
-                    <p class="thank-you-message">
-                        Entraremos em contato em até 24 horas.
-                    </p>
-                    
-                    <div class="thank-you-details">
-                        <p><strong>Nome:</strong> <span id="resumoNome"></span></p>
-                        <p><strong>E-mail:</strong> <span id="resumoEmail"></span></p>
-                        <p><strong>WhatsApp:</strong> <span id="resumoWhatsapp"></span></p>
-                        <p><strong>Empresa:</strong> <span id="resumoEmpresa"></span></p>
-                        <p><strong>Faturamento:</strong> <span id="resumoFaturamento"></span></p>
-                    </div>
+                    <p class="thank-you-message">Entraremos em contato em até 24 horas.</p>
                 </div>
 
-                <!-- NOVA PÁGINA PARA FATURAMENTO BAIXO -->
                 <div class="thank-you-container" id="thankYouPageBaixo">
-                    <div class="thank-you-icon">⚠️</div>
+                    <div class="thank-you-icon emoji-font">⚠️</div>
                     <h2 class="thank-you-title">Agradecemos seu interesse!</h2>
                     <p class="thank-you-message">
                         No momento, não podemos estabelecer uma parceria, pois seu faturamento mensal está abaixo do necessário para nossa solução.
-                        <br><br>
-                        Recomendamos que nos procure novamente quando seu negócio atingir um faturamento superior a R$ 20.000 mensais.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO FAQ ATUALIZADA -->
+    <!-- FAQ -->
     <section class="faq-section">
         <h2 class="section-title">Perguntas Frequentes</h2>
-        <p class="section-subtitle">Tire suas dúvidas sobre nossos agentes de IA e como eles podem transformar seu negócio</p>
+        <p class="section-subtitle">Tire suas dúvidas sobre nossos agentes de IA</p>
         
         <div class="faq-container">
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>Quanto tempo leva para implementar um agente de IA?</span>
-                    <span class="faq-toggle">+</span>
+                    <span>Quanto tempo leva para implementar?</span>
+                    <span class="faq-toggle emoji-font">+</span>
                 </div>
                 <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        O tempo de implementação, após a conclusão do seu projeto, é de apenas 1 dia para que seu agente de IA esteja operando.
-                    </div>
+                    <div>O tempo de implementação é de apenas 1 dia após a conclusão do seu projeto.</div>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>O agente precisa de manutenção constante?</span>
-                    <span class="faq-toggle">+</span>
+                    <span>O agente precisa de manutenção?</span>
+                    <span class="faq-toggle emoji-font">+</span>
                 </div>
                 <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Nossos agentes aprendem continuamente e se adaptam automaticamente. Oferecemos suporte contínuo e atualizações para garantir que ele evolua junto com seu negócio.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>É seguro confiar informações sensíveis ao agente?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Sim! Trabalhamos com infraestrutura segura e privativa, seguindo os mais altos padrões de segurança e conformidade com a LGPD.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Posso integrar com meus sistemas atuais?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Absolutamente! Nossos agentes se integram com mais de 400 ferramentas, incluindo WhatsApp, CRMs, ERPs e outras plataformas que sua empresa já utiliza.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Como funciona o período de teste grátis?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Oferecemos 5 dias grátis para você testar nossa plataforma completa. Após esse período, você decide se quer continuar sem nenhum compromisso.
-                    </div>
+                    <div>Nossos agentes aprendem continuamente e se adaptam automaticamente.</div>
                 </div>
             </div>
         </div>
@@ -2428,136 +1211,33 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
     </footer>
 
     <script>
-        // Efeito de parallax nos balões quando a página é scrolada
-        window.addEventListener('scroll', function() {
-            const heroSection = document.querySelector('.hero');
-            const heroImage = document.querySelector('.hero-image');
-            const scrollPosition = window.scrollY;
+        // Formspree submission
+        document.getElementById('capturaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Ativa o efeito quando o scroll passa de 100px
-            if (scrollPosition > 100) {
-                heroImage.classList.add('scrolled');
-            } else {
-                heroImage.classList.remove('scrolled');
-            }
-        });
-
-        // Sistema de animação por scroll para todas as seções
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // Animação específica para o hero
-                    if (entry.target.classList.contains('hero')) {
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, 300);
-                    }
+            const submitButton = this.querySelector('button[type="submit"]');
+            const submitText = document.getElementById('submitText');
+            const loadingText = document.getElementById('loadingText');
+            const faturamento = this.querySelector('select[name="faturamento"]').value;
+            
+            submitText.style.display = 'none';
+            loadingText.style.display = 'inline';
+            submitButton.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                if (faturamento === 'menos-20000') {
+                    document.getElementById('capturaForm').style.display = 'none';
+                    document.getElementById('thankYouPageBaixo').style.display = 'block';
+                } else {
+                    document.getElementById('capturaForm').style.display = 'none';
+                    document.getElementById('thankYouPage').style.display = 'block';
                 }
-            });
-        }, observerOptions);
-
-        // Observar todas as seções
-        document.querySelectorAll('.hero, .section, .free-trial-section, .porque-auton, .form-section, .faq-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // **EFEITO MELHORADO DOS 4 BLOCOS DE MENSAGEM - APARECEM E SOMEM COM SCROLL**
-        window.addEventListener('scroll', function() {
-            const celularImage = document.querySelector('#celularImage');
-            const aboutSection = document.querySelector('#sobre');
-            const capabilitiesSection = document.querySelector('#como-funciona');
-            const scrollPosition = window.scrollY;
-            
-            // Posição das seções
-            const aboutTop = aboutSection.offsetTop;
-            const aboutHeight = aboutSection.offsetHeight;
-            const capabilitiesTop = capabilitiesSection.offsetTop;
-            
-            // Calcula o progresso do scroll dentro da seção "sobre"
-            const windowHeight = window.innerHeight;
-            
-            // Rotação do celular
-            const startRotation = aboutTop - windowHeight * 0.5;
-            const endRotation = aboutTop + aboutHeight * 0.8;
-            
-            let rotationProgress = 0;
-            
-            if (scrollPosition > startRotation && scrollPosition < endRotation) {
-                rotationProgress = (scrollPosition - startRotation) / (endRotation - startRotation);
-            } else if (scrollPosition >= endRotation) {
-                rotationProgress = 1;
-            }
-            
-            rotationProgress = Math.max(0, Math.min(1, rotationProgress));
-            
-            const maxRotation = -9;
-            const currentRotation = maxRotation * rotationProgress;
-            
-            celularImage.style.transform = `rotate(${currentRotation}deg)`;
-            
-            // Efeito do texto
-            const textContent = document.querySelector('#text-content');
-            const textStart = aboutTop - windowHeight * 0.3;
-            const textEnd = aboutTop + aboutHeight * 0.4;
-            
-            if (scrollPosition > textStart && scrollPosition < textEnd) {
-                const textProgress = (scrollPosition - textStart) / (textEnd - textStart);
-                if (textProgress > 0.2) {
-                    textContent.classList.add('text-visible');
-                }
-            } else if (scrollPosition >= textEnd) {
-                textContent.classList.add('text-visible');
-            } else {
-                textContent.classList.remove('text-visible');
-            }
-            
-           // **EFEITO DAS MENSAGENS - COMEÇA MUITO MAIS CEDO**
-const messages = [
-    document.getElementById('msg1'),
-    document.getElementById('msg2'), 
-    document.getElementById('msg3'),
-    document.getElementById('msg4')
-];
-
-// Mensagens começam quando a seção aparece (80% da viewport)
-const messagesStart = aboutTop - windowHeight * 0.8;
-// Mensagens terminam no primeiro 25% da seção "sobre"
-const messagesEnd = aboutTop + aboutHeight * 0.25;
-
-// Controle da visibilidade das mensagens
-if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
-    const messagesProgress = (scrollPosition - messagesStart) / (messagesEnd - messagesStart);
-    
-    // **SEQUÊNCIA MUITO RÁPIDA - APARECEM UMA POR UMA CONFORME O SCROLL**
-    if (messagesProgress >= 0) messages[0].classList.add('visible');
-    if (messagesProgress >= 0.15) messages[1].classList.add('visible');
-    if (messagesProgress >= 0.3) messages[2].classList.add('visible');
-    if (messagesProgress >= 0.45) messages[3].classList.add('visible');
-    
-    // **EFEITO REVERSO - DESAPARECEM QUANDO SCROLLA PRA CIMA**
-    if (messagesProgress < 0.45) messages[3].classList.remove('visible');
-    if (messagesProgress < 0.3) messages[2].classList.remove('visible');
-    if (messagesProgress < 0.15) messages[1].classList.remove('visible');
-    if (messagesProgress < 0) messages[0].classList.remove('visible');
-    
-} else if (scrollPosition >= messagesEnd) {
-    // Todas as mensagens visíveis quando passa do ponto final
-    messages.forEach(message => {
-        message.classList.add('visible');
-    });
-} else {
-    // Nenhuma mensagem visível quando está antes do ponto inicial
-    messages.forEach(message => {
-        message.classList.remove('visible');
-    });
-}
+                
+                submitText.style.display = 'inline';
+                loadingText.style.display = 'none';
+                submitButton.disabled = false;
+            }, 1500);
         });
 
         // FAQ functionality
@@ -2576,7 +1256,7 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
             });
         });
 
-        // Smooth scroll para links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -2589,139 +1269,6 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
                 }
             });
         });
-
-        // FORMULÁRIO COM FORMSPREE - SEM REDIRECIONAMENTO
-        document.getElementById('capturaForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitButton = document.getElementById('submitButton');
-            const submitText = document.getElementById('submitText');
-            const loadingText = document.getElementById('loadingText');
-            const faturamento = document.getElementById('faturamento').value;
-            
-            // Mostra loading
-            submitText.style.display = 'none';
-            loadingText.style.display = 'inline';
-            submitButton.disabled = true;
-            
-            // Captura os dados do formulário
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            const empresa = document.getElementById('empresa').value;
-            
-            // Preenche o resumo na página de obrigado
-            document.getElementById('resumoNome').textContent = nome;
-            document.getElementById('resumoEmail').textContent = email;
-            document.getElementById('resumoWhatsapp').textContent = whatsapp;
-            document.getElementById('resumoEmpresa').textContent = empresa || 'Não informada';
-            
-            // Mapeia o valor do faturamento para texto legível
-            const faturamentoText = {
-                'menos-20000': 'Menos que R$ 20.000',
-                '20000-40000': 'De R$ 20.000 a R$ 40.000', 
-                '41000-60000': 'De R$ 41.000 a R$ 60.000',
-                '61000-100000': 'De R$ 61.000 a R$ 100.000',
-                '100000-500000': 'De R$ 100.000 a R$ 500.000'
-            };
-            
-            document.getElementById('resumoFaturamento').textContent = faturamentoText[faturamento] || 'Não informado';
-            
-            // Verifica se o faturamento é menor que 20.000
-            if (faturamento === 'menos-20000') {
-                // Mostra página de faturamento baixo
-                document.getElementById('capturaForm').style.display = 'none';
-                document.getElementById('thankYouPageBaixo').style.display = 'block';
-                document.getElementById('thankYouPage').style.display = 'none';
-                
-                // Scroll suave para o topo da seção de formulário
-                document.getElementById('formulario').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-                
-                // Reativa o botão
-                submitText.style.display = 'inline';
-                loadingText.style.display = 'none';
-                submitButton.disabled = false;
-                
-                return;
-            }
-            
-            // PARA FATURAMENTO MAIOR QUE 20.000 - ENVIA PARA FORMSPREE
-            const formData = new FormData();
-            formData.append('nome', nome);
-            formData.append('email', email);
-            formData.append('whatsapp', whatsapp);
-            formData.append('empresa', empresa || 'Não informada');
-            formData.append('faturamento', faturamentoText[faturamento]);
-            formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
-            formData.append('_language', 'pt');
-            
-            // ENVIO PARA FORMSPREE
-            fetch('https://formspree.io/f/xdkpznjn', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na rede: ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Sucesso Formspree:', data);
-                mostrarPaginaObrigado();
-            })
-            .catch((error) => {
-                console.error('Erro Formspree:', error);
-                // Mesmo em caso de erro, mostra a página de obrigado
-                mostrarPaginaObrigado();
-            });
-        });
-
-        // Função para mostrar página de obrigado
-        function mostrarPaginaObrigado() {
-            document.getElementById('capturaForm').style.display = 'none';
-            document.getElementById('thankYouPage').style.display = 'block';
-            document.getElementById('thankYouPageBaixo').style.display = 'none';
-            
-            // Reset do botão de submit
-            const submitButton = document.getElementById('submitButton');
-            const submitText = document.getElementById('submitText');
-            const loadingText = document.getElementById('loadingText');
-            
-            submitText.style.display = 'inline';
-            loadingText.style.display = 'none';
-            submitButton.disabled = false;
-            
-            // Scroll suave para o topo da seção de formulário
-            document.getElementById('formulario').scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
-            
-            // Limpa o formulário
-            document.getElementById('capturaForm').reset();
-        }
-
-        // Inicialização - garante que apenas o formulário esteja visível inicialmente
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('thankYouPage').style.display = 'none';
-            document.getElementById('thankYouPageBaixo').style.display = 'none';
-            document.getElementById('capturaForm').style.display = 'block';
-        });
-
-        // Inicializa os efeitos
-        window.dispatchEvent(new Event('scroll'));
-        
-        // Ativa animação do hero imediatamente
-        setTimeout(() => {
-            document.querySelector('.hero').classList.add('visible');
-        }, 500);
     </script>
 </body>
 </html>
