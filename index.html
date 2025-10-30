@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Auton I.A</title>
+    <title>Auton I.A - Submit</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -2208,11 +2208,11 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
         </div>
     </section>
 
-    <!-- SEÇÃO DE FORMULÁRIO COM FORMSPREE - SEM REDIRECIONAMENTO -->
+    <!-- SEÇÃO DE FORMULÁRIO COM PÁGINA DE OBRIGADO INTEGRADA -->
     <section class="form-section" id="formulario">
         <div class="form-container">
             <div class="form-content">
-                <h2 class="form-title">Pronto para ter o seu agente IA?</h2>
+                <h2 class="form-title">Pronto para ter o seu agente IA ?</h2>
                 <p class="form-subtitle">Pronto para automatizar seu atendimento sem complicações? Nossa IA eleva sua eficiência e qualidade.</p>
                 <p class="form-subtitle">✅ Preencha o formulário e, em breve, nosso time entrará em contato com você via WhatsApp.</p>
             </div>
@@ -2522,113 +2522,49 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
             });
         });
 
-        // FORMULÁRIO COM FORMSPREE - SEM REDIRECIONAMENTO
-        document.getElementById('capturaForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitButton = document.getElementById('submitButton');
-            const submitText = document.getElementById('submitText');
-            const loadingText = document.getElementById('loadingText');
-            const faturamento = document.getElementById('faturamento').value;
-            
-            // Mostra loading
-            submitText.style.display = 'none';
-            loadingText.style.display = 'inline';
-            submitButton.disabled = true;
-            
-            // Captura os dados do formulário
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            const empresa = document.getElementById('empresa').value;
-            
-            // Preenche o resumo na página de obrigado
-            document.getElementById('resumoNome').textContent = nome;
-            document.getElementById('resumoEmail').textContent = email;
-            document.getElementById('resumoWhatsapp').textContent = whatsapp;
-            document.getElementById('resumoEmpresa').textContent = empresa || 'Não informada';
-            
-            // Mapeia o valor do faturamento para texto legível
-            const faturamentoText = {
-                'menos-20000': 'Menos que R$ 20.000',
-                '20000-40000': 'De R$ 20.000 a R$ 40.000', 
-                '41000-60000': 'De R$ 41.000 a R$ 60.000',
-                '61000-100000': 'De R$ 61.000 a R$ 100.000',
-                '100000-500000': 'De R$ 100.000 a R$ 500.000'
-            };
-            
-            document.getElementById('resumoFaturamento').textContent = faturamentoText[faturamento] || 'Não informado';
-            
-            // Verifica se o faturamento é menor que 20.000
-            if (faturamento === 'menos-20000') {
-                // Mostra página de faturamento baixo
-                document.getElementById('capturaForm').style.display = 'none';
-                document.getElementById('thankYouPageBaixo').style.display = 'block';
-                document.getElementById('thankYouPage').style.display = 'none';
-                
-                // Scroll suave para o topo da seção de formulário
-                document.getElementById('formulario').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-                
-                // Reativa o botão
-                submitText.style.display = 'inline';
-                loadingText.style.display = 'none';
-                submitButton.disabled = false;
-                
-                return;
-            }
-            
-            // PARA FATURAMENTO MAIOR QUE 20.000 - ENVIA PARA FORMSPREE
-            const formData = new FormData();
-            formData.append('nome', nome);
-            formData.append('email', email);
-            formData.append('whatsapp', whatsapp);
-            formData.append('empresa', empresa || 'Não informada');
-            formData.append('faturamento', faturamentoText[faturamento]);
-            formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
-            formData.append('_language', 'pt');
-            
-            // ENVIO PARA FORMSPREE
-            fetch('https://formspree.io/f/xdkpznjn', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na rede: ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Sucesso Formspree:', data);
-                mostrarPaginaObrigado();
-            })
-            .catch((error) => {
-                console.error('Erro Formspree:', error);
-                // Mesmo em caso de erro, mostra a página de obrigado
-                mostrarPaginaObrigado();
-            });
-        });
-
-        // Função para mostrar página de obrigado
-        function mostrarPaginaObrigado() {
+// FORMULÁRIO CORRIGIDO - FUNCIONANDO COM FORMSUBMIT
+    document.getElementById('capturaForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitButton = document.getElementById('submitButton');
+        const submitText = document.getElementById('submitText');
+        const loadingText = document.getElementById('loadingText');
+        const faturamento = document.getElementById('faturamento').value;
+        
+        // Mostra loading
+        submitText.style.display = 'none';
+        loadingText.style.display = 'inline';
+        submitButton.disabled = true;
+        
+        // Captura os dados do formulário
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const whatsapp = document.getElementById('whatsapp').value;
+        const empresa = document.getElementById('empresa').value;
+        
+        // Preenche o resumo na página de obrigado
+        document.getElementById('resumoNome').textContent = nome;
+        document.getElementById('resumoEmail').textContent = email;
+        document.getElementById('resumoWhatsapp').textContent = whatsapp;
+        document.getElementById('resumoEmpresa').textContent = empresa || 'Não informada';
+        
+        // Mapeia o valor do faturamento para texto legível
+        const faturamentoText = {
+            'menos-20000': 'Menos que R$ 20.000',
+            '20000-40000': 'De R$ 20.000 a R$ 40.000', 
+            '41000-60000': 'De R$ 41.000 a R$ 60.000',
+            '61000-100000': 'De R$ 61.000 a R$ 100.000',
+            '100000-500000': 'De R$ 100.000 a R$ 500.000'
+        };
+        
+        document.getElementById('resumoFaturamento').textContent = faturamentoText[faturamento] || 'Não informado';
+        
+        // Verifica se o faturamento é menor que 20.000
+        if (faturamento === 'menos-20000') {
+            // Mostra página de faturamento baixo
             document.getElementById('capturaForm').style.display = 'none';
-            document.getElementById('thankYouPage').style.display = 'block';
-            document.getElementById('thankYouPageBaixo').style.display = 'none';
-            
-            // Reset do botão de submit
-            const submitButton = document.getElementById('submitButton');
-            const submitText = document.getElementById('submitText');
-            const loadingText = document.getElementById('loadingText');
-            
-            submitText.style.display = 'inline';
-            loadingText.style.display = 'none';
-            submitButton.disabled = false;
+            document.getElementById('thankYouPageBaixo').style.display = 'block';
+            document.getElementById('thankYouPage').style.display = 'none';
             
             // Scroll suave para o topo da seção de formulário
             document.getElementById('formulario').scrollIntoView({ 
@@ -2636,21 +2572,75 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
                 block: 'start' 
             });
             
-            // Limpa o formulário
-            document.getElementById('capturaForm').reset();
+            // Reativa o botão
+            submitText.style.display = 'inline';
+            loadingText.style.display = 'none';
+            submitButton.disabled = false;
+            
+            return;
         }
-
-        // Inicialização - garante que apenas o formulário esteja visível inicialmente
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('thankYouPage').style.display = 'none';
-            document.getElementById('thankYouPageBaixo').style.display = 'none';
-            document.getElementById('capturaForm').style.display = 'block';
+        
+        // PARA FATURAMENTO MAIOR QUE 20.000 - ENVIA O FORMULÁRIO
+        // Configuração correta do FormSubmit
+        const formData = new FormData(this);
+        formData.append('_captcha', 'false');
+        formData.append('_template', 'table');
+        formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
+        formData.append('_replyto', email);
+        
+        // ENVIO CORRETO PARA O FORMSUBMIT
+        fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Sucesso:', data);
+            mostrarPaginaObrigado();
+        })
+        .catch((error) => {
+            console.error('Erro:', error);
+            // Mesmo em caso de erro, mostra a página de obrigado
+            mostrarPaginaObrigado();
         });
+    });
+
+    // Função para mostrar página de obrigado
+    function mostrarPaginaObrigado() {
+        document.getElementById('capturaForm').style.display = 'none';
+        document.getElementById('thankYouPage').style.display = 'block';
+        document.getElementById('thankYouPageBaixo').style.display = 'none';
+        
+        // Reset do botão de submit
+        const submitButton = document.getElementById('submitButton');
+        const submitText = document.getElementById('submitText');
+        const loadingText = document.getElementById('loadingText');
+        
+        submitText.style.display = 'inline';
+        loadingText.style.display = 'none';
+        submitButton.disabled = false;
+        
+        // Scroll suave para o topo da seção de formulário
+        document.getElementById('formulario').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+        
+        // Limpa o formulário
+        document.getElementById('capturaForm').reset();
+    }
+
+    // Inicialização - garante que apenas o formulário esteja visível inicialmente
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('thankYouPage').style.display = 'none';
+        document.getElementById('thankYouPageBaixo').style.display = 'none';
+        document.getElementById('capturaForm').style.display = 'block';
+    });
 
         // Inicializa os efeitos
         window.dispatchEvent(new Event('scroll'));
         
-        // Ativa animação o hero imediatamente
+        // Ativa animação do hero imediatamente
         setTimeout(() => {
             document.querySelector('.hero').classList.add('visible');
         }, 500);
