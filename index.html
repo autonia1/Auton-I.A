@@ -773,14 +773,23 @@
 
         /* PRIMEIRA FILEIRA - DIREITA */
         .marquee-row-top .marquee-track {
-            animation: marquee-right 20s linear infinite;
+            animation: marquee-right 25s linear infinite;
         }
 
         /* SEGUNDA FILEIRA - ESQUERDA */
         .marquee-row-bottom .marquee-track {
-            animation: marquee-left 25s linear infinite;
+            animation: marquee-left 30s linear infinite;
         }
 
+@media (max-width: 768px) {
+    .marquee-row-top .marquee-track {
+        animation: marquee-right 8s linear infinite !important;
+    }
+
+    .marquee-row-bottom .marquee-track {
+        animation: marquee-left 10s linear infinite !important;
+    }
+}
         .capability-card {
             background: #121212;
             padding: 3rem 2.5rem;
