@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo - Marquee Contínuo</title>
+    <title>Exemplo - Marquee Contínuo Corrigido</title>
     <style>
         * {
             margin: 0;
@@ -62,7 +62,6 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: max-content;
         }
 
         /* PRIMEIRA FILEIRA - DIREITA PARA ESQUERDA (CONTÍNUA) */
@@ -125,19 +124,19 @@
             height: 100%;
         }
 
-        /* ANIMAÇÕES CONTÍNUAS - KEYFRAMES MODIFICADOS */
+        /* ANIMAÇÕES CONTÍNUAS - KEYFRAMES CORRIGIDOS */
         @keyframes marquee-right {
             0% {
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(calc(-360px * 9 - 2rem * 9)); /* Move toda a extensão dos cards */
+                transform: translateX(calc(-360px * 6 - 2rem * 6)); /* Move toda a extensão dos 6 cards */
             }
         }
 
         @keyframes marquee-left {
             0% {
-                transform: translateX(calc(-360px * 9 - 2rem * 9)); /* Começa do final */
+                transform: translateX(calc(-360px * 6 - 2rem * 6)); /* Começa do final */
             }
             100% {
                 transform: translateX(0); /* Volta ao início */
@@ -173,7 +172,7 @@
     </style>
 </head>
 <body>
-    <!-- SEÇÃO DE CAPACIDADES COM MARQUEE CONTÍNUO -->
+    <!-- SEÇÃO DE CAPACIDADES COM MARQUEE CONTÍNUO CORRIGIDO -->
     <section class="capabilities-section">
         <h2 class="section-title">Do que ele é capaz?</h2>
         <p class="section-subtitle">Nosso agente de IA é capaz de executar diversas tarefas complexas de forma autônoma e inteligente.</p>
@@ -182,7 +181,7 @@
             <!-- PRIMEIRA FILEIRA - DIREITA PARA ESQUERDA -->
             <div class="marquee-row marquee-row-top">
                 <div class="marquee-track">
-                    <!-- Conjunto 1 -->
+                    <!-- Cards ORIGINAIS -->
                     <div class="capability-card">
                         <div class="card-content">
                             <div class="capability-icon">💬</div>
@@ -226,7 +225,7 @@
                         </div>
                     </div>
                     
-                    <!-- Conjunto 2 (REPETIDO para criar o loop contínuo) -->
+                    <!-- Cards DUPLICADOS (exatamente iguais aos originais) -->
                     <div class="capability-card">
                         <div class="card-content">
                             <div class="capability-icon">💬</div>
@@ -248,13 +247,34 @@
                             <p>Executa processos complexos do início ao fim sem intervenção humana.</p>
                         </div>
                     </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🔗</div>
+                            <h3>Integrações Completas</h3>
+                            <p>Conecta-se com mais de 400 ferramentas e sistemas que você já usa.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">📊</div>
+                            <h3>Análise e Relatórios</h3>
+                            <p>Gera insights, planilhas e documentos automaticamente.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🎯</div>
+                            <h3>Tomada de Decisões</h3>
+                            <p>Avalia situações e toma decisões baseadas em regras e contexto.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- SEGUNDA FILEIRA - ESQUERDA PARA DIREITA -->
             <div class="marquee-row marquee-row-bottom">
                 <div class="marquee-track">
-                    <!-- Conjunto 1 -->
+                    <!-- Cards ORIGINAIS -->
                     <div class="capability-card">
                         <div class="card-content">
                             <div class="capability-icon">🤖</div>
@@ -298,7 +318,7 @@
                         </div>
                     </div>
                     
-                    <!-- Conjunto 2 (REPETIDO para criar o loop contínuo) -->
+                    <!-- Cards DUPLICADOS (exatamente iguais aos originais) -->
                     <div class="capability-card">
                         <div class="card-content">
                             <div class="capability-icon">🤖</div>
@@ -318,6 +338,27 @@
                             <div class="capability-icon">🔒</div>
                             <h3>Segurança Máxima</h3>
                             <p>Protege dados sensíveis com criptografia de ponta a ponta.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">📈</div>
+                            <h3>Análise Preditiva</h3>
+                            <p>Antecipa tendências e comportamentos com base em dados históricos.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🔄</div>
+                            <h3>Processamento em Lote</h3>
+                            <p>Executa múltiplas tarefas simultaneamente com eficiência.</p>
+                        </div>
+                    </div>
+                    <div class="capability-card">
+                        <div class="card-content">
+                            <div class="capability-icon">🎨</div>
+                            <h3>Personalização</h3>
+                            <p>Adapta-se ao tom de voz e personalidade da sua marca.</p>
                         </div>
                     </div>
                 </div>
