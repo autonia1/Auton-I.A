@@ -2263,7 +2263,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                         
                         <div class="form-group">
                             <label class="form-label" for="email">E-mail *</label>
-                            <input type="email" id="email" name="email" class="form-input" required placeholder="ex: joao@empresa.com">
+                            <input type="email" id="email" name="email" class="form-input" required placeholder="ex: joao@clinica.com">
                         </div>
                         
                         <div class="form-group">
@@ -2272,8 +2272,8 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="empresa">Empresa</label>
-                            <input type="text" id="empresa" name="empresa" class="form-input" placeholder="ex: Minha Empresa LTDA">
+                            <label class="form-label" for="clinica">Clínica</label>
+                            <input type="text" id="clinica" name="clinica" class="form-input" placeholder="ex: Minha Clínica LTDA">
                         </div>
                         
                         <!-- NOVO CAMPO: FATURAMENTO MENSAL -->
@@ -2308,7 +2308,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                         <p><strong>Nome:</strong> <span id="resumoNome"></span></p>
                         <p><strong>E-mail:</strong> <span id="resumoEmail"></span></p>
                         <p><strong>WhatsApp:</strong> <span id="resumoWhatsapp"></span></p>
-                        <p><strong>Empresa:</strong> <span id="resumoEmpresa"></span></p>
+                        <p><strong>Clínica:</strong> <span id="resumoClinica"></span></p>
                         <p><strong>Faturamento:</strong> <span id="resumoFaturamento"></span></p>
                     </div>
                 </div>
@@ -2373,7 +2373,7 @@ src="https://www.facebook.com/tr?id=1005437460716504&ev=PageView&noscript=1"
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        Absolutamente! Nossos agentes se integram com mais de 400 ferramentas, incluindo WhatsApp, CRMs, ERPs e outras plataformas que sua empresa já utiliza.
+                        Absolutamente! Nossos agentes se integram com mais de 400 ferramentas, incluindo WhatsApp, CRMs, ERPs e outras plataformas que sua clínica já utiliza.
                     </div>
                 </div>
             </div>
@@ -2576,13 +2576,13 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
         const nome = document.getElementById('nome').value;
         const email = document.getElementById('email').value;
         const whatsapp = document.getElementById('whatsapp').value;
-        const empresa = document.getElementById('empresa').value;
+        const clinica = document.getElementById('clinica').value;
         
         // Preenche o resumo na página de obrigado
         document.getElementById('resumoNome').textContent = nome;
         document.getElementById('resumoEmail').textContent = email;
         document.getElementById('resumoWhatsapp').textContent = whatsapp;
-        document.getElementById('resumoEmpresa').textContent = empresa || 'Não informada';
+        document.getElementById('resumoClinica').textContent = clinica || 'Não informada';
         
         // Mapeia o valor do faturamento para texto legível
         const faturamentoText = {
@@ -2623,6 +2623,7 @@ if (scrollPosition > messagesStart && scrollPosition < messagesEnd) {
         formData.append('_template', 'table');
         formData.append('_subject', '🎯 NOVO LEAD - Auton I.A');
         formData.append('_replyto', email);
+        formData.append('Clínica', clinica); // Adiciona label personalizado para FormSubmit
         
         // ENVIO CORRETO PARA O FORMSUBMIT
         fetch('https://formsubmit.co/ajax/autonia.contato@gmail.com', {
